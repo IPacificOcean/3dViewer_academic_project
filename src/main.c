@@ -4,6 +4,11 @@
 
 #include "s21_matrix.h"
 
+typedef struct Data {
+  unsigned int count;
+  matrix_t matrix;
+} Data;
+
 int main(int argc, char *argv[]) {
   //************************
   FILE *f = fopen("cube.obj", "r");
@@ -11,17 +16,20 @@ int main(int argc, char *argv[]) {
   size_t len = 0;
   ssize_t lineSize = 0;
 
-  matrix_t vertexes = {NULL, 0, 0};
-  matrix_t facets = {NULL, 0, 0};
-  int count_of_vertexes = 0;
-  int count_of_facets = 0;
+  Data vertexes = {0};
+  Data facets = {0};
+
+  //   matrix_t vertexes = {NULL, 0, 0};
+  //   matrix_t facets = {NULL, 0, 0};
+  //   int vertexes.count = 0;
+  //   int facets.count = 0;
 
   //************************
 
   // первый проход с подсчетом строк v f
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
-    if (temp_string[0] == 'v' && temp_string[1] == ' ') count_of_vertexes++;
-    if (temp_string[0] == 'f' && temp_string[1] == ' ') count_of_facets++;
+    if (temp_string[0] == 'v' && temp_string[1] == ' ') vertexes.count++;
+    if (temp_string[0] == 'f' && temp_string[1] == ' ') facets.count++;
 
     // printf("%s", temp_string);
   }
@@ -30,8 +38,8 @@ int main(int argc, char *argv[]) {
   //************************
   //************************
   rewind(f);
-  s21_create_matrix(count_of_vertexes, 3, &vertexes);
-  s21_create_matrix(count_of_facets, 3, &facets);
+  s21_create_matrix(vertexes.count, 3, &vertexes.matrix);
+  s21_create_matrix(facets.count, 3, &facets.matrix);
 
   char seps[] = " ";
   char *token = NULL;
@@ -40,16 +48,16 @@ int main(int argc, char *argv[]) {
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
     if (temp_string[0] == 'v' && temp_string[1] == ' ') {
       int columns = 0;
-      printf("Tokens:\n");
+      //   printf("Tokens:\n");
       token = strtok(temp_string, seps);  // C4996
       while (token != NULL) {
         // While there are tokens in "string"
-        printf(" %s\n", token);
+        // printf(" %s\n", token);
 
         // Get next token:
         token = strtok(NULL, seps);  // C4996
         if (token == NULL) break;
-        vertexes.matrix[rowsV][columns] = atof(token);
+        vertexes.matrix.matrix[rowsV][columns] = atof(token);
         columns++;
       }
       rowsV++;
@@ -61,12 +69,12 @@ int main(int argc, char *argv[]) {
       token = strtok(temp_string, seps);  // C4996
       while (token != NULL) {
         // While there are tokens in "string"
-        printf(" %s\n", token);
+        // printf(" %s\n", token);
 
         // Get next token:
         token = strtok(NULL, seps);  // C4996
         if (token == NULL) break;
-        facets.matrix[rowsF][columns] = atof(token);
+        facets.matrix.matrix[rowsF][columns] = atof(token);
         columns++;
       }
       rowsF++;
@@ -77,17 +85,17 @@ int main(int argc, char *argv[]) {
   //************************
   //************************
 
-  printf("count_of_vertexes = %d\n", count_of_vertexes);
-  printf("count_of_facets = %d\n", count_of_facets);
+  printf("vertexes.count = %d\n", vertexes.count);
+  printf("facets.count = %d\n", facets.count);
 
   printf("print vertex\n");
-  print_matrix(&vertexes);
+  print_matrix(&vertexes.matrix);
   printf("print facets\n");
-  print_matrix(&facets);
+  print_matrix(&facets.matrix);
 
   //************************
-  s21_remove_matrix(&vertexes);
-  s21_remove_matrix(&facets);
+  s21_remove_matrix(&vertexes.matrix);
+  s21_remove_matrix(&facets.matrix);
 
   free(temp_string);
 
