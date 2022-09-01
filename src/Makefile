@@ -1,9 +1,9 @@
 CC=gcc -std=c11
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS= #-Wall -Wextra -Werror
 GCOV_LIBS=--coverage
 BUILD_PATH=./
-SOURCES=s21_calc.c
-H=s21_calc.h
+SOURCES=main.c s21_matrix.c
+H=s21_matrix.h
 LIBO=s21_calc.o
 LIBA=s21_calc.a
 EXE=test.out
@@ -47,7 +47,7 @@ clean:
 	@rm -rf *.a && rm -rf *.o *.out
 	@rm -rf *.info && rm -rf *.gcda && rm -rf *.gcno &&  rm -rf *.gcov
 	@rm -rf report/ && rm -rf *.
-	@rm -rf calc
+	@rm -rf main
 	@rm -rf .qmake.stash	
 	@rm -rf s21_calc
 	@rm -rf ./build*
@@ -58,9 +58,9 @@ test: s21_calc.a
 	$(CC) $(CFLAGS) tests.c -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
 	$(BUILD_PATH)$(EXE)
 
-debug: clean # dont use!
-	$(CC) $(CFLAGS) $(SOURCES) -o calc
-	$(BUILD_PATH)calc
+d: clean # dont use!
+	$(CC) $(CFLAGS) $(SOURCES) -o main
+	$(BUILD_PATH)main
 
 rebuild: clean all
 

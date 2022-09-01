@@ -43,7 +43,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result);
 int s21_inverse_matrix(matrix_t *A, matrix_t *result);
 
 // helper functions
-// void print_matrix(matrix_t *matrix);
+void print_matrix(matrix_t *matrix);
 // checks the matrix for validity
 int check_matrix(matrix_t *matrix);
 // compares the dimensions of the matrix

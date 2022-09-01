@@ -1,13 +1,13 @@
 #include "s21_matrix.h"
 
-// void print_matrix(matrix_t *matrix) {
-//   for (int i = 0; i < matrix->rows; i++) {
-//     for (int j = 0; j < matrix->columns; j++) {
-//       printf("%.7f ", matrix->matrix[i][j]);
-//     }
-//     printf("\n");
-//   }
-// }
+void print_matrix(matrix_t *matrix) {
+  for (int i = 0; i < matrix->rows; i++) {
+    for (int j = 0; j < matrix->columns; j++) {
+      printf("%.7f ", matrix->matrix[i][j]);
+    }
+    printf("\n");
+  }
+}
 
 int s21_create_matrix(int rows, int columns, matrix_t *result) {
   int status = 1;
