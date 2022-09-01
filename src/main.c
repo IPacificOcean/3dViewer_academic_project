@@ -9,37 +9,52 @@ typedef struct Data {
   matrix_t matrix;
 } Data;
 
-int main(int argc, char *argv[]) {
-  //************************
-  FILE *f = fopen("cube.obj", "r");
-  char *temp_string = NULL;
-  size_t len = 0;
-  ssize_t lineSize = 0;
+int parser(char *filePath, Data *vertexes, Data *facets);
+
+// int argc, char *argv[]
+int main() {
+  int error = 0;
 
   Data vertexes = {0};
   Data facets = {0};
 
-  //   matrix_t vertexes = {NULL, 0, 0};
-  //   matrix_t facets = {NULL, 0, 0};
-  //   int vertexes.count = 0;
-  //   int facets.count = 0;
+  parser("cube.obj", &vertexes, &facets);
+  //   parser("lamp.obj");
+
+  return error;
+}
+
+int parser(char *filePath, Data *vertexes, Data *facets) {
+  int error = 0;
+
+  //************************
+  FILE *f = fopen(filePath, "r");
+  char *temp_string = NULL;
+  size_t len = 0;
+  ssize_t lineSize = 0;
+
+  //   Data vertexes = {0};
+  Data tmp_facets = {0};
+  //   Data facets = {0};
 
   //************************
 
   // первый проход с подсчетом строк v f
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
-    if (temp_string[0] == 'v' && temp_string[1] == ' ') vertexes.count++;
-    if (temp_string[0] == 'f' && temp_string[1] == ' ') facets.count++;
+    if (temp_string[0] == 'v' && temp_string[1] == ' ') vertexes->count++;
+    if (temp_string[0] == 'f' && temp_string[1] == ' ') tmp_facets.count++;
 
     // printf("%s", temp_string);
   }
+
+  facets->count = tmp_facets.count;
 
   // второй проход заполняем данные
   //************************
   //************************
   rewind(f);
-  s21_create_matrix(vertexes.count, 3, &vertexes.matrix);
-  s21_create_matrix(facets.count, 3, &facets.matrix);
+  s21_create_matrix(vertexes->count, 3, &vertexes->matrix);
+  s21_create_matrix(tmp_facets.count, 3, &tmp_facets.matrix);
 
   char seps[] = " ";
   char *token = NULL;
@@ -48,16 +63,11 @@ int main(int argc, char *argv[]) {
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
     if (temp_string[0] == 'v' && temp_string[1] == ' ') {
       int columns = 0;
-      //   printf("Tokens:\n");
       token = strtok(temp_string, seps);  // C4996
       while (token != NULL) {
-        // While there are tokens in "string"
-        // printf(" %s\n", token);
-
-        // Get next token:
         token = strtok(NULL, seps);  // C4996
         if (token == NULL) break;
-        vertexes.matrix.matrix[rowsV][columns] = atof(token);
+        vertexes->matrix.matrix[rowsV][columns] = atof(token);
         columns++;
       }
       rowsV++;
@@ -65,41 +75,49 @@ int main(int argc, char *argv[]) {
 
     if (temp_string[0] == 'f' && temp_string[1] == ' ') {
       int columns = 0;
-      printf("Tokens:\n");
       token = strtok(temp_string, seps);  // C4996
       while (token != NULL) {
-        // While there are tokens in "string"
-        // printf(" %s\n", token);
-
-        // Get next token:
         token = strtok(NULL, seps);  // C4996
         if (token == NULL) break;
-        facets.matrix.matrix[rowsF][columns] = atof(token);
+        tmp_facets.matrix.matrix[rowsF][columns] = atof(token);
         columns++;
       }
       rowsF++;
     }
-
-    // printf("%s", temp_string);
   }
   //************************
   //************************
 
-  printf("vertexes.count = %d\n", vertexes.count);
-  printf("facets.count = %d\n", facets.count);
+  s21_create_matrix(facets->count, tmp_facets.matrix.columns * 2,
+                    &facets->matrix);
+
+  for (unsigned int i = 0; i < facets->count; i++) {
+    for (int j = 0; j < facets->matrix.columns - 1; j++) {
+      facets->matrix.matrix[i][j] = tmp_facets.matrix.matrix[i][((j + 1) / 2)];
+    }
+    facets->matrix.matrix[i][facets->matrix.columns - 1] =
+        tmp_facets.matrix.matrix[i][0];
+  }
+
+  printf("vertexes->count = %d\n", vertexes->count);
+  printf("tmp_facets.count = %d\n", tmp_facets.count);
 
   printf("print vertex\n");
-  print_matrix(&vertexes.matrix);
-  printf("print facets\n");
-  print_matrix(&facets.matrix);
+  print_matrix(&vertexes->matrix);
+  printf("print tmp_facets\n");
+  print_matrix(&tmp_facets.matrix);
+  printf("print tmp_facets\n");
+  print_matrix(&facets->matrix);
 
   //************************
-  s21_remove_matrix(&vertexes.matrix);
-  s21_remove_matrix(&facets.matrix);
+  s21_remove_matrix(&vertexes->matrix);
+  s21_remove_matrix(&facets->matrix);
+  s21_remove_matrix(&tmp_facets.matrix);
 
   free(temp_string);
 
   if (f) fclose(f);
   //************************
-  return 0;
+
+  return error;
 }

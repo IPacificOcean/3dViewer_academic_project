@@ -1,5 +1,5 @@
 CC=gcc -std=c11
-CFLAGS= #-Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror
 GCOV_LIBS=--coverage
 BUILD_PATH=./
 SOURCES=main.c s21_matrix.c
@@ -59,7 +59,7 @@ test: s21_calc.a
 	$(BUILD_PATH)$(EXE)
 
 d: clean # dont use!
-	$(CC) $(CFLAGS) $(SOURCES) -o main
+	$(CC) $(CFLAGS) $(TST_LIBS) $(SOURCES) -o main
 	$(BUILD_PATH)main
 
 rebuild: clean all
