@@ -53,6 +53,7 @@ clean:
 	@rm -rf ./build*
 	@rm -rf SmartCalc
 	@rm -rf SmartCalc Archive_SmartCalc_v1.0.tgz
+	@rm -rf ./qt/build*
 
 test: s21_calc.a
 	$(CC) $(CFLAGS) tests.c -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)

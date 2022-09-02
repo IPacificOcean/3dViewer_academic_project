@@ -6,21 +6,6 @@
 
 #include "s21_matrix.h"
 
-// int parser(char *filePath, Data *vertexes, Data *facets);
-
-// // int argc, char *argv[]
-// int main() {
-//   int error = 0;
-
-//   Data vertexes = {0};
-//   Data facets = {0};
-
-//   parser("cube.obj", &vertexes, &facets);
-//   //   parser("lamp.obj");
-
-//   return error;
-// }
-
 int parser(char *filePath, Data *vertexes, Data *facets) {
   int error = 0;
 
@@ -99,17 +84,17 @@ int parser(char *filePath, Data *vertexes, Data *facets) {
   printf("vertexes->count = %d\n", vertexes->count);
   printf("tmp_facets.count = %d\n", tmp_facets.count);
 
-  printf("print vertex\n");
-  print_matrix(&vertexes->matrix);
-  printf("print tmp_facets\n");
-  print_matrix(&tmp_facets.matrix);
-  printf("print tmp_facets\n");
-  print_matrix(&facets->matrix);
+  // printf("print vertex\n");
+  // print_matrix(&vertexes->matrix);
+  // printf("print tmp_facets\n");
+  // print_matrix(&tmp_facets.matrix);
+  // printf("print tmp_facets\n");
+  // print_matrix(&facets->matrix);
 
   //************************
-  s21_remove_matrix(&vertexes->matrix);
-  s21_remove_matrix(&facets->matrix);
-  s21_remove_matrix(&tmp_facets.matrix);
+  // s21_remove_matrix(&vertexes->matrix);
+  // s21_remove_matrix(&facets->matrix);
+  // s21_remove_matrix(&tmp_facets.matrix);
 
   free(temp_string);
 

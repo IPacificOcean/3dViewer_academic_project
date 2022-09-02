@@ -14,5 +14,6 @@ typedef struct Data {
 } Data;
 
 int parser(char *filePath, Data *vertexes, Data *facets);
+// int parser(char *filePath, double **vertexes, double **facets);
 
 #endif  // SRC_PARSER_H
