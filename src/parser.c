@@ -1,28 +1,25 @@
+#include "parser.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "s21_matrix.h"
 
-typedef struct Data {
-  unsigned int count;
-  matrix_t matrix;
-} Data;
+// int parser(char *filePath, Data *vertexes, Data *facets);
 
-int parser(char *filePath, Data *vertexes, Data *facets);
+// // int argc, char *argv[]
+// int main() {
+//   int error = 0;
 
-// int argc, char *argv[]
-int main() {
-  int error = 0;
+//   Data vertexes = {0};
+//   Data facets = {0};
 
-  Data vertexes = {0};
-  Data facets = {0};
+//   parser("cube.obj", &vertexes, &facets);
+//   //   parser("lamp.obj");
 
-  parser("cube.obj", &vertexes, &facets);
-  //   parser("lamp.obj");
-
-  return error;
-}
+//   return error;
+// }
 
 int parser(char *filePath, Data *vertexes, Data *facets) {
   int error = 0;

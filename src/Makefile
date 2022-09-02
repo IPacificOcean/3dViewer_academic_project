@@ -2,8 +2,8 @@ CC=gcc -std=c11
 CFLAGS= -Wall -Wextra -Werror
 GCOV_LIBS=--coverage
 BUILD_PATH=./
-SOURCES=main.c s21_matrix.c
-H=s21_matrix.h
+SOURCES=main_test.c s21_matrix.c parser.c
+H=s21_matrix.h parser.h
 LIBO=s21_calc.o
 LIBA=s21_calc.a
 EXE=test.out
