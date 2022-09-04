@@ -12,9 +12,10 @@
 
 #include <QtWidgets/QWidget>
 #include <QtOpenGL>
-#include <QtOpenGLWidgets>
 #include <QTimer>
 #include <QFileDialog>
+
+
 
 
 extern "C" {

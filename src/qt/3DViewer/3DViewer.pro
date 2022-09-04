@@ -13,12 +13,14 @@ CONFIG += c++17
 SOURCES += \
     ../../parser.c \
     ../../s21_matrix.c \
+    glwidget.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     ../../parser.h \
     ../../s21_matrix.h \
+    glwidget.h \
     mainwindow.h
 
 FORMS += \
