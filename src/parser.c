@@ -7,7 +7,7 @@
 
 #include "s21_matrix.h"
 
-int parser(char *filePath, Data *vertexes, Data *facets) {
+int _parser(char *filePath, Data *vertexes, Data *facets) {
   int error = 0;
 
   //************************

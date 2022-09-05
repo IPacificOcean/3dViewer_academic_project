@@ -5,30 +5,32 @@
 
 #include "parser.h"
 
-int count_space_in_str(int *count, char *str) {
-  int error = 0;
-  int temp_count = 0;
-  char *tmp = str;
-  while (*tmp) {
-    printf("%c", *tmp);
-    if (*tmp == ' ') {
-      temp_count++;
-    }
-    tmp++;
-  }
-  *count += temp_count;
-  return error;
-}
-
-int pre_parser(char *filePath, Vertexes *vertexes, Facets *facets) {
+int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   int error = 0;
   //************************
   FILE *f = fopen(filePath, "r");
+  // char *temp_string = NULL;
+  // size_t len = 0;
+  // ssize_t lineSize = 0;
+  // int space_count = 0;
+
+  //************************
+
+  // первый проход с подсчетом строк v f
+  error = pre_parser(f, vertexes, facets);
+
+  if (f) fclose(f);
+
+  return error;
+}
+
+int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
+  int error = 0;
+  //************************
   char *temp_string = NULL;
   size_t len = 0;
   ssize_t lineSize = 0;
-  int count_f = 0;
-
+  int space_count = 0;
   //************************
 
   // первый проход с подсчетом строк v f
@@ -38,16 +40,14 @@ int pre_parser(char *filePath, Vertexes *vertexes, Facets *facets) {
     }
 
     if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-      count_space_in_str(&count_f, temp_string);
+      count_space_in_str(&space_count, temp_string);
     }
   }
 
   vertexes->count *= 3;
-  facets->count += count_f * 2;
+  facets->count += space_count * 2;
 
   free(temp_string);
-
-  if (f) fclose(f);
 
   return error;
 }
@@ -80,3 +80,18 @@ s off
 
 
 */
+
+int count_space_in_str(int *count, char *str) {
+  int error = 0;
+  int temp_count = 0;
+  char *tmp = str;
+  while (*tmp) {
+    // printf("%c", *tmp);
+    if (*tmp == ' ') {
+      temp_count++;
+    }
+    tmp++;
+  }
+  *count += temp_count;
+  return error;
+}

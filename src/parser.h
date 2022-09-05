@@ -36,16 +36,25 @@ typedef struct Facet {
  * @param facets структура с массивом фасетов
  * @return int код ошибки
  */
-// int parser(char *filePath, Data *vertexes, Data *facets);
+int parser(char *filePath, Vertexes *vertexes, Facets *facets);
 
 /**
  * @brief функция для парсинга .obj файлов.
  *
- * @param filePath путь и имя файла
+ * @param f принимает поток файла
  * @param vertexes структура с массивом вершин
  * @param facets структура с массивом фасетов
  * @return int код ошибки
  */
-int pre_parser(char *filePath, Vertexes *vertexes, Facets *facets);
+int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
+
+/**
+ * @brief считает количество пробелов в строке
+ *
+ * @param count прибавляет к этому счетику количество пробелов
+ * @param str строка поиска
+ * @return int код ошибки
+ */
+int count_space_in_str(int *count, char *str);
 
 #endif  // SRC_PARSER_H
