@@ -33,26 +33,27 @@ void MainWindow::on_pushButton_2_clicked()
     QString fileName = ui->label->text();
     QByteArray ba = fileName.toLocal8Bit();
     char *str = ba.data();
-    Data vertexes = {0, {NULL, 0, 0}};
-    Data facets = {0, {NULL, 0, 0}};
+    Vertexes vertexes = {0, nullptr};
+    Facets facets = {0, nullptr};
     int error = 0;
     error = parser(str, &vertexes, &facets);
     std::cout << error << std::endl;
     std::cout << str << std::endl;
 
-    for (int a = 0; a < vertexes.matrix.rows; a++) {
-            for (int b = 0; b <vertexes.matrix.columns; b++) {
-                std::cout << vertexes.matrix.matrix[a][b] << "\t";
-            }
-            std::cout << std::endl;
+    for (unsigned int a = 1; a < vertexes.count; a++) {
+        std::cout << vertexes.arg_v[a] << "\t";
+        if (a % 3 == 0) {
+           std::cout << std::endl;
         }
 
-    for (int a = 0; a < facets.matrix.rows; a++) {
-            for (int b = 0; b <facets.matrix.columns; b++) {
-                std::cout << facets.matrix.matrix[a][b] << "\t";
-            }
-            std::cout << std::endl;
-        }
+    }
+
+//    for (int a = 0; a < facets.matrix.rows; a++) {
+//            for (int b = 0; b <facets.matrix.columns; b++) {
+//                std::cout << facets.matrix.matrix[a][b] << "\t";
+//            }
+//            std::cout << std::endl;
+//        }
 
 }
 

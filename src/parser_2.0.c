@@ -35,7 +35,7 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   char seps[] = " ";
   char *token = NULL;
   int arg_v_index = 1;
-  // int arg_f_index = 1;
+  int arg_f_index = 1;
 
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
     if (temp_string[0] == 'v' && temp_string[1] == ' ') {
@@ -48,20 +48,17 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
         arg_v_index++;
       }
     }
-  }
 
-  //   if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-  //     int columns = 0;
-  //     token = strtok(temp_string, seps);
-  //     while (token != NULL) {
-  //       token = strtok(NULL, seps);
-  //       if (token == NULL) break;
-  //       tmp_facets.matrix.matrix[rowsF][columns] = atof(token);
-  //       columns++;
-  //     }
-  //     rowsF++;
-  //   }
-  // }
+    if (temp_string[0] == 'f' && temp_string[1] == ' ') {
+      token = strtok(temp_string, seps);
+      while (token != NULL) {
+        token = strtok(NULL, seps);
+        if (token == NULL) break;
+        facets->arg_f[arg_f_index] = atoi(token);
+        // columns++;
+      }
+    }
+  }
 
   // ******* заполнение данных ********
 

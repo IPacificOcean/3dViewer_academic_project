@@ -11,8 +11,8 @@ int main() {
   Facets facets;
   // FILE *f = fopen("cube.obj", "r");
 
-  // error = parser("cube.obj", &vertexes, &facets);
-  error = parser("lamp.obj", &vertexes, &facets);
+  error = parser("cube.obj", &vertexes, &facets);
+  // error = parser("lamp.obj", &vertexes, &facets);
   //   parser("lamp.obj");
 
   printf("vertexes->count = %d\n", vertexes.count);
