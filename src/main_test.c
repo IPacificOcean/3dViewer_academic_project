@@ -14,7 +14,7 @@ int main() {
   //   parser("lamp.obj");
 
   printf("vertexes->count = %d\n", vertexes.count);
-  printf("tmp_facets.count = %d\n", facets.count);
+  printf("facets.count = %d\n", facets.count);
 
   return error;
 }

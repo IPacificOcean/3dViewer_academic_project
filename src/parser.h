@@ -25,7 +25,7 @@ typedef struct Vretex {
  */
 typedef struct Facet {
   unsigned int count;
-  unsigned int *vretexes;
+  unsigned int *facets;
 } Facets;
 
 /**
