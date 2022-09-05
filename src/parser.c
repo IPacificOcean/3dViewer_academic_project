@@ -1,5 +1,6 @@
 #include "parser.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,17 +85,17 @@ int parser(char *filePath, Data *vertexes, Data *facets) {
   printf("vertexes->count = %d\n", vertexes->count);
   printf("tmp_facets.count = %d\n", tmp_facets.count);
 
-  // printf("print vertex\n");
-  // print_matrix(&vertexes->matrix);
-  // printf("print tmp_facets\n");
-  // print_matrix(&tmp_facets.matrix);
-  // printf("print tmp_facets\n");
-  // print_matrix(&facets->matrix);
+  printf("print vertex\n");
+  print_matrix(&vertexes->matrix);
+  printf("print tmp_facets\n");
+  print_matrix(&tmp_facets.matrix);
+  printf("print tmp_facets\n");
+  print_matrix(&facets->matrix);
 
   //************************
-  // s21_remove_matrix(&vertexes->matrix);
-  // s21_remove_matrix(&facets->matrix);
-  // s21_remove_matrix(&tmp_facets.matrix);
+  s21_remove_matrix(&vertexes->matrix);
+  s21_remove_matrix(&facets->matrix);
+  s21_remove_matrix(&tmp_facets.matrix);
 
   free(temp_string);
 

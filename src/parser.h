@@ -1,11 +1,6 @@
 #ifndef SRC_PARSER_H
 #define SRC_PARSER_H
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "s21_matrix.h"
 
 typedef struct Data {
@@ -13,7 +8,44 @@ typedef struct Data {
   matrix_t matrix;
 } Data;
 
-int parser(char *filePath, Data *vertexes, Data *facets);
-// int parser(char *filePath, double **vertexes, double **facets);
+/**
+ * @brief хранит кординаты вершин точек в одномерном массиве в формате x, y, z,
+ * ... xn, yn, xn.
+ *
+ */
+typedef struct Vretex {
+  unsigned int count;
+  double *vretexes;
+} Vertexes;
+
+/**
+ * @brief хранит попарно номера вершин для построения линии фасетов в одноменом
+ * массиве в формате v1, v2, v,2, v4, v4, v5, v5, vn.
+ *
+ */
+typedef struct Facet {
+  unsigned int count;
+  unsigned int *vretexes;
+} Facets;
+
+/**
+ * @brief функция для парсинга .obj файлов.
+ *
+ * @param filePath путь и имя файла
+ * @param vertexes структура с массивом вершин
+ * @param facets структура с массивом фасетов
+ * @return int код ошибки
+ */
+// int parser(char *filePath, Data *vertexes, Data *facets);
+
+/**
+ * @brief функция для парсинга .obj файлов.
+ *
+ * @param filePath путь и имя файла
+ * @param vertexes структура с массивом вершин
+ * @param facets структура с массивом фасетов
+ * @return int код ошибки
+ */
+int pre_parser(char *filePath, Vertexes *vertexes, Facets *facets);
 
 #endif  // SRC_PARSER_H
