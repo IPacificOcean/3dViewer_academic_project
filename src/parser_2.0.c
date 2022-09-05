@@ -60,6 +60,7 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
         token = strtok(NULL, seps);
         count++;
         if (count == 2) {
+          memset(temp, 0, 32);
           strcpy(temp, token);
         }
         if (token == NULL) break;
@@ -75,7 +76,7 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
             facets->arg_f[arg_f_index] = atoi(temp);
           }
         }
-        printf("arg_f_index %d\n", arg_f_index);
+        // printf("arg_f_index %d\n", arg_f_index);
       }
     }
   }
@@ -114,35 +115,6 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
 
   return error;
 }
-
-/*
-
-# Apple ModelIO OBJ File: cube
-mtllib cube.mtl
-g
-v 0 0 0
-v 2 2 0
-v 2 0 0
-v 0 2 0
-v 0 2 2
-v 0 0 2
-v 2 2 2
-v 2 0 2
-usemtl material_1
-f 1 2 3
-f 1 4 2
-f 1 5 4
-f 1 6 5
-f 4 7 2
-f 4 5 7
-f 3 2 7
-f 3 7 8
-f 1 3 8
-f 1 8 6
-s off
-
-
-*/
 
 int count_space_in_str(int *count, char *str) {
   int error = 0;
