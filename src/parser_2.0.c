@@ -9,15 +9,61 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   int error = 0;
   //************************
   FILE *f = fopen(filePath, "r");
-  // char *temp_string = NULL;
-  // size_t len = 0;
-  // ssize_t lineSize = 0;
+  char *temp_string = NULL;
+  size_t len = 0;
+  ssize_t lineSize = 0;
   // int space_count = 0;
 
   //************************
 
   // первый проход с подсчетом строк v f
+
   error = pre_parser(f, vertexes, facets);
+
+  // первый проход с подсчетом строк v f
+
+  rewind(f);
+
+  // ******* заполнение данных ********
+
+  vertexes->arg_v = (double *)malloc(vertexes->count * sizeof(double));
+  facets->arg_f = (unsigned int *)malloc(facets->count * sizeof(unsigned int));
+
+  vertexes->arg_v[0] = 0;
+  facets->arg_f[0] = 0;
+
+  char seps[] = " ";
+  char *token = NULL;
+  int arg_v_index = 1;
+  // int arg_f_index = 1;
+
+  while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
+    if (temp_string[0] == 'v' && temp_string[1] == ' ') {
+      token = strtok(temp_string, seps);
+
+      while (token != NULL) {
+        token = strtok(NULL, seps);
+        if (token == NULL) break;
+        vertexes->arg_v[arg_v_index] = atof(token);
+        arg_v_index++;
+      }
+    }
+  }
+
+  //   if (temp_string[0] == 'f' && temp_string[1] == ' ') {
+  //     int columns = 0;
+  //     token = strtok(temp_string, seps);
+  //     while (token != NULL) {
+  //       token = strtok(NULL, seps);
+  //       if (token == NULL) break;
+  //       tmp_facets.matrix.matrix[rowsF][columns] = atof(token);
+  //       columns++;
+  //     }
+  //     rowsF++;
+  //   }
+  // }
+
+  // ******* заполнение данных ********
 
   if (f) fclose(f);
 
@@ -44,8 +90,8 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
     }
   }
 
-  vertexes->count *= 3;
-  facets->count += space_count * 2;
+  vertexes->count = vertexes->count * 3 + 1;
+  facets->count = space_count * 2 + 1;
 
   free(temp_string);
 

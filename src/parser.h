@@ -15,7 +15,7 @@ typedef struct Data {
  */
 typedef struct Vretex {
   unsigned int count;
-  double *vretexes;
+  double *arg_v;
 } Vertexes;
 
 /**
@@ -25,7 +25,7 @@ typedef struct Vretex {
  */
 typedef struct Facet {
   unsigned int count;
-  unsigned int *facets;
+  unsigned int *arg_f;
 } Facets;
 
 /**
@@ -56,5 +56,7 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
  * @return int код ошибки
  */
 int count_space_in_str(int *count, char *str);
+
+void print_vertex(Vertexes vertexes);
 
 #endif  // SRC_PARSER_H
