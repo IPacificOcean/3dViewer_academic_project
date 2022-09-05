@@ -14,3 +14,12 @@ void print_vertex(Vertexes vertexes) {
     }
   }
 }
+
+void print_facets(Facets facets) {
+  for (size_t i = 1; i < facets.count; i++) {
+    printf("%d ", facets.arg_f[i]);
+    if (i % 6 == 0) {
+      printf("\n");
+    }
+  }
+}

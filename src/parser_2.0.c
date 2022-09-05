@@ -35,7 +35,9 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   char seps[] = " ";
   char *token = NULL;
   int arg_v_index = 1;
-  int arg_f_index = 1;
+  unsigned int arg_f_index = 1;
+  char temp[32];
+  int count = 0;
 
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
     if (temp_string[0] == 'v' && temp_string[1] == ' ') {
@@ -50,12 +52,30 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
     }
 
     if (temp_string[0] == 'f' && temp_string[1] == ' ') {
+      count = 0;
       token = strtok(temp_string, seps);
+      count++;
+
       while (token != NULL) {
         token = strtok(NULL, seps);
+        count++;
+        if (count == 2) {
+          strcpy(temp, token);
+        }
         if (token == NULL) break;
-        facets->arg_f[arg_f_index] = atoi(token);
-        // columns++;
+        if (arg_f_index == 1) {
+          facets->arg_f[arg_f_index] = atoi(token);
+          arg_f_index++;
+        } else {
+          facets->arg_f[arg_f_index] = atoi(token);
+          arg_f_index++;
+          facets->arg_f[arg_f_index] = atoi(token);
+          arg_f_index++;
+          if (arg_f_index == facets->count - 1) {
+            facets->arg_f[arg_f_index] = atoi(temp);
+          }
+        }
+        printf("arg_f_index %d\n", arg_f_index);
       }
     }
   }

@@ -18,7 +18,10 @@ int main() {
   printf("vertexes->count = %d\n", vertexes.count);
   printf("facets.count = %d\n", facets.count);
 
+  printf("vertexes print\n");
   print_vertex(vertexes);
+  printf("facets print\n");
+  print_facets(facets);
 
   // if (f) fclose(f);
 

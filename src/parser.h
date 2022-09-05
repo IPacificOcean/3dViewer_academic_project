@@ -59,4 +59,6 @@ int count_space_in_str(int *count, char *str);
 
 void print_vertex(Vertexes vertexes);
 
+void print_facets(Facets facets);
+
 #endif  // SRC_PARSER_H
