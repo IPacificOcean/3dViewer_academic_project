@@ -25,7 +25,13 @@ GLviewer::~GLviewer()
 void GLviewer::initializeGL()
 {
     glEnable(GL_DEPTH_TEST);
+/////////////////////////////
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glClearColor(0.0, 0.0, 0.0, 1.0);
 
+    glEnable(GL_DEPTH_TEST);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void GLviewer::resizeGL(int w, int h)
@@ -33,19 +39,19 @@ void GLviewer::resizeGL(int w, int h)
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1, 1, -1, 1, 1, 3);
+//    glOrtho(-1, 1, -1, 1, 1, 10);
 //    glFrustum(-1, 1, -1, 1, 1, 5);
 }
 
 
 void GLviewer::paintGL()
 {
-    glClearColor(0, 1, 0, 0);
+//    glClearColor(0, 1, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 //    glScalef(1.5, 1.5, 1.5);
-    glTranslatef(0, 0, -2);
+//    glTranslatef(0, 0, -2);
     glRotatef(xRot, 1, 0, 0);
     glRotatef(yRot, 0, 1, 0);
 //    drawCube(0.5);
@@ -90,18 +96,27 @@ void GLviewer::drawCubeLine()
 {
     Vertexes vertex = {0, nullptr};
     Facets facet = {0, nullptr};
-    QString file = "/source/cube.obj";
+    QString file = "/Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/source/lamp.obj";
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
     parser(str , &vertex, &facet);
-    for (unsigned int a = 1; a < facet.count; a++) {
-        std::cout << facet.arg_f[a] << "\t";
-        if (a % 8 == 0) {
-           std::cout << std::endl;
-        }
-    }
+//    for (unsigned int a = 1; a < facet.count; a++) {
+//        std::cout << facet.arg_f[a] << "\t";
+//        if (a % 3 == 0) {
+//           std::cout << std::endl;
+//        }
+//    }
+//    std::cout << std::endl;
 
-    unsigned int index_v[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
+
+//    unsigned int index_v[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // можно перенести в paint?
+//    glMatrixMode(GL_MODELVIEW);/// можно перенести в paint?
+//    glLoadIdentity();///можно перенести в paint?
+
+
+
     float ver_cub[] = {
 ////        0.0, 0.0, 0.0,
 ////        0.0, 0.0, 0.5,
@@ -177,34 +192,49 @@ void GLviewer::drawCubeLine()
         1,	6,	6,	2,	2,	1
     };
 
-//    glVertexPointer(3,GL_FLOAT, 0, ver_cub);
-
-//    for (unsigned int a = 1; a < vertex.count; a++) {
-//        std::cout << vertex.arg_v[a] << "\t";
-//        if (a % 3 == 0) {
-//           std::cout << std::endl;
-//        }
-//    }
 
 
-    glVertexPointer(3,GL_DOUBLE, 0, vertex.arg_v);
-    glEnableClientState(GL_VERTEX_ARRAY);
 
 
 
 //        glDrawArrays(GL_QUADS, 0, 24);
-        glScaled(0.3, 0.3, 0.3);
-        glPolygonMode(GL_FRONT, GL_LINE);
-        glPolygonMode(GL_BACK, GL_LINE);
-        glDrawElements(GL_POLYGON, facet.count, GL_UNSIGNED_INT, facet.arg_f);
-        glPointSize(10);
+
+        //Poligons//
+//        glPolygonMode(GL_FRONT, GL_LINE);
+//        glPolygonMode(GL_BACK, GL_LINE);
+//        glDrawElements(GL_POLYGON, facet.count, GL_UNSIGNED_INT, facet.arg_f);
+        // Points//
         glEnable(GL_POINT_SMOOTH);
+        glPointSize(7);
         glColor3d(1,0,0);
+        //Projection//
+        glDisable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glFrustum(-100, 100, -100, 100, -100, 100);
+//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        glEnable(GL_DEPTH_TEST);
+//        glOrtho(-1, 1, -1, 1, -100, 100);
+
+        update();
+
+//        glTranslatef(x, y, z); //  перемещение по x y z
+
+        glVertexPointer(3,GL_DOUBLE, 0, vertex.arg_v);
+        glEnableClientState(GL_VERTEX_ARRAY);
+
+        glScaled(0.1, 0.1, 0.1); // масштаб
 //        glDrawElements(GL_LINE_LOOP, facet.count, GL_UNSIGNED_INT, facet.arg_f);
-        glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg_f);
-        glLineStipple(2, 255);
+//        glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg_f);
+        //Lines//
+//        glLineStipple(4, 0x00FF);
+//        glLineStipple(2, 255);
         glColor3d(0,0,1);
-        glLineWidth(3);
+        glLineWidth(1);
+        glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg_f);
+
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
 
 
 
@@ -219,8 +249,18 @@ void GLviewer::mousePressEvent(QMouseEvent* mo)
 
 void GLviewer::mouseMoveEvent(QMouseEvent* mo)
 {
-    xRot += 0.09/M_PI * (mo->pos().y() - mPos.y());
-    yRot += 0.09/M_PI * (mo->pos().x() - mPos.x());
+//    xRot += 0.09/M_PI * (mo->pos().y() - mPos.y());
+//    yRot += 0.09/M_PI * (mo->pos().x() - mPos.x());
+//    update();
+
+    if (!(mo->pos().x() >= 625 && mo->pos().x() <= 901 && mo->pos().y() >= 630 && mo->pos().y() <= 851)) {
+        xRot += 1 / M_PI*(mo->pos().y()-mPos.y());
+        yRot += 1 / M_PI*(mo->pos().x()-mPos.x());
+    }
+
+
+    mPos = mo->pos();
+
     update();
 }
 
