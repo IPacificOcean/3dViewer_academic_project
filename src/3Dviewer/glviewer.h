@@ -9,8 +9,18 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/GLU.h>
 #include <GLUT/glut.h>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include <QFileDialog>
+
+#include<iostream>
 
 #include <QTimer>
+
+extern "C" {
+#include "../../../../../Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h"
+}
+//#include <clocale.h>
 
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "GlU32.lib")
@@ -27,6 +37,7 @@ private:
     QPoint mPos;
 
     void drawCube(float a);
+    void drawCubeLine();
     void mousePressEvent(QMouseEvent*) override;
     void mouseMoveEvent(QMouseEvent*) override;
     void initializeGL() override;

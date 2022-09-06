@@ -40,7 +40,7 @@ DISTNAME      = 3Dviewer1.0.0
 DISTDIR = /Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/build-3Dviewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.tmp/3Dviewer1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/usr/local/lib
-LIBS          = $(SUBLIBS) -F/usr/local/lib -framework QtOpenGLWidgets -framework QtOpenGL -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework DiskArbitration -framework IOKit -framework AGL -framework OpenGL   
+LIBS          = $(SUBLIBS) -F/usr/local/lib -framework GLUT -framework QtOpenGLWidgets -framework QtOpenGL -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework DiskArbitration -framework IOKit -framework AGL -framework OpenGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -52,12 +52,15 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../3Dviewer/main.cpp \
+SOURCES       = /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser_2.0.c \
+		../3Dviewer/main.cpp \
 		../3Dviewer/glviewer.cpp moc_glviewer.cpp
-OBJECTS       = main.o \
+OBJECTS       = parser_2.0.o \
+		main.o \
 		glviewer.o \
 		moc_glviewer.o
-DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
+DIST          = ../cube.obj \
+		/usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
 		/usr/local/share/qt/mkspecs/common/unix.conf \
 		/usr/local/share/qt/mkspecs/common/mac.conf \
@@ -312,7 +315,9 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/exceptions.prf \
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
-		../3Dviewer/3Dviewer.pro ../3Dviewer/glviewer.h ../3Dviewer/main.cpp \
+		../3Dviewer/3Dviewer.pro /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h \
+		../3Dviewer/glviewer.h /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser_2.0.c \
+		../3Dviewer/main.cpp \
 		../3Dviewer/glviewer.cpp
 QMAKE_TARGET  = 3Dviewer
 DESTDIR       = 
@@ -891,8 +896,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../3Dviewer/glviewer.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../3Dviewer/main.cpp ../3Dviewer/glviewer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h ../3Dviewer/glviewer.h $(DISTDIR)/
+	$(COPY_FILE) --parents /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser_2.0.c ../3Dviewer/main.cpp ../3Dviewer/glviewer.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../3Dviewer/glviewer.ui $(DISTDIR)/
 
 
@@ -953,6 +958,10 @@ moc_glviewer.cpp: ../3Dviewer/glviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/s21_matrix.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
 	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/build-3Dviewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/3Dviewer -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3Dviewer/glviewer.h -o moc_glviewer.cpp
@@ -980,6 +989,10 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+parser_2.0.o: /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser_2.0.c /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/s21_matrix.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o parser_2.0.o /Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser_2.0.c
+
 main.o: ../3Dviewer/main.cpp ../3Dviewer/glviewer.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/QtOpenGL \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglglobal.h \
@@ -1002,6 +1015,10 @@ main.o: ../3Dviewer/main.cpp ../3Dviewer/glviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/s21_matrix.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../3Dviewer/main.cpp
@@ -1028,6 +1045,10 @@ glviewer.o: ../3Dviewer/glviewer.cpp ../3Dviewer/glviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/parser.h \
+		/Users/qyburnbo/Downloads/C8_3DViewer_v1.0-1-develop-src/src/s21_matrix.h \
 		ui_glviewer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o glviewer.o ../3Dviewer/glviewer.cpp
 
