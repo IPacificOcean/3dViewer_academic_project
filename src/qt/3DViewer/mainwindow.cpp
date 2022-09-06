@@ -45,7 +45,6 @@ void MainWindow::on_pushButton_2_clicked()
         if (a % 3 == 0) {
            std::cout << std::endl;
         }
-
     }
 
 //    for (int a = 0; a < facets.matrix.rows; a++) {

@@ -23,6 +23,14 @@ int main() {
   printf("facets print\n");
   print_facets(facets);
 
+  // printf("\n************\n");
+
+  // char* str = "f    1     2     3 4 ";
+  // int a = 0;
+  // printf("str-> = %s\n", str);
+  // count_number_in_string(&a, str);
+  // printf("count_words-> = %d\n", a);
+
   // if (f) fclose(f);
 
   return error;

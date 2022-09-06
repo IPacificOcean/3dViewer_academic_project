@@ -55,10 +55,12 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
  * @param str строка поиска
  * @return int код ошибки
  */
-int count_space_in_str(int *count, char *str);
+int count_number_in_string(int *count, char *str);
 
 void print_vertex(Vertexes vertexes);
 
 void print_facets(Facets facets);
+
+int count_words(char *str);
 
 #endif  // SRC_PARSER_H

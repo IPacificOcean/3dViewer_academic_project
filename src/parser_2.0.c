@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,8 +38,10 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   int arg_v_index = 1;
   unsigned int arg_f_index = 1;
   char temp[32];
-  int count = 0;
+  int countTokes = 0;
+  int numberOfTokens = 0;
 
+  // vertex
   while ((int)(lineSize = getline(&temp_string, &len, f)) != EOF) {
     if (temp_string[0] == 'v' && temp_string[1] == ' ') {
       token = strtok(temp_string, seps);
@@ -51,20 +54,23 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
       }
     }
 
+    // facets
     if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-      count = 0;
+      numberOfTokens = 1;
+      countTokes = 0;
+      count_number_in_string(&numberOfTokens, temp_string);
       token = strtok(temp_string, seps);
-      count++;
+      countTokes++;
 
       while (token != NULL) {
         token = strtok(NULL, seps);
-        count++;
-        if (count == 2) {
+        countTokes++;
+        if (countTokes == 2) {
           memset(temp, 0, 32);
           strcpy(temp, token);
         }
         if (token == NULL) break;
-        if (arg_f_index == 1) {
+        if (countTokes == 2) {
           facets->arg_f[arg_f_index] = atoi(token);
           arg_f_index++;
         } else {
@@ -72,9 +78,10 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
           arg_f_index++;
           facets->arg_f[arg_f_index] = atoi(token);
           arg_f_index++;
-          if (arg_f_index == facets->count - 1) {
-            facets->arg_f[arg_f_index] = atoi(temp);
-          }
+        }
+        if (numberOfTokens == countTokes) {
+          facets->arg_f[arg_f_index] = atoi(temp);
+          arg_f_index++;
         }
         // printf("arg_f_index %d\n", arg_f_index);
       }
@@ -104,7 +111,7 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
     }
 
     if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-      count_space_in_str(&space_count, temp_string);
+      count_number_in_string(&space_count, temp_string);
     }
   }
 
@@ -116,13 +123,13 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
   return error;
 }
 
-int count_space_in_str(int *count, char *str) {
+int count_number_in_string(int *count, char *str) {
   int error = 0;
   int temp_count = 0;
   char *tmp = str;
   while (*tmp) {
     // printf("%c", *tmp);
-    if (*tmp == ' ') {
+    if (*tmp == ' ' && isdigit(*(tmp + 1))) {
       temp_count++;
     }
     tmp++;
