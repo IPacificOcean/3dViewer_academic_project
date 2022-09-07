@@ -27,13 +27,31 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    Vertexes vertex;
+    Facets facet;
+
+    Vertexes getVertex() {
+        return vertex;
+    }
+
+    Facets getFacets() {
+        return facet;
+    }
+
+    void setVertexes (Vertexes vertex){
+        this->vertex = vertex;
+    }
+
+    void setFacets (Facets facet){
+        this->facet = facet;
+    }
 
 private slots:
     void on_pushButton_clicked();
@@ -41,6 +59,7 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_openTestFile_clicked();
+
 
 private:
     Ui::MainWindow *ui;
