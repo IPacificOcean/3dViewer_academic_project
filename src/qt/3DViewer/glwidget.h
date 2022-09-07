@@ -19,8 +19,21 @@ public:
     float xRot, yRot, zRot;
     QPoint mPos;
 
-    Vertexes vertex;
-    Facets facet;
+    Vertexes getVertex() {
+        return vertex;
+    }
+
+    Facets getFacets() {
+        return facet;
+    }
+
+    void setVertexes (Vertexes vertex){
+        this->vertex = vertex;
+    }
+
+    void setFacets (Facets facet){
+        this->facet = facet;
+    }
 
     void drawCube(float a);
     void drawCubeLine();
@@ -32,6 +45,9 @@ public:
     void resizeGL(int w, int h) override;
     void paintGL() override;
 
+private:
+    Vertexes vertex;
+    Facets facet;
 
 };
 

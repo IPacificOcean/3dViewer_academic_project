@@ -29,6 +29,8 @@ void MainWindow::on_pushButton_clicked() {
 }
 
 
+
+
 void MainWindow::on_pushButton_2_clicked() {
     QString fileName = ui->label->text();
     QByteArray ba = fileName.toLocal8Bit();
@@ -39,7 +41,8 @@ void MainWindow::on_pushButton_2_clicked() {
     error = parser(str, &vertex, &facet);
     std::cout << error << std::endl;
     std::cout << str << std::endl;
-
+    ui->widget->setFacets(facet);
+    ui->widget->setVertexes(vertex);
 
 //    for (unsigned int a = 1; a < vertexes.count; a++) {
 //        std::cout << vertexes.arg_v[a] << "\t";

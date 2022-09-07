@@ -2,7 +2,6 @@
 #include "GLUT/glut.h"
 
 
-
 GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
 
 
@@ -70,20 +69,13 @@ void GLWidget::paintGL() {
 
 void GLWidget::drawCubeLine() {
 
-//    QPushButton *button = (QPushButton *)sender();
-//    QString new_label = "";
-//    MainWindow::ui->text_label->setText(ui->text_label->text() + button->text());
-//    new_label=ui->text_label->text();
 
-//    Ui::MainWindow::label;
-
-
-    Vertexes vertex = {0, nullptr};
-    Facets facet = {0, nullptr};
-    QString file = "/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj";
-    QByteArray ba = file.toLocal8Bit();
-    char *str = ba.data();
-    parser(str , &vertex, &facet);
+//    Vertexes vertex = {0, nullptr};
+//    Facets facet = {0, nullptr};
+//    QString file = "/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj";
+//    QByteArray ba = file.toLocal8Bit();
+//    char *str = ba.data();
+//    parser(str , &vertex, &facet);
 
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // можно перенести в paint?
