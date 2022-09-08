@@ -18,6 +18,7 @@ public:
 
     float xRot, yRot, zRot;
     QPoint mPos;
+    float scale;
 
     Vertexes getVertex() {
         return vertex;

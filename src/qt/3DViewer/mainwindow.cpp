@@ -5,16 +5,11 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
+    , ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
-
-//    connect(ui->openTestFile, SIGNAL(clicked()),this, SLOT(GLWidget::drawCubeLine()));
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
@@ -24,8 +19,6 @@ void MainWindow::on_pushButton_clicked() {
     QString fileName = QFileDialog::getOpenFileName(this, "Выберите файл", QDir::homePath(), tr( " (*.obj)"));
 
     ui->label->setText(fileName);
-
-
 }
 
 
@@ -43,16 +36,26 @@ void MainWindow::on_pushButton_2_clicked() {
     std::cout << str << std::endl;
     ui->widget->setFacets(facet);
     ui->widget->setVertexes(vertex);
+    ui->widget->scale = ui->scale->text().toFloat();
 
-//    for (unsigned int a = 1; a < vertexes.count; a++) {
-//        std::cout << vertexes.arg_v[a] << "\t";
+//    for (unsigned int a = 1; a < vertex.count; a++) {
+//        std::cout << vertex.arg_v[a] << "\t";
 //        if (a % 3 == 0) {
 //           std::cout << std::endl;
 //        }
 //    }
 
-//    for (int a = 0; a < facets.matrix.rows; a++) {
-//            for (int b = 0; b <facets.matrix.columns; b++) {
+//    std::cout << std::endl;
+
+//    for (unsigned int a = 1; a < facet.count; a++) {
+//        std::cout << facet.arg_f[a] << "\t";
+//        if (a % 6 == 0) {
+//           std::cout << std::endl;
+//        }
+//    }
+
+//    for (int a = 0; a < facet.matrix.rows; a++) {
+//            for (int b = 0; b <facet.matrix.columns; b++) {
 //                std::cout << facets.matrix.matrix[a][b] << "\t";
 //            }
 //            std::cout << std::endl;
@@ -67,4 +70,9 @@ void MainWindow::on_openTestFile_clicked() {
 
 
 
+
+
+void MainWindow::on_openLamp_clicked(){
+    ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj");
+}
 

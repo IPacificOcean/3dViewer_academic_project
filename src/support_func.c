@@ -16,9 +16,9 @@ void print_vertex(Vertexes vertexes) {
 }
 
 void print_facets(Facets facets) {
-  for (size_t i = 1; i < facets.count; i++) {
+  for (size_t i = 0; i < facets.count; i++) {
     printf("%d ", facets.arg_f[i]);
-    if (i % 6 == 0) {
+    if ((i + 1) % 6 == 0) {
       printf("\n");
     }
   }

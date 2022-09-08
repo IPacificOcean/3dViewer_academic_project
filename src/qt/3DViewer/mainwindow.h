@@ -60,6 +60,8 @@ private slots:
 
     void on_openTestFile_clicked();
 
+    void on_openLamp_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -35,8 +35,8 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
 
   char seps[] = " ";
   char *token = NULL;
-  int arg_v_index = 1;
-  unsigned int arg_f_index = 1;
+  int arg_v_index = 3;
+  unsigned int arg_f_index = 0;
   char temp[32];
   int countTokes = 0;
   int numberOfTokens = 0;
@@ -115,8 +115,8 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets) {
     }
   }
 
-  vertexes->count = vertexes->count * 3 + 1;
-  facets->count = space_count * 2 + 1;
+  vertexes->count = vertexes->count * 3 + 3;
+  facets->count = space_count * 2;
 
   free(temp_string);
 
