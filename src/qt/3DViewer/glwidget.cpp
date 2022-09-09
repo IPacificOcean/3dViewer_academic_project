@@ -2,6 +2,8 @@
 #include "GLUT/glut.h"
 
 
+
+
 GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
 
 
@@ -20,6 +22,7 @@ void GLWidget::initializeGL() {
 
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_MODELVIEW);
+
 
 
 }
@@ -65,10 +68,7 @@ void GLWidget::drawCubeLine() {
     glColor3d(1,0,0);
             //Projection//
 
-
-
     glEnableClientState(GL_VERTEX_ARRAY);
-//    glVertexPointer(3,GL_FLOAT, 0, vertex.arg_v);
     glVertexPointer(3,GL_DOUBLE, 0 ,vertex.arg_v);
 
     glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg_f);

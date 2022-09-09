@@ -15,12 +15,12 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::on_openTestFile_clicked() {
-     ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/cube.obj");
+     ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/objFiles/cube.obj");
 }
 
 
 void MainWindow::on_openLamp_clicked(){
-    ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj");
+    ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/objFiles/lamp.obj");
 }
 
 

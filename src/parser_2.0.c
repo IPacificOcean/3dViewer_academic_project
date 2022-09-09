@@ -13,7 +13,6 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   char *temp_string = NULL;
   size_t len = 0;
   ssize_t lineSize = 0;
-  // int space_count = 0;
 
   //************************
 
