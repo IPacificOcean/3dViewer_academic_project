@@ -61,6 +61,4 @@ void print_vertex(Vertexes vertexes);
 
 void print_facets(Facets facets);
 
-int count_words(char *str);
-
 #endif  // SRC_PARSER_H

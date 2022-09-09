@@ -14,17 +14,18 @@ MainWindow::~MainWindow() {
 }
 
 
-
-void MainWindow::on_pushButton_clicked() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Выберите файл", QDir::homePath(), tr( " (*.obj)"));
-
-    ui->label->setText(fileName);
+void MainWindow::on_openTestFile_clicked() {
+     ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/cube.obj");
 }
 
 
+void MainWindow::on_openLamp_clicked(){
+    ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj");
+}
 
 
-void MainWindow::on_pushButton_2_clicked() {
+void MainWindow::on_parse_clicked()
+{
     QString fileName = ui->label->text();
     QByteArray ba = fileName.toLocal8Bit();
     char *str = ba.data();
@@ -60,19 +61,11 @@ void MainWindow::on_pushButton_2_clicked() {
 //            }
 //            std::cout << std::endl;
 //        }
-
 }
 
 
-void MainWindow::on_openTestFile_clicked() {
-     ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/cube.obj");
-}
-
-
-
-
-
-void MainWindow::on_openLamp_clicked(){
-    ui->label->setText("/Users/violator/C8_3DViewer_v1.0-1/src/lamp.obj");
+void MainWindow::on_openFile_clicked(){
+    QString fileName = QFileDialog::getOpenFileName(this, "Выберите файл", QDir::homePath(), tr( " (*.obj)"));
+    ui->label->setText(fileName);
 }
 

@@ -54,13 +54,14 @@ public:
     }
 
 private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
 
     void on_openTestFile_clicked();
 
     void on_openLamp_clicked();
+
+    void on_parse_clicked();
+
+    void on_openFile_clicked();
 
 private:
     Ui::MainWindow *ui;
