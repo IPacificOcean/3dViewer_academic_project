@@ -11,9 +11,20 @@ int main() {
   Facets facets;
   // FILE *f = fopen("cube.obj", "r");
 
-  error = parser("cube.obj", &vertexes, &facets);
+  error = parser("objFiles/cube.obj", &vertexes, &facets);
   // error = parser("lamp.obj", &vertexes, &facets);
   //   parser("lamp.obj");
+
+  switch (error) {
+    case 0:
+      printf("%s\n", "\nFile open successfully\n");
+      break;
+    case 1:
+      printf("%s\n", "ERROR: File not open");
+      break;
+    default:
+      break;
+  }
 
   printf("vertexes->count = %d\n", vertexes.count);
   printf("facets.count = %d\n", facets.count);

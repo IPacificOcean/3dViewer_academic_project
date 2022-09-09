@@ -1,12 +1,12 @@
 #include "glwidget.h"
-#include "GLUT/glut.h"
+//#include "GLUT/glut.h"
 
 
 
 
 GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
-
-
+    vertex = {0, nullptr};
+    facet = {0, nullptr};
 }
 
 
@@ -69,13 +69,13 @@ void GLWidget::drawCubeLine() {
             //Projection//
 
     glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3,GL_DOUBLE, 0 ,vertex.arg_v);
+    glVertexPointer(3,GL_DOUBLE, 0 ,vertex.arg);
 
-    glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg_f);
+    glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
 
     glColor3d(0,0,1);
     glLineWidth(1);
-    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg_f);
+    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
 
     glDisableClientState(GL_VERTEX_ARRAY);
 }

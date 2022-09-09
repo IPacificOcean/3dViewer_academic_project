@@ -34,25 +34,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    Vertexes vertex;
-    Facets facet;
-
-    Vertexes getVertex() {
-        return vertex;
-    }
-
-    Facets getFacets() {
-        return facet;
-    }
-
-    void setVertexes (Vertexes vertex){
-        this->vertex = vertex;
-    }
-
-    void setFacets (Facets facet){
-        this->facet = facet;
-    }
-
 private slots:
 
     void on_openTestFile_clicked();

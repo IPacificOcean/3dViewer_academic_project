@@ -24,20 +24,22 @@ void MainWindow::on_openLamp_clicked(){
 }
 
 
-void MainWindow::on_parse_clicked()
-{
+void MainWindow::on_parse_clicked() {
     QString fileName = ui->label->text();
     QByteArray ba = fileName.toLocal8Bit();
     char *str = ba.data();
-    vertex = {0, nullptr};
-    facet = {0, nullptr};
     int error = 0;
-    error = parser(str, &vertex, &facet);
-    std::cout << error << std::endl;
-    std::cout << str << std::endl;
-    ui->widget->setFacets(facet);
-    ui->widget->setVertexes(vertex);
-    ui->widget->scale = ui->scale->text().toFloat();
+    error = parser(str, &ui->widget->vertex, &ui->widget->facet);
+
+    if(!error) {
+        std::cout << error << std::endl;
+        std::cout << str << std::endl;
+
+        ui->widget->scale = ui->scale->text().toFloat();
+    } else if (error == 1) {
+        ui->label->setText("ERROR: File not found");
+    }
+
 
 //    for (unsigned int a = 1; a < vertex.count; a++) {
 //        std::cout << vertex.arg_v[a] << "\t";

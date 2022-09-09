@@ -21,6 +21,9 @@ public:
     QPoint mPos;
     float scale;
 
+    Vertexes vertex;
+    Facets facet;
+
     Vertexes getVertex() {
         return vertex;
     }
@@ -48,8 +51,7 @@ public:
     void paintGL() override;
 
 private:
-    Vertexes vertex;
-    Facets facet;
+
 
 };
 

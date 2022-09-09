@@ -15,7 +15,7 @@ typedef struct Data {
  */
 typedef struct Vretex {
   unsigned int count;
-  double *arg_v;
+  double *arg;
 } Vertexes;
 
 /**
@@ -25,7 +25,7 @@ typedef struct Vretex {
  */
 typedef struct Facet {
   unsigned int count;
-  unsigned int *arg_f;
+  unsigned int *arg;
 } Facets;
 
 /**
@@ -56,6 +56,8 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
  * @return int код ошибки
  */
 int count_number_in_string(int *count, char *str);
+
+int getDataVetrtexAndFacet(FILE *f, Vertexes *vertexes, Facets *facets);
 
 void print_vertex(Vertexes vertexes);
 
