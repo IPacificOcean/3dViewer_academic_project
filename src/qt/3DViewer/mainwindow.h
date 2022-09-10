@@ -44,6 +44,8 @@ private slots:
 
     void on_openFile_clicked();
 
+    void on_apply_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

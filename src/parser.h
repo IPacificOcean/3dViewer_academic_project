@@ -63,4 +63,16 @@ void print_vertex(Vertexes vertexes);
 
 void print_facets(Facets facets);
 
+/**
+ * @brief
+ *
+ */
+typedef struct Move {
+  double dx;
+  double dy;
+  double dz;
+} Move;
+
+int moveObj(Vertexes *vertex, Move *move);
+
 #endif  // SRC_PARSER_H

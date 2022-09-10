@@ -1,3 +1,4 @@
+
 #include "parser.h"
 #include "s21_matrix.h"
 
@@ -32,7 +33,27 @@ int main() {
   printf("vertexes print\n");
   print_vertex(vertexes);
   printf("facets print\n");
-  print_facets(facets);
+  // print_facets(facets);
+
+  // MOVE TEST
+  printf("\nMOVE TEST\n");
+
+  Move move = {-10.5, 0.5, 10};
+
+  moveObj(&vertexes, &move);
+  printf("vertexes print\n");
+  print_vertex(vertexes);
+
+  move.dx = -1;
+  move.dy = -1;
+  move.dz = -1;
+
+  moveObj(&vertexes, &move);
+  // printf("vertexes print\n");
+  // print_vertex(vertexes);
+
+  printf("\nMOVE TEST\n");
+  // MOVE TEST
 
   // printf("\n************\n");
 

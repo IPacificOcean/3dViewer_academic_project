@@ -71,3 +71,15 @@ void MainWindow::on_openFile_clicked(){
     ui->label->setText(fileName);
 }
 
+
+void MainWindow::on_apply_clicked(){
+    ui->widget->move.dx = ui->dx->text().toDouble();
+    ui->widget->move.dy = ui->dy->text().toDouble();
+    ui->widget->move.dz = ui->dz->text().toDouble();
+
+    GLWidget *p = ui->widget;
+    moveObj(&p->vertex, &p->move);
+
+
+}
+

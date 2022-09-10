@@ -23,6 +23,7 @@ public:
 
     Vertexes vertex;
     Facets facet;
+    Move move;
 
     Vertexes getVertex() {
         return vertex;

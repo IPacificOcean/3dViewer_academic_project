@@ -7,6 +7,7 @@
 GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
     vertex = {0, nullptr};
     facet = {0, nullptr};
+    move = {0, 0, 0};
 }
 
 

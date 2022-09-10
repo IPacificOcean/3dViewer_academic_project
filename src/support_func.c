@@ -7,9 +7,9 @@
 #include "s21_matrix.h"
 
 void print_vertex(Vertexes vertexes) {
-  for (size_t i = 1; i < vertexes.count; i++) {
-    printf("%f ", vertexes.arg[i]);
-    if (i % 3 == 0) {
+  for (size_t i = 3; i < vertexes.count; i++) {
+    printf("%.2f ", vertexes.arg[i]);
+    if ((i + 1) % 3 == 0) {
       printf("\n");
     }
   }

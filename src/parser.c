@@ -1,10 +1,10 @@
+#include "parser.h"
+
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "parser.h"
 
 int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   int error = 0;
@@ -141,6 +141,86 @@ int getDataVetrtexAndFacet(FILE *f, Vertexes *vertexes, Facets *facets) {
       }
     }
   }
+
+  return error;
+}
+
+/*
+Перемещение
+Матрица перемещения в однородных двумерных координатах :
+ 1 0 a
+ 0 1 b
+ 0 0 1
+где a и b - величины по x и y,
+на которые необходимо переместить исходную точку.Таким образом,
+чтобы переместить точку необходимо умножить матрицу перемещения на нее:
+x1      1 0 a   x
+y1 =    0 1 b   * y
+1       0 0 1   1
+где x и y - исходные координаты точки, а x1 и y1 -
+полученные координаты новой точки после перемещения.
+
+Поворот
+Матрица поворота по часовой стрелке в однородных двумерных координатах :
+ cos(a) sin(a) 0
+-sin(a) cos(a) 0
+0       0      1
+где a - угол поворота в двумерном пространстве.Для получения
+координат новой точки необходимо также, как и матрицу перемещения,
+перемножить матрицу поворота на исходную точку:
+x1      cos(a)  sin(a) 0    x
+y1 =    -sin(a) cos(a) 0 *  y
+1       0       0      1    1
+
+Масштабирование
+Матрица масштабирования в однородных двумерных координатах:
+a 0 0
+0 b 0
+0 0 1
+где a и b - коэффициенты масштабирования соответственно по осям OX
+и OY.Получение координат новой точки происходит аналогично описанным выше
+случаям.
+*/
+
+int moveObj(Vertexes *vertex, Move *move) {
+  int error = 0;
+
+  double Mtmp[4][1] = {{0}, {0}, {0}, {1}};
+  double Mrez[4][1] = {{0}, {0}, {0}, {1}};
+  double Mmove[4][4] = {{1, 0, 0, move->dx},
+                        {0, 1, 0, move->dy},
+                        {0, 0, 1, move->dz},
+                        {0, 0, 0, 1}};
+
+  for (unsigned int i = 3; i < vertex->count; i += 3) {
+    Mtmp[0][0] = vertex->arg[i];
+    Mtmp[1][0] = vertex->arg[i + 1];
+    Mtmp[2][0] = vertex->arg[i + 2];
+    for (int i = 0; i < 4; i++) {
+      for (int j = 0; j < 1; j++) {
+        double res = 0;
+        for (int k = 0; k < 4; k++) {
+          res += Mmove[i][k] * Mtmp[k][j];
+        }
+        Mrez[i][j] = res;
+      }
+    }
+    vertex->arg[i] = Mrez[0][0];
+    vertex->arg[i + 1] = Mrez[1][0];
+    vertex->arg[i + 2] = Mrez[2][0];
+  }
+
+  return error;
+}
+
+int turnObj() {
+  int error = 0;
+
+  return error;
+}
+
+int scaleObj() {
+  int error = 0;
 
   return error;
 }
