@@ -13,13 +13,15 @@ SOURCES += \
     ../backend/s21_matrix.c \
     glviewer.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    selectcolorbutton.cpp
 
 HEADERS += \
     ../backend/parser.h \
     ../backend/s21_matrix.h \
     glviewer.h \
-    mainwindow.h
+    mainwindow.h \
+    selectcolorbutton.h
 
 FORMS += \
     mainwindow.ui

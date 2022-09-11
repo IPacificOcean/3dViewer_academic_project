@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include "glviewer.h"
+#include "selectcolorbutton.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -21,8 +22,9 @@ void MainWindow::on_openFile_clicked()
 {
 //    ui->widget->vertex = {0, nullptr};
 //    ui->widget->facet = {0, nullptr};
-    QString file = QFileDialog::getOpenFileName(this, "Выберите файл", QDir::homePath(), tr( " (*.obj)"));
-    ui->pwd->setText(file);
+    QString file = QFileDialog::getOpenFileName(this, "Выберите файл", ".", tr( " (*.obj)"));
+//    ui->pwd->setText(file);
+    ui->statusBar->showMessage(file);
 //    ui->widget->scale = ui->doubleSpinBox_Scale->text().toDouble();
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
@@ -30,7 +32,7 @@ void MainWindow::on_openFile_clicked()
     error = parser(str , &ui->widget->vertex, &ui->widget->facet);
 //    qDebug() << error;
     if (error) {
-        ui->pwd->setText("Not found file");
+        ui->statusBar->showMessage("file not found");
     }
 
 
@@ -61,6 +63,8 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale)
     ui->widget->scale = valueScale;
     qDebug() << valueScale;
 }
+
+
 
 
 

@@ -66,21 +66,6 @@ void GLviewer::paintGL()
 void GLviewer::drawShape()
 {
 
-//    vertex = {0, nullptr};
-//    facet = {0, nullptr};
-//    QString file = "/Users/tysaneno/Desktop/My_projects/C/Project_N7/C8_3DViewer_v1.0-1/src/backend/source/cactus.obj";
-//    QByteArray ba = file.toLocal8Bit();
-//    char *str = ba.data();
-//    parser(str , &vertex, &facet);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        glDrawArrays(GL_QUADS, 0, 24);
-
-        //Poligons//
-//        glPolygonMode(GL_FRONT, GL_LINE);
-//        glPolygonMode(GL_BACK, GL_LINE);
-//        glDrawElements(GL_POLYGON, facet.count, GL_UNSIGNED_INT, facet.arg_f);
-
         //Projection//
         glDisable(GL_DEPTH_TEST);
 //        glEnable(GL_DEPTH_TEST);
@@ -101,8 +86,8 @@ void GLviewer::drawShape()
         glVertexPointer(3,GL_DOUBLE, 0, vertex.arg_v);
 
         //Poligons//
-//        glPolygonMode(GL_FRONT, GL_FILL);
-//        glPolygonMode(GL_RED, GL_LINE);
+//        glPolygonMode(GL_FRONT, GL_TRIANGLES);
+//        glPolygonMode(GL_BACK, GL_QUADS);
 
         // Points//
         glEnable(GL_POINT_SMOOTH);
@@ -128,6 +113,7 @@ void GLviewer::drawShape()
 void GLviewer::mousePressEvent(QMouseEvent* mo)
 {
     mPos = mo->pos();
+    update();
 }
 
 void GLviewer::mouseMoveEvent(QMouseEvent* mo)

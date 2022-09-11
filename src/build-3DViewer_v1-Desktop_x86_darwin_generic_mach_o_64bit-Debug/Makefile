@@ -56,15 +56,19 @@ SOURCES       = ../backend/parser_2.0.c \
 		../backend/s21_matrix.c \
 		../3DViewer_v1/glviewer.cpp \
 		../3DViewer_v1/main.cpp \
-		../3DViewer_v1/mainwindow.cpp moc_glviewer.cpp \
-		moc_mainwindow.cpp
+		../3DViewer_v1/mainwindow.cpp \
+		../3DViewer_v1/selectcolorbutton.cpp moc_glviewer.cpp \
+		moc_mainwindow.cpp \
+		moc_selectcolorbutton.cpp
 OBJECTS       = parser_2.0.o \
 		s21_matrix.o \
 		glviewer.o \
 		main.o \
 		mainwindow.o \
+		selectcolorbutton.o \
 		moc_glviewer.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_selectcolorbutton.o
 DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
 		/usr/local/share/qt/mkspecs/common/unix.conf \
@@ -323,11 +327,13 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		../3DViewer_v1/3DViewer_v1.pro ../backend/parser.h \
 		../backend/s21_matrix.h \
 		../3DViewer_v1/glviewer.h \
-		../3DViewer_v1/mainwindow.h ../backend/parser_2.0.c \
+		../3DViewer_v1/mainwindow.h \
+		../3DViewer_v1/selectcolorbutton.h ../backend/parser_2.0.c \
 		../backend/s21_matrix.c \
 		../3DViewer_v1/glviewer.cpp \
 		../3DViewer_v1/main.cpp \
-		../3DViewer_v1/mainwindow.cpp
+		../3DViewer_v1/mainwindow.cpp \
+		../3DViewer_v1/selectcolorbutton.cpp
 QMAKE_TARGET  = 3DViewer_v1
 DESTDIR       = 
 TARGET        = 3DViewer_v1.app/Contents/MacOS/3DViewer_v1
@@ -905,8 +911,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../backend/parser.h ../backend/s21_matrix.h ../3DViewer_v1/glviewer.h ../3DViewer_v1/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../backend/parser_2.0.c ../backend/s21_matrix.c ../3DViewer_v1/glviewer.cpp ../3DViewer_v1/main.cpp ../3DViewer_v1/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../backend/parser.h ../backend/s21_matrix.h ../3DViewer_v1/glviewer.h ../3DViewer_v1/mainwindow.h ../3DViewer_v1/selectcolorbutton.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../backend/parser_2.0.c ../backend/s21_matrix.c ../3DViewer_v1/glviewer.cpp ../3DViewer_v1/main.cpp ../3DViewer_v1/mainwindow.cpp ../3DViewer_v1/selectcolorbutton.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../3DViewer_v1/mainwindow.ui $(DISTDIR)/
 
 
@@ -942,9 +948,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_glviewer.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_glviewer.cpp moc_mainwindow.cpp moc_selectcolorbutton.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_glviewer.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_glviewer.cpp moc_mainwindow.cpp moc_selectcolorbutton.cpp
 moc_glviewer.cpp: ../3DViewer_v1/glviewer.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/QtOpenGL \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglglobal.h \
@@ -980,9 +986,48 @@ moc_glviewer.cpp: ../3DViewer_v1/glviewer.h \
 moc_mainwindow.cpp: ../3DViewer_v1/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../3DViewer_v1/glviewer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/QtOpenGL \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglglobal.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglbuffer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengldebug.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglframebufferobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpaintdevice.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpixeltransferoptions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltexture.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltextureblitter.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltimerquery.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctionsfactory.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionprofile.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglvertexarrayobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglwindow.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QtOpenGLWidgets \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		../backend/parser.h \
+		../backend/s21_matrix.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QColorDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qcolordialog.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
 	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/build-3DViewer_v1-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/3DViewer_v1 -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DViewer_v1/mainwindow.h -o moc_mainwindow.cpp
+
+moc_selectcolorbutton.cpp: ../3DViewer_v1/selectcolorbutton.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QPushButton \
+		/usr/local/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		moc_predefs.h \
+		/usr/local/share/qt/libexec/moc
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/build-3DViewer_v1-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/qyburnbo/Desktop/Projects/C8_3DViewer_v1.0-1/src/3DViewer_v1 -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DViewer_v1/selectcolorbutton.h -o moc_selectcolorbutton.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1076,6 +1121,36 @@ glviewer.o: ../3DViewer_v1/glviewer.cpp ../3DViewer_v1/glviewer.h \
 main.o: ../3DViewer_v1/main.cpp ../3DViewer_v1/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../3DViewer_v1/glviewer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/QtOpenGL \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglglobal.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglbuffer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengldebug.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglframebufferobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpaintdevice.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpixeltransferoptions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltexture.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltextureblitter.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltimerquery.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctionsfactory.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionprofile.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglvertexarrayobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglwindow.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QtOpenGLWidgets \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		../backend/parser.h \
+		../backend/s21_matrix.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QColorDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qcolordialog.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../3DViewer_v1/main.cpp
@@ -1083,16 +1158,58 @@ main.o: ../3DViewer_v1/main.cpp ../3DViewer_v1/mainwindow.h \
 mainwindow.o: ../3DViewer_v1/mainwindow.cpp ../3DViewer_v1/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../3DViewer_v1/glviewer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/QtOpenGL \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglglobal.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglbuffer.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengldebug.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglframebufferobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpaintdevice.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglpixeltransferoptions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltexture.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltextureblitter.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopengltimerquery.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctions.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionfunctionsfactory.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglversionprofile.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglvertexarrayobject.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglwindow.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QtOpenGLWidgets \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsglobal.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qtopenglwidgetsversion.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		../backend/parser.h \
+		../backend/s21_matrix.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QColorDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qcolordialog.h \
 		ui_mainwindow.h \
 		/usr/local/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../3DViewer_v1/mainwindow.cpp
+
+selectcolorbutton.o: ../3DViewer_v1/selectcolorbutton.cpp ../3DViewer_v1/selectcolorbutton.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QPushButton \
+		/usr/local/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QColorDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qcolordialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o selectcolorbutton.o ../3DViewer_v1/selectcolorbutton.cpp
 
 moc_glviewer.o: moc_glviewer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_glviewer.o moc_glviewer.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_selectcolorbutton.o: moc_selectcolorbutton.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_selectcolorbutton.o moc_selectcolorbutton.cpp
 
 ####### Install
 

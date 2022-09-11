@@ -16,11 +16,12 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpinBox>
+#include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "glviewer.h"
 
@@ -31,7 +32,6 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     GLviewer *widget;
-    QPushButton *update;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_3;
     QLabel *y_t;
@@ -62,9 +62,6 @@ public:
     QRadioButton *radioButton_frustum;
     QRadioButton *radioButton_ortho;
     QLabel *transform;
-    QPushButton *save_img;
-    QPushButton *save_gif;
-    QPushButton *save_sattings;
     QLabel *paint;
     QLabel *point;
     QWidget *layoutWidget_7;
@@ -106,19 +103,25 @@ public:
     QLabel *facets;
     QLabel *filename;
     QLabel *name;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QPushButton *openFile;
-    QLineEdit *pwd;
     QPushButton *load_setting;
-    QWidget *widget2;
+    QPushButton *update;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *x_t;
     QDoubleSpinBox *doubleSpinBox_x_t;
-    QWidget *widget3;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_9;
     QLabel *form_point;
     QComboBox *comboBox_point_form;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout;
+    QPushButton *save_img;
+    QPushButton *save_gif;
+    QPushButton *save_sattings;
+    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -128,6 +131,7 @@ public:
         MainWindow->setMinimumSize(QSize(1500, 1000));
         MainWindow->setMaximumSize(QSize(1500, 1000));
         MainWindow->setMouseTracking(false);
+        MainWindow->setFocusPolicy(Qt::ClickFocus);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setToolButtonStyle(Qt::ToolButtonIconOnly);
         MainWindow->setDocumentMode(false);
@@ -143,9 +147,6 @@ public:
         widget->setGeometry(QRect(350, 70, 800, 800));
         widget->setMinimumSize(QSize(800, 800));
         widget->setMaximumSize(QSize(800, 800));
-        update = new QPushButton(centralwidget);
-        update->setObjectName(QString::fromUtf8("update"));
-        update->setGeometry(QRect(20, 40, 100, 32));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(70, 420, 91, 31));
@@ -272,7 +273,7 @@ public:
 
         translate = new QLabel(centralwidget);
         translate->setObjectName(QString::fromUtf8("translate"));
-        translate->setGeometry(QRect(90, 350, 58, 16));
+        translate->setGeometry(QRect(77, 350, 71, 20));
         translate->setFont(font);
         rotate = new QLabel(centralwidget);
         rotate->setObjectName(QString::fromUtf8("rotate"));
@@ -297,15 +298,6 @@ public:
         transform->setObjectName(QString::fromUtf8("transform"));
         transform->setGeometry(QRect(130, 310, 101, 21));
         transform->setFont(font1);
-        save_img = new QPushButton(centralwidget);
-        save_img->setObjectName(QString::fromUtf8("save_img"));
-        save_img->setGeometry(QRect(90, 640, 181, 31));
-        save_gif = new QPushButton(centralwidget);
-        save_gif->setObjectName(QString::fromUtf8("save_gif"));
-        save_gif->setGeometry(QRect(90, 680, 181, 31));
-        save_sattings = new QPushButton(centralwidget);
-        save_sattings->setObjectName(QString::fromUtf8("save_sattings"));
-        save_sattings->setGeometry(QRect(90, 720, 181, 31));
         paint = new QLabel(centralwidget);
         paint->setObjectName(QString::fromUtf8("paint"));
         paint->setGeometry(QRect(1240, 140, 101, 21));
@@ -437,7 +429,7 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         line_2 = new QFrame(centralwidget);
         line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(1230, 170, 201, 16));
+        line_2->setGeometry(QRect(1240, 170, 201, 16));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
         line_3 = new QFrame(centralwidget);
@@ -457,7 +449,7 @@ public:
         line_5->setFrameShadow(QFrame::Sunken);
         line_6 = new QFrame(centralwidget);
         line_6->setObjectName(QString::fromUtf8("line_6"));
-        line_6->setGeometry(QRect(680, 900, 201, 16));
+        line_6->setGeometry(QRect(680, 882, 201, 41));
         line_6->setFrameShape(QFrame::HLine);
         line_6->setFrameShadow(QFrame::Sunken);
         info = new QLabel(centralwidget);
@@ -466,64 +458,64 @@ public:
         info->setFont(font1);
         vertexes = new QLabel(centralwidget);
         vertexes->setObjectName(QString::fromUtf8("vertexes"));
-        vertexes->setGeometry(QRect(680, 940, 58, 16));
+        vertexes->setGeometry(QRect(680, 950, 58, 16));
         QFont font2;
         font2.setBold(false);
         font2.setItalic(false);
         vertexes->setFont(font2);
         coun_vertexes = new QLabel(centralwidget);
         coun_vertexes->setObjectName(QString::fromUtf8("coun_vertexes"));
-        coun_vertexes->setGeometry(QRect(780, 940, 58, 16));
+        coun_vertexes->setGeometry(QRect(780, 950, 58, 16));
         coun_vertexes->setFont(font2);
         count_facets = new QLabel(centralwidget);
         count_facets->setObjectName(QString::fromUtf8("count_facets"));
-        count_facets->setGeometry(QRect(780, 960, 58, 16));
+        count_facets->setGeometry(QRect(780, 930, 58, 16));
         count_facets->setFont(font2);
         facets = new QLabel(centralwidget);
         facets->setObjectName(QString::fromUtf8("facets"));
-        facets->setGeometry(QRect(680, 960, 58, 16));
+        facets->setGeometry(QRect(680, 930, 58, 16));
         facets->setFont(font2);
         filename = new QLabel(centralwidget);
         filename->setObjectName(QString::fromUtf8("filename"));
-        filename->setGeometry(QRect(780, 920, 58, 16));
+        filename->setGeometry(QRect(780, 910, 58, 16));
         filename->setFont(font2);
         name = new QLabel(centralwidget);
         name->setObjectName(QString::fromUtf8("name"));
-        name->setGeometry(QRect(680, 920, 58, 16));
+        name->setGeometry(QRect(680, 910, 58, 16));
         name->setFont(font2);
-        widget1 = new QWidget(centralwidget);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(500, 30, 481, 33));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(centralwidget);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(500, 30, 481, 33));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        openFile = new QPushButton(widget1);
+        openFile = new QPushButton(layoutWidget1);
         openFile->setObjectName(QString::fromUtf8("openFile"));
 
         horizontalLayout->addWidget(openFile);
 
-        pwd = new QLineEdit(widget1);
-        pwd->setObjectName(QString::fromUtf8("pwd"));
-
-        horizontalLayout->addWidget(pwd);
-
-        load_setting = new QPushButton(widget1);
+        load_setting = new QPushButton(layoutWidget1);
         load_setting->setObjectName(QString::fromUtf8("load_setting"));
 
         horizontalLayout->addWidget(load_setting);
 
-        widget2 = new QWidget(centralwidget);
-        widget2->setObjectName(QString::fromUtf8("widget2"));
-        widget2->setGeometry(QRect(70, 380, 91, 31));
-        horizontalLayout_2 = new QHBoxLayout(widget2);
+        update = new QPushButton(layoutWidget1);
+        update->setObjectName(QString::fromUtf8("update"));
+
+        horizontalLayout->addWidget(update);
+
+        layoutWidget2 = new QWidget(centralwidget);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(70, 380, 91, 31));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        x_t = new QLabel(widget2);
+        x_t = new QLabel(layoutWidget2);
         x_t->setObjectName(QString::fromUtf8("x_t"));
 
         horizontalLayout_2->addWidget(x_t);
 
-        doubleSpinBox_x_t = new QDoubleSpinBox(widget2);
+        doubleSpinBox_x_t = new QDoubleSpinBox(layoutWidget2);
         doubleSpinBox_x_t->setObjectName(QString::fromUtf8("doubleSpinBox_x_t"));
         doubleSpinBox_x_t->setProperty("showGroupSeparator", QVariant(false));
         doubleSpinBox_x_t->setMinimum(0.000000000000000);
@@ -532,18 +524,18 @@ public:
 
         horizontalLayout_2->addWidget(doubleSpinBox_x_t);
 
-        widget3 = new QWidget(centralwidget);
-        widget3->setObjectName(QString::fromUtf8("widget3"));
-        widget3->setGeometry(QRect(1240, 220, 191, 32));
-        horizontalLayout_9 = new QHBoxLayout(widget3);
+        layoutWidget3 = new QWidget(centralwidget);
+        layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(1240, 220, 191, 32));
+        horizontalLayout_9 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
         horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
-        form_point = new QLabel(widget3);
+        form_point = new QLabel(layoutWidget3);
         form_point->setObjectName(QString::fromUtf8("form_point"));
 
         horizontalLayout_9->addWidget(form_point);
 
-        comboBox_point_form = new QComboBox(widget3);
+        comboBox_point_form = new QComboBox(layoutWidget3);
         comboBox_point_form->addItem(QString());
         comboBox_point_form->addItem(QString());
         comboBox_point_form->addItem(QString());
@@ -551,7 +543,31 @@ public:
 
         horizontalLayout_9->addWidget(comboBox_point_form);
 
+        widget1 = new QWidget(centralwidget);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(70, 630, 201, 131));
+        verticalLayout = new QVBoxLayout(widget1);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        save_img = new QPushButton(widget1);
+        save_img->setObjectName(QString::fromUtf8("save_img"));
+
+        verticalLayout->addWidget(save_img);
+
+        save_gif = new QPushButton(widget1);
+        save_gif->setObjectName(QString::fromUtf8("save_gif"));
+
+        verticalLayout->addWidget(save_gif);
+
+        save_sattings = new QPushButton(widget1);
+        save_sattings->setObjectName(QString::fromUtf8("save_sattings"));
+
+        verticalLayout->addWidget(save_sattings);
+
         MainWindow->setCentralWidget(centralwidget);
+        statusBar = new QStatusBar(MainWindow);
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
+        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
@@ -560,8 +576,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        update->setText(QCoreApplication::translate("MainWindow", "Update", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "3dViwer 1.0", nullptr));
         y_t->setText(QCoreApplication::translate("MainWindow", "Y", nullptr));
         z_t->setText(QCoreApplication::translate("MainWindow", "Z", nullptr));
         scale->setText(QCoreApplication::translate("MainWindow", "Scale", nullptr));
@@ -574,9 +589,6 @@ public:
         radioButton_frustum->setText(QCoreApplication::translate("MainWindow", "Frustum", nullptr));
         radioButton_ortho->setText(QCoreApplication::translate("MainWindow", "Ortho", nullptr));
         transform->setText(QCoreApplication::translate("MainWindow", "Transform:", nullptr));
-        save_img->setText(QCoreApplication::translate("MainWindow", "Save img", nullptr));
-        save_gif->setText(QCoreApplication::translate("MainWindow", "Save gif", nullptr));
-        save_sattings->setText(QCoreApplication::translate("MainWindow", "Save setting", nullptr));
         paint->setText(QCoreApplication::translate("MainWindow", "Paint:", nullptr));
         point->setText(QCoreApplication::translate("MainWindow", "Point", nullptr));
         color_point->setText(QCoreApplication::translate("MainWindow", "color", nullptr));
@@ -612,12 +624,16 @@ public:
         name->setText(QCoreApplication::translate("MainWindow", "name:", nullptr));
         openFile->setText(QCoreApplication::translate("MainWindow", "Open file", nullptr));
         load_setting->setText(QCoreApplication::translate("MainWindow", "Load setting", nullptr));
+        update->setText(QCoreApplication::translate("MainWindow", "Update", nullptr));
         x_t->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
         form_point->setText(QCoreApplication::translate("MainWindow", "form", nullptr));
         comboBox_point_form->setItemText(0, QCoreApplication::translate("MainWindow", "empty", nullptr));
         comboBox_point_form->setItemText(1, QCoreApplication::translate("MainWindow", "smooth", nullptr));
         comboBox_point_form->setItemText(2, QCoreApplication::translate("MainWindow", "square", nullptr));
 
+        save_img->setText(QCoreApplication::translate("MainWindow", "Save img", nullptr));
+        save_gif->setText(QCoreApplication::translate("MainWindow", "Save gif", nullptr));
+        save_sattings->setText(QCoreApplication::translate("MainWindow", "Save setting", nullptr));
     } // retranslateUi
 
 };
