@@ -221,36 +221,17 @@ int moveObj(Vertexes *vertex, Move move) {
 
 int rotationObj(Vertexes *vertex, Rotate rotate) {
   int error = 0;
-  double angle = 0;
 
   if (rotate.dx) {
-    angle = grad_to_rad(rotate.dx);
-    for (unsigned int i = 3; i < vertex->count; i += 3) {
-      vertex->arg[i + 1] =
-          cos(angle) * vertex->arg[i + 1] - sin(angle) * vertex->arg[i + 2];
-      vertex->arg[i + 2] =
-          sin(angle) * vertex->arg[i + 1] + cos(angle) * vertex->arg[i + 2];
-    }
+    error = rotateAroundAnAxis(vertex, 'x', rotate.dx);
   }
 
   if (rotate.dy) {
-    angle = grad_to_rad(rotate.dy);
-    for (unsigned int i = 3; i < vertex->count; i += 3) {
-      vertex->arg[i] =
-          cos(angle) * vertex->arg[i] - sin(angle) * vertex->arg[i + 2];
-      vertex->arg[i + 2] =
-          sin(angle) * vertex->arg[i] + cos(angle) * vertex->arg[i + 2];
-    }
+    error = rotateAroundAnAxis(vertex, 'y', rotate.dy);
   }
 
   if (rotate.dz) {
-    angle = grad_to_rad(rotate.dz);
-    for (unsigned int i = 3; i < vertex->count; i += 3) {
-      vertex->arg[i] =
-          cos(angle) * vertex->arg[i] - sin(angle) * vertex->arg[i + 1];
-      vertex->arg[i + 1] =
-          sin(angle) * vertex->arg[i] + cos(angle) * vertex->arg[i + 1];
-    }
+    error = rotateAroundAnAxis(vertex, 'z', rotate.dz);
   }
 
   return error;
@@ -269,3 +250,43 @@ int scaleObj(Vertexes *vertex, double scale) {
 }
 
 double grad_to_rad(double grad) { return grad * M_PI / 180; }
+
+int rotateAroundAnAxis(Vertexes *vertex, char c, double angle) {
+  int error = 0;
+
+  int a = 0;
+  int b = 0;
+
+  switch (c) {
+    case 'x':
+      a = 1;
+      b = 2;
+      break;
+
+    case 'y':
+      a = 0;
+      b = 2;
+      break;
+
+    case 'z':
+      a = 0;
+      b = 1;
+      break;
+
+    default:
+      error = 3;
+  }
+
+  // x 1 2
+  if (!error) {
+    angle = grad_to_rad(angle);
+    for (unsigned int i = 3; i < vertex->count; i += 3) {
+      vertex->arg[i + a] =
+          cos(angle) * vertex->arg[i + a] - sin(angle) * vertex->arg[i + b];
+      vertex->arg[i + b] =
+          sin(angle) * vertex->arg[i + a] + cos(angle) * vertex->arg[i + b];
+    }
+  }
+
+  return error;
+}

@@ -101,4 +101,6 @@ int rotationObj(Vertexes *vertex, Rotate rotate);
 
 double grad_to_rad(double grad);
 
+int rotateAroundAnAxis(Vertexes *vertex, char c, double angle);
+
 #endif  // SRC_PARSER_H

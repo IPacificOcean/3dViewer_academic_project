@@ -58,7 +58,7 @@ int main() {
   // ROTATE TEST
   printf("\nROTATE TEST\n");
 
-  Rotate rotate = {30, 30, 30};
+  Rotate rotate = {30, 0, 0};
 
   rotationObj(&vertexes, rotate);
   printf("vertexes print\n");
