@@ -119,8 +119,40 @@ void MainWindow::on_apply_clicked(){
 }
 
 
+void MainWindow::on_adaptation_clicked() {
+
+    double xMax = 0;
+    double xMin = 0;
+    double yMax = 0;
+    double yMin = 0;
+    double zMax = 0;
+    double zMin = 0;
+    double maxSize = 0;
+    double scale = 100;
+
+    for (unsigned int var = 3; var < ui->widget->vertex.count; var += 3) {
+
+        if(ui->widget->vertex.arg[var] > xMax) xMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var] < xMin) xMin = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+1] > yMax) yMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+1] < yMin) yMin = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+2] > zMax) zMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+2] < zMin) zMin = ui->widget->vertex.arg[var];
+    }
+    maxSize = xMax - xMin;
+    if (maxSize < yMax - yMin) maxSize = yMax - yMin;
+    if (maxSize < zMax - zMin) maxSize = zMax - zMin;
 
 
+    while(maxSize * scale > 1 && scale > 0.0001) {
+        scale *= 0.9;
+    }
+
+      ui->scale->setText(QString::number(scale, 'g', 6));
+//    ui->scale->setText(QString::number((maxSize)/10));
+//    ui->widget->scale = (xMax - xMin)/640;
+
+}
 
 
 

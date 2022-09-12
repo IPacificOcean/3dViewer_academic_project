@@ -11,8 +11,7 @@ extern "C" {
 }
 
 
-class GLWidget : public QOpenGLWidget
-{
+class GLWidget : public QOpenGLWidget {
     Q_OBJECT
 public:
     explicit GLWidget(QWidget *parent = nullptr);

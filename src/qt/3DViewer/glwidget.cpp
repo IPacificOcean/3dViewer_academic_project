@@ -68,7 +68,7 @@ void GLWidget::drawCubeLine() {
 
     glEnable(GL_POINT_SMOOTH);
     glPointSize(5);
-    glColor3d(1,.5,0);
+    glColor3d(1,0.5,0);
             //Projection//
 
     glEnableClientState(GL_VERTEX_ARRAY);

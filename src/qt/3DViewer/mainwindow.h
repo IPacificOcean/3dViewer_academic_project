@@ -46,6 +46,8 @@ private slots:
 
     void on_apply_clicked();
 
+    void on_adaptation_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
