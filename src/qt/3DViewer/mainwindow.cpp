@@ -34,11 +34,11 @@ void MainWindow::on_parse_clicked() {
     if(!error) {
         std::cout << error << std::endl;
         std::cout << str << std::endl;
-
         ui->widget->scale = ui->scale->text().toFloat();
     } else if (error == 1) {
         ui->label->setText("ERROR: File not found");
     }
+
 
 
 //    for (unsigned int a = 1; a < vertex.count; a++) {
@@ -66,20 +66,38 @@ void MainWindow::on_parse_clicked() {
 }
 
 
-void MainWindow::on_openFile_clicked(){
+void MainWindow::on_openFile_clicked() {
     QString fileName = QFileDialog::getOpenFileName(this, "Выберите файл", QDir::homePath(), tr( " (*.obj)"));
     ui->label->setText(fileName);
 }
 
 
 void MainWindow::on_apply_clicked(){
-    ui->widget->move.dx = ui->dx->text().toDouble();
-    ui->widget->move.dy = ui->dy->text().toDouble();
-    ui->widget->move.dz = ui->dz->text().toDouble();
 
-    GLWidget *p = ui->widget;
-    moveObj(&p->vertex, &p->move);
 
+    if((ui->dx->text() != "0" ||
+        ui->dy->text() != "0" ||
+        ui->dz->text() != "0")){
+
+        ui->widget->move.dx = ui->dx->text().toDouble();
+        ui->widget->move.dy = ui->dy->text().toDouble();
+        ui->widget->move.dz = ui->dz->text().toDouble();
+        moveObj(&ui->widget->vertex, ui->widget->move);
+
+
+        ui->dx->setText("0");
+        ui->dy->setText("0");
+        ui->dz->setText("0");
+    }
+
+    if(ui->scale->text() != "0") {
+        ui->widget->scale = ui->scale->text().toFloat();
+    }
+
+    if(ui->scaleModel->text() != "1" &&
+       ui->scaleModel->text().toFloat() > 0) {
+        ui->widget->modelScale = ui->scaleModel->text().toFloat();
+        scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+    }
 
 }
-

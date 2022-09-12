@@ -40,7 +40,7 @@ int main() {
 
   Move move = {-10.5, 0.5, 10};
 
-  moveObj(&vertexes, &move);
+  moveObj(&vertexes, move);
   printf("vertexes print\n");
   print_vertex(vertexes);
 
@@ -48,7 +48,7 @@ int main() {
   move.dy = -1;
   move.dz = -1;
 
-  moveObj(&vertexes, &move);
+  moveObj(&vertexes, move);
   // printf("vertexes print\n");
   // print_vertex(vertexes);
 

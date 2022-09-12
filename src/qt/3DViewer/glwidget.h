@@ -21,6 +21,8 @@ public:
     QPoint mPos;
     float scale;
 
+
+    double modelScale;
     Vertexes vertex;
     Facets facet;
     Move move;

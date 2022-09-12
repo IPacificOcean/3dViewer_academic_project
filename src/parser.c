@@ -182,32 +182,38 @@ a 0 0
 случаям.
 */
 
-int moveObj(Vertexes *vertex, Move *move) {
+int moveObj(Vertexes *vertex, Move move) {
   int error = 0;
 
-  double Mtmp[4][1] = {{0}, {0}, {0}, {1}};
-  double Mrez[4][1] = {{0}, {0}, {0}, {1}};
-  double Mmove[4][4] = {{1, 0, 0, move->dx},
-                        {0, 1, 0, move->dy},
-                        {0, 0, 1, move->dz},
-                        {0, 0, 0, 1}};
+  // double Mtmp[4][1] = {{0}, {0}, {0}, {1}};
+  // double Mrez[4][1] = {{0}, {0}, {0}, {1}};
+  // double Mmove[4][4] = {{1, 0, 0, move->dx},
+  //                       {0, 1, 0, move->dy},
+  //                       {0, 0, 1, move->dz},
+  //                       {0, 0, 0, 1}};
+
+  // for (unsigned int i = 3; i < vertex->count; i += 3) {
+  //   Mtmp[0][0] = vertex->arg[i];
+  //   Mtmp[1][0] = vertex->arg[i + 1];
+  //   Mtmp[2][0] = vertex->arg[i + 2];
+  //   for (int i = 0; i < 4; i++) {
+  //     for (int j = 0; j < 1; j++) {
+  //       double res = 0;
+  //       for (int k = 0; k < 4; k++) {
+  //         res += Mmove[i][k] * Mtmp[k][j];
+  //       }
+  //       Mrez[i][j] = res;
+  //     }
+  //   }
+  //   vertex->arg[i] = Mrez[0][0];
+  //   vertex->arg[i + 1] = Mrez[1][0];
+  //   vertex->arg[i + 2] = Mrez[2][0];
+  // }
 
   for (unsigned int i = 3; i < vertex->count; i += 3) {
-    Mtmp[0][0] = vertex->arg[i];
-    Mtmp[1][0] = vertex->arg[i + 1];
-    Mtmp[2][0] = vertex->arg[i + 2];
-    for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 1; j++) {
-        double res = 0;
-        for (int k = 0; k < 4; k++) {
-          res += Mmove[i][k] * Mtmp[k][j];
-        }
-        Mrez[i][j] = res;
-      }
-    }
-    vertex->arg[i] = Mrez[0][0];
-    vertex->arg[i + 1] = Mrez[1][0];
-    vertex->arg[i + 2] = Mrez[2][0];
+    vertex->arg[i] += move.dx;
+    vertex->arg[i + 1] += move.dy;
+    vertex->arg[i + 2] += move.dz;
   }
 
   return error;
@@ -219,8 +225,14 @@ int turnObj() {
   return error;
 }
 
-int scaleObj() {
+int scaleObj(Vertexes *vertex, double scale) {
   int error = 0;
+
+  for (unsigned int i = 3; i < vertex->count; i += 3) {
+    vertex->arg[i] *= scale;
+    vertex->arg[i + 1] *= scale;
+    vertex->arg[i + 2] *= scale;
+  }
 
   return error;
 }

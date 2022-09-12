@@ -8,6 +8,7 @@ GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
     vertex = {0, nullptr};
     facet = {0, nullptr};
     move = {0, 0, 0};
+    modelScale = 1;
 }
 
 
@@ -65,8 +66,8 @@ void GLWidget::paintGL() {
 void GLWidget::drawCubeLine() {
 
     glEnable(GL_POINT_SMOOTH);
-    glPointSize(7);
-    glColor3d(1,0,0);
+    glPointSize(5);
+    glColor3d(1,.5,0);
             //Projection//
 
     glEnableClientState(GL_VERTEX_ARRAY);

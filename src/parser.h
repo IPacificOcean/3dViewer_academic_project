@@ -73,6 +73,8 @@ typedef struct Move {
   double dz;
 } Move;
 
-int moveObj(Vertexes *vertex, Move *move);
+int moveObj(Vertexes *vertex, Move move);
+
+int scaleObj(Vertexes *vertex, double scale);
 
 #endif  // SRC_PARSER_H
