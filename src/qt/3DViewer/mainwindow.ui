@@ -235,7 +235,7 @@ border-color: gray;</string>
      </rect>
     </property>
     <property name="text">
-     <string>scale scene</string>
+     <string>scale model</string>
     </property>
    </widget>
    <widget class="QLabel" name="dy_label_2">
@@ -345,7 +345,7 @@ border-color: gray;</string>
      <string>adaptation</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>560</x>

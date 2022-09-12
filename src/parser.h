@@ -1,12 +1,14 @@
 #ifndef SRC_PARSER_H
 #define SRC_PARSER_H
 
-#include "s21_matrix.h"
+// #include "s21_matrix.h"
 
-typedef struct Data {
-  unsigned int count;
-  matrix_t matrix;
-} Data;
+#include <stdio.h>
+
+// typedef struct Data {
+//   unsigned int count;
+//   matrix_t matrix;
+// } Data;
 
 /**
  * @brief хранит кординаты вершин точек в одномерном массиве в формате x, y, z,
