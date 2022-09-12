@@ -36,24 +36,39 @@ int main() {
   // print_facets(facets);
 
   // MOVE TEST
-  printf("\nMOVE TEST\n");
+  // printf("\nMOVE TEST\n");
 
-  Move move = {-10.5, 0.5, 10};
+  // Move move = {-10.5, 0.5, 10};
 
-  moveObj(&vertexes, move);
-  printf("vertexes print\n");
-  print_vertex(vertexes);
-
-  move.dx = -1;
-  move.dy = -1;
-  move.dz = -1;
-
-  moveObj(&vertexes, move);
+  // moveObj(&vertexes, move);
   // printf("vertexes print\n");
   // print_vertex(vertexes);
 
-  printf("\nMOVE TEST\n");
+  // move.dx = -1;
+  // move.dy = -1;
+  // move.dz = -1;
+
+  // moveObj(&vertexes, move);
+  // // printf("vertexes print\n");
+  // // print_vertex(vertexes);
+
+  // printf("\nMOVE TEST\n");
   // MOVE TEST
+
+  // ROTATE TEST
+  printf("\nROTATE TEST\n");
+
+  Rotate rotate = {30, 30, 30};
+
+  rotationObj(&vertexes, rotate);
+  printf("vertexes print\n");
+  print_vertex(vertexes);
+
+  // printf("vertexes print\n");
+  // print_vertex(vertexes);
+
+  printf("\nROTATE TEST\n");
+  // ROTATE TEST
 
   // printf("\n************\n");
 

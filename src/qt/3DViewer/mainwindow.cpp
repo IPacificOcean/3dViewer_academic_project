@@ -94,10 +94,37 @@ void MainWindow::on_apply_clicked(){
         ui->widget->scale = ui->scale->text().toFloat();
     }
 
-    if(ui->scaleModel->text() != "1" &&
-       ui->scaleModel->text().toFloat() > 0) {
-        ui->widget->modelScale = ui->scaleModel->text().toFloat();
-        scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+    if(ui->modelScale->text() != "1" &&
+       ui->modelScale->text().toFloat() > 0) {
+       ui->widget->modelScale = ui->modelScale->text().toFloat();
+       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+       ui->modelScale->setText("1");
+    }
+
+    if(ui->rdx->text() != "0" ||
+       ui->rdy->text() != "0" ||
+       ui->rdz->text() != "0") {
+
+       ui->widget->rotate.dx = ui->rdx->text().toDouble();
+       ui->widget->rotate.dy = ui->rdy->text().toDouble();
+       ui->widget->rotate.dz = ui->rdz->text().toDouble();
+       rotationObj(&ui->widget->vertex, ui->widget->rotate);
+
+       ui->rdx->setText("0");
+       ui->rdy->setText("0");
+       ui->rdz->setText("0");
+
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -73,8 +73,32 @@ typedef struct Move {
   double dz;
 } Move;
 
+/**
+ * @brief
+ *
+ */
+typedef struct Scale {
+  double dx;
+  double dy;
+  double dz;
+} Scale;
+
+/**
+ * @brief
+ *
+ */
+typedef struct Rotate {
+  double dx;
+  double dy;
+  double dz;
+} Rotate;
+
 int moveObj(Vertexes *vertex, Move move);
 
 int scaleObj(Vertexes *vertex, double scale);
+
+int rotationObj(Vertexes *vertex, Rotate rotate);
+
+double grad_to_rad(double grad);
 
 #endif  // SRC_PARSER_H

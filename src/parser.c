@@ -219,8 +219,39 @@ int moveObj(Vertexes *vertex, Move move) {
   return error;
 }
 
-int turnObj() {
+int rotationObj(Vertexes *vertex, Rotate rotate) {
   int error = 0;
+  double angle = 0;
+
+  if (rotate.dx) {
+    angle = grad_to_rad(rotate.dx);
+    for (unsigned int i = 3; i < vertex->count; i += 3) {
+      vertex->arg[i + 1] =
+          cos(angle) * vertex->arg[i + 1] - sin(angle) * vertex->arg[i + 2];
+      vertex->arg[i + 2] =
+          sin(angle) * vertex->arg[i + 1] + cos(angle) * vertex->arg[i + 2];
+    }
+  }
+
+  if (rotate.dy) {
+    angle = grad_to_rad(rotate.dy);
+    for (unsigned int i = 3; i < vertex->count; i += 3) {
+      vertex->arg[i] =
+          cos(angle) * vertex->arg[i] - sin(angle) * vertex->arg[i + 2];
+      vertex->arg[i + 2] =
+          sin(angle) * vertex->arg[i] + cos(angle) * vertex->arg[i + 2];
+    }
+  }
+
+  if (rotate.dz) {
+    angle = grad_to_rad(rotate.dz);
+    for (unsigned int i = 3; i < vertex->count; i += 3) {
+      vertex->arg[i] =
+          cos(angle) * vertex->arg[i] - sin(angle) * vertex->arg[i + 1];
+      vertex->arg[i + 1] =
+          sin(angle) * vertex->arg[i] + cos(angle) * vertex->arg[i + 1];
+    }
+  }
 
   return error;
 }
@@ -236,3 +267,5 @@ int scaleObj(Vertexes *vertex, double scale) {
 
   return error;
 }
+
+double grad_to_rad(double grad) { return grad * M_PI / 180; }

@@ -212,7 +212,7 @@ border-color: gray;</string>
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLineEdit" name="scaleModel">
+   <widget class="QLineEdit" name="modelScale">
     <property name="geometry">
      <rect>
       <x>680</x>
@@ -225,17 +225,111 @@ border-color: gray;</string>
      <string>1</string>
     </property>
    </widget>
-   <widget class="QLabel" name="scaleModel_label">
+   <widget class="QLabel" name="modelScale_label">
     <property name="geometry">
      <rect>
       <x>680</x>
       <y>10</y>
-      <width>120</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>scale scene</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dy_label_2">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>50</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rdy</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dz_label_2">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>70</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rdz</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>11</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="rotation">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="rotation_label">
+       <property name="text">
+        <string>rotation</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="rdx">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="rdy">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="rdz">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="dx_label_2">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>30</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>rdx</string>
     </property>
    </widget>
    <widget class="QWidget" name="">
@@ -247,7 +341,7 @@ border-color: gray;</string>
       <height>81</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="move">
      <property name="spacing">
       <number>0</number>
      </property>

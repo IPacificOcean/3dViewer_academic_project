@@ -26,6 +26,8 @@ public:
     Vertexes vertex;
     Facets facet;
     Move move;
+    Rotate rotate;
+//    Scale scale;
 
     Vertexes getVertex() {
         return vertex;
