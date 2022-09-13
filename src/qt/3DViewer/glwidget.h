@@ -3,6 +3,7 @@
 #define GL_SILENCE_DEPRECATION
 
 #include "QtOpenGLWidgets/qopenglwidget.h"
+#include <QColorDialog>
 
 #include "mainwindow.h"
 
@@ -27,6 +28,11 @@ public:
     Move move;
     Rotate rotate;
 //    Scale scale;
+
+
+    QColor colorWidget;
+    QColor colorLine;
+    QColor colorPoint;
 
     Vertexes getVertex() {
         return vertex;

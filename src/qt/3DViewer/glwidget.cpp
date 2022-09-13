@@ -1,6 +1,8 @@
 #include "glwidget.h"
 //#include "GLUT/glut.h"
 
+#include <QColorDialog>
+
 
 
 
@@ -10,6 +12,10 @@ GLWidget ::  GLWidget(QWidget *parent) : QOpenGLWidget (parent) {
     move = {0, 0, 0};
     rotate = {0, 0, 0};
     modelScale = 1;
+
+    colorWidget = QColor(Qt::gray);
+    colorLine = QColor(Qt::darkGreen);
+    colorPoint = QColor(Qt::darkYellow);
 }
 
 
@@ -45,7 +51,7 @@ void GLWidget::resizeGL(int w, int h) {
 void GLWidget::paintGL() {
 
 
-    glClearColor(0.8, 0.8, 0.8, 0);
+    glClearColor(colorWidget.redF(), colorWidget.greenF(), colorWidget.blueF(), 0);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -68,7 +74,7 @@ void GLWidget::drawCubeLine() {
 
     glEnable(GL_POINT_SMOOTH);
     glPointSize(5);
-    glColor3d(1,0.5,0);
+    glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
             //Projection//
 
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -76,7 +82,7 @@ void GLWidget::drawCubeLine() {
 
     glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
 
-    glColor3d(0,0,1);
+    glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
     glLineWidth(1);
     glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
 

@@ -2,11 +2,28 @@
 #include "ui_mainwindow.h"
 
 #include "glwidget.h"
+#include <QColorDialog>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    connect(ui->horizontalSlider,&QSlider::sliderMoved,this,[=]{
+        int val=ui->horizontalSlider->value();
+        //You can process the variable val here.....
+        ui->scale->setText(QString::number(val));
+    });
+
+//    connect(ui->horizontalSlider,&QSlider::sliderMoved,this,[=]{
+//        int val=ui->horizontalSlider->value();
+//        //You can process the variable val here.....
+//        ui->doubleSpinBox->setValue((double)val);
+//    });
+
+    connect(ui->horizontalSlider, &QSlider::sliderMoved, this ,[=]{double val = ((double) ui->horizontalSlider->value())/10; ui->doubleSpinBox->setValue((double) val);});
+
 }
 
 MainWindow::~MainWindow() {
@@ -159,4 +176,23 @@ void MainWindow::on_adaptation_clicked() {
 
 
 
+
+
+void MainWindow::on_pushButton_clicked() {
+
+    ui->widget->colorWidget = QColorDialog::getColor(Qt::gray);
+
+//    ui->widget->color.getRgbF(&ui->widget->colorR, &ui->widget->colorG, &ui->widget->colorB);
+
+//    ui->widget->color = ui->colorBox->value();
+
+
+
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+        ui->widget->colorLine = QColorDialog::getColor(Qt::gray);
+}
 
