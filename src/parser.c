@@ -276,14 +276,13 @@ int rotateAroundAnAxis(Vertexes *vertex, char c, double angle) {
       error = 3;
   }
 
-  // x 1 2
   if (!error) {
     angle = grad_to_rad(angle);
     for (unsigned int i = 3; i < vertex->count; i += 3) {
-      vertex->arg[i + a] =
-          cos(angle) * vertex->arg[i + a] - sin(angle) * vertex->arg[i + b];
-      vertex->arg[i + b] =
-          sin(angle) * vertex->arg[i + a] + cos(angle) * vertex->arg[i + b];
+      double a1 = vertex->arg[i + a];
+      double a2 = vertex->arg[i + b];
+      vertex->arg[i + a] = cos(angle) * a1 - sin(angle) * a2;
+      vertex->arg[i + b] = sin(angle) * a1 + cos(angle) * a2;
     }
   }
 
