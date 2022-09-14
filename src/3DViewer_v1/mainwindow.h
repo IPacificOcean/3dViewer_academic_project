@@ -27,6 +27,15 @@ private slots:
 
 
 
+    void on_update_clicked();
+
+    void on_spinBox_line_width_valueChanged(int value);
+
+    void on_spinBox_point_size_valueChanged(int value);
+
+
+    void on_color_clicked();
+
 private:
     Ui::MainWindow *ui;
     void wheelEvent(QWheelEvent *event) override;

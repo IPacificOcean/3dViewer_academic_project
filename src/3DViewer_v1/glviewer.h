@@ -12,6 +12,7 @@
 //#include <QOpenGLShaderProgram>
 //#include <QOpenGLBuffer>
 #include <QFileDialog>
+#include <QColorDialog>
 
 #include<iostream>
 
@@ -38,6 +39,19 @@ public:
     Vertexes vertex;
     Facets facet;
     double scale = 0.05;
+    double modelScale;
+    Move move;
+    Rotate rotate;
+
+    QColor colorWidget;
+    QColor colorLine;
+    QColor colorPoint;
+
+    int pointSize;
+    int lineWidth;
+
+
+
 
     void change_zoom(double value);
 

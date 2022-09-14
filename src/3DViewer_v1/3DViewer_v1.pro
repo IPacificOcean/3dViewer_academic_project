@@ -9,8 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../backend/parser_2.0.c \
-    ../backend/s21_matrix.c \
+    ../backend/parser.c \
     glviewer.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -18,7 +17,6 @@ SOURCES += \
 
 HEADERS += \
     ../backend/parser.h \
-    ../backend/s21_matrix.h \
     glviewer.h \
     mainwindow.h \
     selectcolorbutton.h

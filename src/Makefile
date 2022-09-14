@@ -1,10 +1,9 @@
 CC=gcc -std=c11
 CFLAGS= -Wall -Wextra -Werror
 GCOV_LIBS=--coverage
-BUILD_PATH=./backend/
+BUILD_PATH= ./backend/
 SOURCE_PATH = ./backend/
-SOURCES= $(SOURCE_PATH)main_test.c $(SOURCE_PATH)s21_matrix.c 
-$(SOURCE_PATH)parser.c $(SOURCE_PATH)support_func.c
+SOURCES= $(SOURCE_PATH)main_test.c $(SOURCE_PATH)s21_matrix.c $(SOURCE_PATH)parser.c $(SOURCE_PATH)support_func.c
 H = $(SOURCE_PATH)s21_matrix.h $(SOURCE_PATH)parser.h
 LIBO=s21_calc.o
 LIBA=s21_calc.a
@@ -49,7 +48,7 @@ clean:
 	@rm -rf *.a && rm -rf *.o *.out
 	@rm -rf *.info && rm -rf *.gcda && rm -rf *.gcno &&  rm -rf *.gcov
 	@rm -rf report/ && rm -rf *.
-	@rm -rf $(SOURCE_PATH)main
+	@rm -f $(SOURCE_PATH)main
 	@rm -rf .qmake.stash	
 	@rm -rf s21_calc
 	@rm -rf ./build*
@@ -62,8 +61,8 @@ test: s21_calc.a
 	$(CC) $(CFLAGS) tests.c -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
 	$(BUILD_PATH)$(EXE)
 
-d: clean # dont use!
-	$(CC) $(CFLAGS) $(TST_LIBS) $(SOURCES) -o main
+d:  # dont use!
+	$(CC) $(CFLAGS) $(TST_LIBS) $(SOURCES) -o $(BUILD_PATH)main
 	$(BUILD_PATH)main
 
 rebuild: clean all

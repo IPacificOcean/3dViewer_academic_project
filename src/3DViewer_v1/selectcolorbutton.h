@@ -3,6 +3,8 @@
 
 #include <QPushButton>
 #include <QColor>
+#include <QColorDialog>
+#include <QFileDialog>
 
 class SelectColorButton : public QPushButton
 {
