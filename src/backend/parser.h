@@ -1,12 +1,14 @@
 #ifndef SRC_PARSER_H
 #define SRC_PARSER_H
 
-#include "s21_matrix.h"
+// #include "s21_matrix.h"
 
-typedef struct Data {
-  unsigned int count;
-  matrix_t matrix;
-} Data;
+#include <stdio.h>
+
+// typedef struct Data {
+//   unsigned int count;
+//   matrix_t matrix;
+// } Data;
 
 /**
  * @brief хранит кординаты вершин точек в одномерном массиве в формате x, y, z,
@@ -15,7 +17,7 @@ typedef struct Data {
  */
 typedef struct Vretex {
   unsigned int count;
-  double *arg_v;
+  double *arg;
 } Vertexes;
 
 /**
@@ -25,7 +27,7 @@ typedef struct Vretex {
  */
 typedef struct Facet {
   unsigned int count;
-  unsigned int *arg_f;
+  unsigned int *arg;
 } Facets;
 
 /**
@@ -57,10 +59,50 @@ int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
  */
 int count_number_in_string(int *count, char *str);
 
+int getDataVetrtexAndFacet(FILE *f, Vertexes *vertexes, Facets *facets);
+
 void print_vertex(Vertexes vertexes);
 
 void print_facets(Facets facets);
 
-int count_words(char *str);
+/**
+ * @brief
+ *
+ */
+typedef struct Move {
+  double dx;
+  double dy;
+  double dz;
+} Move;
+
+/**
+ * @brief
+ *
+ */
+typedef struct Scale {
+  double dx;
+  double dy;
+  double dz;
+} Scale;
+
+/**
+ * @brief
+ *
+ */
+typedef struct Rotate {
+  double dx;
+  double dy;
+  double dz;
+} Rotate;
+
+int moveObj(Vertexes *vertex, Move move);
+
+int scaleObj(Vertexes *vertex, double scale);
+
+int rotationObj(Vertexes *vertex, Rotate rotate);
+
+double grad_to_rad(double grad);
+
+int rotateAroundAnAxis(Vertexes *vertex, char c, double angle);
 
 #endif  // SRC_PARSER_H

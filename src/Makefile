@@ -1,9 +1,11 @@
 CC=gcc -std=c11
 CFLAGS= -Wall -Wextra -Werror
 GCOV_LIBS=--coverage
-BUILD_PATH=./
-SOURCES=main_test.c s21_matrix.c parser.c support_func.c
-H=s21_matrix.h parser.h
+BUILD_PATH=./backend/
+SOURCE_PATH = ./backend/
+SOURCES= $(SOURCE_PATH)main_test.c $(SOURCE_PATH)s21_matrix.c 
+$(SOURCE_PATH)parser.c $(SOURCE_PATH)support_func.c
+H = $(SOURCE_PATH)s21_matrix.h $(SOURCE_PATH)parser.h
 LIBO=s21_calc.o
 LIBA=s21_calc.a
 EXE=test.out
@@ -47,13 +49,14 @@ clean:
 	@rm -rf *.a && rm -rf *.o *.out
 	@rm -rf *.info && rm -rf *.gcda && rm -rf *.gcno &&  rm -rf *.gcov
 	@rm -rf report/ && rm -rf *.
-	@rm -rf main
+	@rm -rf $(SOURCE_PATH)main
 	@rm -rf .qmake.stash	
 	@rm -rf s21_calc
 	@rm -rf ./build*
 	@rm -rf SmartCalc
 	@rm -rf SmartCalc Archive_SmartCalc_v1.0.tgz
 	@rm -rf ./qt/build*
+	@rm -rf ./build*
 
 test: s21_calc.a
 	$(CC) $(CFLAGS) tests.c -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
@@ -67,8 +70,8 @@ rebuild: clean all
 
 s21_calc.a: clean
 	$(CC) $(CFLAGS) -c $(SOURCES) -o $(BUILD_PATH)$(LIBO)
-	ar rcs $(LIBA) $(LIBO)
-	ranlib $(LIBA)
+	ar rcs $(SOURCE_PATH)$(LIBA) $(SOURCE_PATH)$(LIBO)
+	ranlib $(SOURCE_PATH)$(LIBA)
 
 gcov_report: s21_calc.a
 	$(CC) $(CFLAGS) $(GCOV_LIBS) tests.c $(SOURCES) $(LIBA) -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
