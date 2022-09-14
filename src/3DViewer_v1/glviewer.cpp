@@ -1,5 +1,4 @@
 #include "glviewer.h"
-#include "ui_glviewer.h"
 //#include <clocale.h>
 
 

@@ -8,7 +8,7 @@
 #include "mainwindow.h"
 
 extern "C" {
-#include "../../parser.h"
+#include "../../backend/parser.h"
 }
 
 
