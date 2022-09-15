@@ -57,6 +57,8 @@ void GLviewer::resizeGL(int w, int h)
 //    glLoadIdentity();
 ////    glOrtho(-1, 1, -1, 1, 1, 10);
 //    glFrustum(-10, 10, -10, 10, -1, 10);
+//     glFrustum(-1, 1, -1, 1, 1, 100);
+     glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
 
 
 }
@@ -87,15 +89,16 @@ void GLviewer::drawShape()
 {
 
         //Projection//
-//        glDisable(GL_DEPTH_TEST);
-////        glEnable(GL_DEPTH_TEST);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
-
-
+        glDisable(GL_DEPTH_TEST);
+//        glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glEnable(GL_DEPTH_TEST);
-        glOrtho(-100, 100, 800, 800, 100, 100);
+//        glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
+//        glFrustum(-1, 1, -1, 1, 1, 100);
+
+
+//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        glEnable(GL_DEPTH_TEST);
+//        glOrtho(-100, 100, 800, 800, 100, 10);
 
 //        update();
 

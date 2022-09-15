@@ -10,16 +10,28 @@ CONFIG += c++17
 
 SOURCES += \
     ../backend/parser.c \
+    QtGifImage-master/src/3rdParty/giflib/dgif_lib.c \
+    QtGifImage-master/src/3rdParty/giflib/egif_lib.c \
+    QtGifImage-master/src/3rdParty/giflib/gif_err.c \
+    QtGifImage-master/src/3rdParty/giflib/gif_font.c \
+    QtGifImage-master/src/3rdParty/giflib/gif_hash.c \
+    QtGifImage-master/src/3rdParty/giflib/gifalloc.c \
+    QtGifImage-master/src/3rdParty/giflib/quantize.c \
+    QtGifImage-master/src/gifimage/qgifimage.cpp \
     glviewer.cpp \
     main.cpp \
-    mainwindow.cpp \
-    selectcolorbutton.cpp
+    mainwindow.cpp
 
 HEADERS += \
     ../backend/parser.h \
+    QtGifImage-master/src/3rdParty/giflib/gif_hash.h \
+    QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+    QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+    QtGifImage-master/src/gifimage/qgifglobal.h \
+    QtGifImage-master/src/gifimage/qgifimage.h \
+    QtGifImage-master/src/gifimage/qgifimage_p.h \
     glviewer.h \
-    mainwindow.h \
-    selectcolorbutton.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui
