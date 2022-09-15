@@ -164,42 +164,38 @@ void MainWindow::on_Pthoto_clicked()
 }
 
 
-void MainWindow::on_stop_and_save_GIF_clicked()
-{
-    flag_record = 1;
-    if (flag_record == 1) {
-        ui->stop_and_save_GIF->setStyleSheet("QPushButton {color: red;  font: bold 14px;}");
-        timer_for_gif->start(100);
-        create_screen();
-    }
+void MainWindow::on_stop_and_save_GIF_clicked(){
+
+    timer_for_gif->start(100);
+    create_screen();
+
 }
 
 void MainWindow::save_gif() {
+
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
-    QGifImage gif(QSize(1800, 1700));
+    QGifImage gif(QSize(640, 480));
 
     gif.setDefaultTransparentColor(Qt::black);
-    gif.setDefaultDelay(100);
+//    gif.setDefaultDelay(100);
 
     for (QVector<QImage>::Iterator img = mas_image.begin(); img != mas_image.end(); ++img) {
         gif.addFrame(*img);
+
     }
 
     gif.save(fileName);
     mas_image.clear();
     ui->label_Timer_GIF->clear();
     time = 0.0;
-    flag_record = 0;
 
-    ui->stop_and_save_GIF->setStyleSheet("QPushButton {color: Black;  font: bold 14px;}");
-    ui->stop_and_save_GIF->setText("GIF");
 }
 
 
 
 void MainWindow::create_screen()
 {
-    if (flag_record == 1 && time <= 5.0) {
+    if ( time <= 5.0) {
         mas_image.push_back(ui->widget->grab().toImage());
         time += 0.1;
         ui->label_Timer_GIF->setText(QString::number(time));

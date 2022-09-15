@@ -6,7 +6,7 @@
 #include <QColorDialog>
 
 //_________GIF
-#include <Qlabel>
+#include <QLabel>
 #include <QPixmap>
 #include <QScreen>
 #include <vector>
