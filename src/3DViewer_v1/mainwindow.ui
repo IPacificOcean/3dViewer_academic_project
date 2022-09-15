@@ -757,7 +757,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QSlider" name="horizontalSlider">
+   <widget class="QSlider" name="horizontalSlider_dx">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -776,7 +776,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QDial" name="dial">
+   <widget class="QDial" name="dial_rdx">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -798,7 +798,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QDial" name="dial_2">
+   <widget class="QDial" name="dial_rdy">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -817,7 +817,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_3">
+   <widget class="QSlider" name="horizontalSlider_dy">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -875,7 +875,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QDial" name="dial_3">
+   <widget class="QDial" name="dial_rdz">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -933,7 +933,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_4">
+   <widget class="QSlider" name="horizontalSlider_dz">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -978,7 +978,7 @@
      <string>Frame</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>1210</x>
@@ -1044,7 +1044,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>horizontalSlider</sender>
+   <sender>horizontalSlider_dx</sender>
    <signal>valueChanged(int)</signal>
    <receiver>dx</receiver>
    <slot>setValue(int)</slot>
@@ -1060,7 +1060,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial</sender>
+   <sender>dial_rdx</sender>
    <signal>valueChanged(int)</signal>
    <receiver>rdx</receiver>
    <slot>setValue(int)</slot>
@@ -1104,6 +1104,134 @@
     <hint type="destinationlabel">
      <x>859</x>
      <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_dy</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>dy</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>463</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>116</x>
+     <y>427</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_dz</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>dz</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>55</x>
+     <y>552</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>72</x>
+     <y>509</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dy</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>update</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>127</x>
+     <y>421</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>901</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dz</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>update</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>520</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>915</x>
+     <y>33</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rdy</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>update</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>247</x>
+     <y>417</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>963</x>
+     <y>39</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rdz</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>update</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>247</x>
+     <y>517</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>911</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_rdy</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>rdy</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>247</x>
+     <y>468</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>427</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_rdz</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>rdz</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>227</x>
+     <y>548</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>235</x>
+     <y>523</y>
     </hint>
    </hints>
   </connection>

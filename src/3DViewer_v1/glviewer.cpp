@@ -89,8 +89,8 @@ void GLviewer::drawShape()
 {
 
         //Projection//
-        glDisable(GL_DEPTH_TEST);
-//        glEnable(GL_DEPTH_TEST);
+//        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //        glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
 //        glFrustum(-1, 1, -1, 1, 1, 100);
@@ -116,6 +116,7 @@ void GLviewer::drawShape()
 
         // Points//
         glEnable(GL_POINT_SMOOTH);
+//        glDisable(GL_POINT_SMOOTH);
         glPointSize(pointSize);
         glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
         glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
