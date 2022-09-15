@@ -483,7 +483,7 @@
      <rect>
       <x>780</x>
       <y>950</y>
-      <width>58</width>
+      <width>100</width>
       <height>16</height>
      </rect>
     </property>
@@ -502,7 +502,7 @@
      <rect>
       <x>780</x>
       <y>930</y>
-      <width>58</width>
+      <width>100</width>
       <height>16</height>
      </rect>
     </property>
@@ -540,7 +540,7 @@
      <rect>
       <x>780</x>
       <y>910</y>
-      <width>58</width>
+      <width>100</width>
       <height>16</height>
      </rect>
     </property>
@@ -756,8 +756,11 @@
        <property name="minimum">
         <double>0.000000000000000</double>
        </property>
+       <property name="maximum">
+        <double>100.000000000000000</double>
+       </property>
        <property name="singleStep">
-        <double>0.010000000000000</double>
+        <double>1.000000000000000</double>
        </property>
        <property name="value">
         <double>1.000000000000000</double>
@@ -1052,6 +1055,19 @@
      <string>optimization</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="gebug_cactus">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>900</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>debag cactus</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
@@ -1254,6 +1270,22 @@
     <hint type="destinationlabel">
      <x>235</x>
      <y>523</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>modelScale</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>update</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>175</x>
+     <y>684</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>883</x>
+     <y>54</y>
     </hint>
    </hints>
   </connection>

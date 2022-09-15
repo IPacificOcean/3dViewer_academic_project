@@ -36,9 +36,12 @@ class GLviewer : public QOpenGLWidget
 public:
     GLviewer(QWidget *parent = nullptr);
     ~GLviewer();
+
+
     Vertexes vertex;
     Facets facet;
-    double scale = 0.05;
+
+    double scale;
     double modelScale;
     Move move;
     Rotate rotate;

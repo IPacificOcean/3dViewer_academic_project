@@ -67,6 +67,8 @@ private slots:
 
     void on_optimization_clicked();
 
+    void on_gebug_cactus_clicked();
+
 private:
     Ui::MainWindow *ui;
     void wheelEvent(QWheelEvent *event) override;

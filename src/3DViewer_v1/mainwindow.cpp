@@ -74,48 +74,76 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 
 void MainWindow::on_update_clicked()
 {
-    if((ui->dx->text() != "0" ||
-            ui->dy->text() != "0" ||
-            ui->dz->text() != "0")){
+//    if((ui->dx->text() != "0" ||
+//            ui->dy->text() != "0" ||
+//            ui->dz->text() != "0")){
+//            ui->widget->move.dx = ui->dx->text().toDouble();
+//            ui->widget->move.dy = (double) ui->dy->value();
+//            ui->widget->move.dz = (double) ui->dz->value();
+//            moveObj(&ui->widget->vertex, ui->widget->move);
 
-            ui->widget->move.dx = ui->dx->text().toDouble();
-            ui->widget->move.dy = ui->dy->text().toDouble();
-            ui->widget->move.dz = ui->dz->text().toDouble();
-            moveObj(&ui->widget->vertex, ui->widget->move);
-
-
-//            ui->dx->setText("0");
-//            ui->dy->setText("0");
-//            ui->dz->setText("0");
-        }
-
-//        if(ui->scale->text() != "0") {
-//            ui->widget->scale = ui->scale->text().toDouble();
 //        }
 
-        if(ui->modelScale->text() != "1" &&
-           ui->modelScale->value() > 0) {
-           ui->widget->modelScale = ui->modelScale->value();
-           scaleObj(&ui->widget->vertex, ui->widget->modelScale);
-//           ui->modelScale->setText("1");
-        }
+//    if(ui->modelScale->text() != "1" &&
+//       ui->modelScale->value() > 0) {
+//       ui->widget->modelScale = ui->modelScale->value();
+//       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+//    }
 
-        if(ui->rdx->text() != "0" ||
-           ui->rdy->text() != "0" ||
-           ui->rdz->text() != "0") {
+//    if(ui->rdx->text() != "0" ||
+//       ui->rdy->text() != "0" ||
+//       ui->rdz->text() != "0") {
 
-           ui->widget->rotate.dx = ui->rdx->value();
-           ui->widget->rotate.dy = ui->rdy->text().toDouble();
-           ui->widget->rotate.dz = ui->rdz->text().toDouble();
-           rotationObj(&ui->widget->vertex, ui->widget->rotate);
+//       ui->widget->rotate.dx = ui->rdx->value();
+//       ui->widget->rotate.dy = ui->rdy->text().toDouble();
+//       ui->widget->rotate.dz = ui->rdz->text().toDouble();
+//       rotationObj(&ui->widget->vertex, ui->widget->rotate);
+//    }
 
-//           ui->rdx->setText("0");
-//           ui->rdy->setText("0");
-//           ui->rdz->setText("0");
+    // move
+    ui->widget->move.dx = ui->widget->move.dx - (double) ui->dx->value();
+    ui->widget->move.dy = ui->widget->move.dy - (double) ui->dy->value();
+    ui->widget->move.dz = ui->widget->move.dz - (double) ui->dz->value();
+
+    if (ui->widget->move.dx == 0 ||
+        ui->widget->move.dy == 0 ||
+        ui->widget->move.dz == 0) {
+        moveObj(&ui->widget->vertex, ui->widget->move);
+    }
+
+    ui->widget->move.dx = (double) ui->dx->value();
+    ui->widget->move.dy = (double) ui->dy->value();
+    ui->widget->move.dz = (double) ui->dz->value();
 
 
+    // rotate
+    ui->widget->rotate.dx = ui->widget->rotate.dx - (double)ui->rdx->value();
+    ui->widget->rotate.dy = ui->widget->rotate.dy - (double)ui->rdy->value();
+    ui->widget->rotate.dz = ui->widget->rotate.dz - (double)ui->rdz->value();
 
-        }
+    if(ui->widget->rotate.dx != 0 ||
+       ui->widget->rotate.dy != 0 ||
+       ui->widget->rotate.dz != 0) {
+       rotationObj(&ui->widget->vertex, ui->widget->rotate);
+    }
+
+    ui->widget->rotate.dx = (double)ui->rdx->value();
+    ui->widget->rotate.dy = (double)ui->rdy->value();
+    ui->widget->rotate.dz = (double)ui->rdz->value();
+
+    // scale
+
+    if (ui->modelScale->value() <= 0) {
+        ui->modelScale->setValue(1);
+    }
+
+    ui->widget->modelScale = ui->modelScale->value() / ui->widget->modelScale;
+
+    if(ui->widget->modelScale != 0 &&
+       ui->modelScale->value() > 0) {
+       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+    }
+    ui->widget->modelScale = ui->modelScale->value();
 
 }
 
@@ -248,4 +276,25 @@ void MainWindow::on_optimization_clicked(){
 
 
 
+
+
+void MainWindow::on_gebug_cactus_clicked()
+{
+
+    QString file = "/Users/violator/C8_3DViewer_v1.0-1/src/objFiles/cactus.obj";
+    ui->statusBar->showMessage(file);
+    QByteArray ba = file.toLocal8Bit();
+    char *str = ba.data();
+    int error = 0;
+    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
+//    qDebug() << error;
+    if (error) {
+        ui->statusBar->showMessage("file not found");
+    }
+
+    ui->coun_vertexes->setText(QString::number(ui->widget->vertex.count));
+    ui->count_facets->setText(QString::number(ui->widget->facet.count));
+    ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
+
+}
 

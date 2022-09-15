@@ -13,6 +13,7 @@ GLviewer::GLviewer(QWidget *parent)
     move = {0, 0, 0};
     rotate = {0, 0, 0};
     modelScale = 1;
+    scale = 0.05;
 
     colorWidget = QColor(Qt::black);
     colorLine = QColor(Qt::darkBlue);
