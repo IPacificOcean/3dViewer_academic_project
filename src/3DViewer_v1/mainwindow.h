@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+   void free_vertex_and_facet();
 
     //___ GIF
     QVector<QImage> mas_image;
@@ -68,6 +69,10 @@ private slots:
     void on_optimization_clicked();
 
     void on_gebug_cactus_clicked();
+
+    void on_comboBox_point_form_currentIndexChanged(int index);
+
+    void on_comboBox_line_form_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

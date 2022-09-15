@@ -24,16 +24,28 @@ MainWindow::~MainWindow()
     delete timer_for_gif;
 }
 
+void MainWindow::free_vertex_and_facet()
+{
+    if (ui->widget->vertex.arg || ui->widget->facet.arg) {
+    free (ui->widget->vertex.arg);
+    ui->widget->vertex.count = 0;
+    free (ui->widget->facet.arg);
+    ui->widget->facet.count = 0;
+    }
+}
 
-void MainWindow::on_openFile_clicked(){
-
+void MainWindow::on_openFile_clicked()
+{
     QString file = QFileDialog::getOpenFileName(this, "Выберите файл", ".", tr( " (*.obj)"));
+
+    if (file != ""){
+    free_vertex_and_facet();
     ui->statusBar->showMessage(file);
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
     int error = 0;
     error = parser(str , &ui->widget->vertex, &ui->widget->facet);
-//    qDebug() << error;
+
     if (error) {
         ui->statusBar->showMessage("file not found");
     }
@@ -41,6 +53,7 @@ void MainWindow::on_openFile_clicked(){
     ui->coun_vertexes->setText(QString::number(ui->widget->vertex.count));
     ui->count_facets->setText(QString::number(ui->widget->facet.count));
     ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
+    }
 }
 
 void MainWindow::wheelEvent(QWheelEvent *event){
@@ -63,7 +76,7 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 //    std::cout<<valueScale<<std::endl;
 //    ui->widget->scale = ui->doubleSpinBox_Scale->value();
     ui->widget->scale = valueScale;
-    qDebug() << valueScale;
+
 }
 
 
@@ -157,6 +170,8 @@ void MainWindow::on_spinBox_line_width_valueChanged(int value)
 void MainWindow::on_spinBox_point_size_valueChanged(int value)
 {
      ui->widget->pointSize = value;
+//     ui->widget->update();
+     qDebug() << ui->widget->pointSize;
 }
 
 
@@ -203,7 +218,7 @@ void MainWindow::save_gif() {
     QGifImage gif(QSize(640, 480));
 
     gif.setDefaultTransparentColor(Qt::black);
-//    gif.setDefaultDelay(100);
+    gif.setDefaultDelay(100);
 
     for (QVector<QImage>::Iterator img = mas_image.begin(); img != mas_image.end(); ++img) {
         gif.addFrame(*img);
@@ -287,7 +302,7 @@ void MainWindow::on_gebug_cactus_clicked()
     char *str = ba.data();
     int error = 0;
     error = parser(str , &ui->widget->vertex, &ui->widget->facet);
-//    qDebug() << error;
+
     if (error) {
         ui->statusBar->showMessage("file not found");
     }
@@ -296,5 +311,23 @@ void MainWindow::on_gebug_cactus_clicked()
     ui->count_facets->setText(QString::number(ui->widget->facet.count));
     ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
 
+}
+
+// qDebug() << file;
+
+void MainWindow::on_comboBox_point_form_currentIndexChanged(int index)
+{
+    ui->widget->pointForm = index;
+    ui->widget->update();
+    qDebug() << ui->widget->pointForm;
+
+}
+
+
+void MainWindow::on_comboBox_line_form_currentIndexChanged(int index)
+{
+    ui->widget->lineForm = index;
+    ui->widget->update();
+    qDebug() << ui->widget->lineForm;
 }
 

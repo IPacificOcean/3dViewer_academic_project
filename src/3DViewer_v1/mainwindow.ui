@@ -81,8 +81,8 @@
    <widget class="QWidget" name="layoutWidget_6">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>630</y>
+      <x>60</x>
+      <y>600</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -312,6 +312,9 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_line_form">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
        <item>
         <property name="text">
          <string>empty</string>
@@ -664,6 +667,12 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_point_form">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="placeholderText">
+        <string>rty</string>
+       </property>
        <item>
         <property name="text">
          <string>empty</string>
@@ -728,8 +737,8 @@
    <widget class="QWidget" name="layoutWidget_13">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>670</y>
+      <x>60</x>
+      <y>640</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -744,7 +753,7 @@
         </font>
        </property>
        <property name="text">
-        <string>modelScale</string>
+        <string>Scale model</string>
        </property>
       </widget>
      </item>
@@ -977,19 +986,6 @@
      <string>COLOR</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_Timer_GIF">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>800</y>
-      <width>58</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Frame</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -1045,14 +1041,14 @@
    <widget class="QPushButton" name="optimization">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>630</y>
-      <width>100</width>
+      <x>100</x>
+      <y>680</y>
+      <width>131</width>
       <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>optimization</string>
+     <string>Scale optimization</string>
     </property>
    </widget>
    <widget class="QPushButton" name="gebug_cactus">
@@ -1066,6 +1062,22 @@
     </property>
     <property name="text">
      <string>debag cactus</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Timer_GIF">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>800</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

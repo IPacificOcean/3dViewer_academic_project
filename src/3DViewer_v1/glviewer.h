@@ -51,7 +51,20 @@ public:
     QColor colorPoint;
 
     int pointSize;
+    int pointForm;
     int lineWidth;
+    int lineForm;
+
+
+    enum {
+        EMPTY,
+        POINT_ROUND = 1,
+        POINT_QUADRO,
+        LINE_SOLID = 1,
+        LINE_DASHED
+
+     };
+
 
 
 
