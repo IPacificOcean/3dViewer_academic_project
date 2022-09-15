@@ -65,6 +65,8 @@ private slots:
     void save_gif();
     //_______
 
+    void on_optimization_clicked();
+
 private:
     Ui::MainWindow *ui;
     void wheelEvent(QWheelEvent *event) override;

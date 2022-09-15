@@ -21,17 +21,14 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete timer_for_gif;
 }
 
 
-void MainWindow::on_openFile_clicked()
-{
-//    ui->widget->vertex = {0, nullptr};
-//    ui->widget->facet = {0, nullptr};
+void MainWindow::on_openFile_clicked(){
+
     QString file = QFileDialog::getOpenFileName(this, "Выберите файл", ".", tr( " (*.obj)"));
-//    ui->pwd->setText(file);
     ui->statusBar->showMessage(file);
-//    ui->widget->scale = ui->doubleSpinBox_Scale->text().toDouble();
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
     int error = 0;
@@ -41,11 +38,12 @@ void MainWindow::on_openFile_clicked()
         ui->statusBar->showMessage("file not found");
     }
 
-
+    ui->coun_vertexes->setText(QString::number(ui->widget->vertex.count));
+    ui->count_facets->setText(QString::number(ui->widget->facet.count));
+    ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
 }
 
-void MainWindow::wheelEvent(QWheelEvent *event)
-{
+void MainWindow::wheelEvent(QWheelEvent *event){
    if (event->angleDelta().y() > 0) {
 
        ui->widget->change_zoom(0.9);
@@ -61,9 +59,7 @@ void MainWindow::wheelEvent(QWheelEvent *event)
 }
 
 
-void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale)
-
-{
+void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 //    std::cout<<valueScale<<std::endl;
 //    ui->widget->scale = ui->doubleSpinBox_Scale->value();
     ui->widget->scale = valueScale;
@@ -116,6 +112,8 @@ void MainWindow::on_update_clicked()
 //           ui->rdx->setText("0");
 //           ui->rdy->setText("0");
 //           ui->rdz->setText("0");
+
+
 
         }
 
@@ -210,3 +208,44 @@ void MainWindow::create_screen()
 //_________GIF end
 
 // Test
+
+void MainWindow::on_optimization_clicked(){
+    double xMax = 0;
+    double xMin = 0;
+    double yMax = 0;
+    double yMin = 0;
+    double zMax = 0;
+    double zMin = 0;
+    double maxSize = 0;
+    double scale = 100;
+
+    for (unsigned int var = 3; var < ui->widget->vertex.count; var += 3) {
+
+        if(ui->widget->vertex.arg[var] > xMax) xMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var] < xMin) xMin = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+1] > yMax) yMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+1] < yMin) yMin = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+2] > zMax) zMax = ui->widget->vertex.arg[var];
+        if(ui->widget->vertex.arg[var+2] < zMin) zMin = ui->widget->vertex.arg[var];
+    }
+    maxSize = xMax - xMin;
+    if (maxSize < yMax - yMin) maxSize = yMax - yMin;
+    if (maxSize < zMax - zMin) maxSize = zMax - zMin;
+
+
+    while(maxSize * scale > 1 && scale > 0.0001) {
+        scale *= 0.9;
+    }
+
+      ui->doubleSpinBox_Scale->setValue(scale);
+}
+
+
+
+
+
+
+
+
+
+

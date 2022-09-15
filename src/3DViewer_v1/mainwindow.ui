@@ -81,7 +81,7 @@
    <widget class="QWidget" name="layoutWidget_6">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>40</x>
       <y>630</y>
       <width>191</width>
       <height>31</height>
@@ -686,13 +686,22 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>40</x>
       <y>750</y>
       <width>201</width>
       <height>131</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QPushButton" name="Pthoto">
        <property name="text">
@@ -719,7 +728,7 @@
    <widget class="QWidget" name="layoutWidget_13">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>40</x>
       <y>670</y>
       <width>191</width>
       <height>31</height>
@@ -968,7 +977,7 @@
    <widget class="QLabel" name="label_Timer_GIF">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>260</x>
       <y>800</y>
       <width>58</width>
       <height>16</height>
@@ -1029,6 +1038,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="optimization">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>630</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>optimization</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
