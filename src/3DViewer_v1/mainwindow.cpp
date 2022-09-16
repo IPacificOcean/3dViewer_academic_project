@@ -373,6 +373,16 @@ void MainWindow::on_save_sattings_clicked()
     settings.setValue("comboBox_point_form", ui->comboBox_point_form->currentText());
     settings.setValue("spinBox_point_size", ui->spinBox_point_size->value());
     settings.setValue("comboBox_line_form", ui->comboBox_line_form->currentText());
+    settings.setValue("spinBox_line_width", ui->spinBox_line_width->value());
+    settings.setValue("colorBackground", ui->colorBackground->isChecked());
+    settings.setValue("colorLine", ui->colorLine->isChecked());
+    settings.setValue("colorPoint", ui->colorPoint->isChecked());
+    settings.setValue("colorWidget", ui->widget->colorWidget.toExtendedRgb());
+
+
+//    QColor colorWidget;
+//    QColor colorLine;
+//    QColor colorPoint;
 
 //    settings.setValue("dx", ui->dx->value());
 //    settings.setValue("dy", ui->dy->value());
