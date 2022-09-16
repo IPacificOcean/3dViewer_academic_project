@@ -74,6 +74,12 @@ private slots:
 
     void on_comboBox_line_form_currentIndexChanged(int index);
 
+    void on_radioButton_frustum_clicked(bool checked);
+
+
+
+    void on_radioButton_ortho_clicked();
+
 private:
     Ui::MainWindow *ui;
     void wheelEvent(QWheelEvent *event) override;

@@ -23,6 +23,7 @@ GLviewer::GLviewer(QWidget *parent)
     lineWidth = 1;
     pointForm = POINT_ROUND;
     lineForm = LINE_SOLID;
+    frustum = EMPTY;
 
 
 }
@@ -91,30 +92,15 @@ void GLviewer::paintGL()
 void GLviewer::drawShape()
 {
         //Projection//
-//
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-//        glEnable(GL_DEPTH_TEST);
-          glDisable(GL_DEPTH_TEST);
-          glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
-//        glFrustum(-1, 1, -1, 1, 1, 100);
 
+        projectionSelect();
 
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        glEnable(GL_DEPTH_TEST);
-//        glOrtho(-100, 100, 800, 800, 100, 10);
-//          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//          glEnable(GL_DEPTH_TEST);
-//          glOrtho(-1, 1, -1, 1, 100, 100);
-//          glOrtho(-100, 100, 800, 800, 100, 10);
+        glScaled(scale, scale, scale);
 
-//        update();
-
-//        glTranslatef(x, y, z); //  перемещение по x y z
-        glScaled(scale, scale, scale); // масштаб
-
-     glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
 
         // Points//
@@ -125,10 +111,7 @@ void GLviewer::drawShape()
         if (lineForm != EMPTY){
             lineSettingForm();
         }
-//        glMatrixMode(GL_MODELVIEW);
-//        glLoadIdentity();
-//        glDisable(GL_LINE_STIPPLE);
-    glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void GLviewer::pointSettingForm()
@@ -159,6 +142,19 @@ void GLviewer::lineSettingForm()
     glDisable(GL_LINE_STIPPLE);
 }
 
+void GLviewer::projectionSelect()
+{
+    if (frustum == EMPTY) {
+      glEnable(GL_DEPTH_TEST);
+//            glOrtho(-1, 1, -1, 1, 100, 100);
+      glOrtho(-100, 100, 800, 800, 100, 100);
+//          glOrtho(-1, 1, -1, 1, -1000, 1000);
+    } else {
+        glDisable(GL_DEPTH_TEST);
+        glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
+    }
+}
+
 
 
 void GLviewer::mousePressEvent(QMouseEvent* mo)
@@ -183,3 +179,16 @@ void GLviewer::change_zoom(double value) {
 }
 
 
+//        glEnable(GL_DEPTH_TEST);
+//          glDisable(GL_DEPTH_TEST);
+//          glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
+//        glFrustum(-1, 1, -1, 1, 1, 100);
+
+
+//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        glEnable(GL_DEPTH_TEST);
+//        glOrtho(-100, 100, 800, 800, 100, 10);
+//          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//          glEnable(GL_DEPTH_TEST);
+//          glOrtho(-1, 1, -1, 1, -1000, 1000);
+//          glOrtho(-100, 100, 800, 800, 100, 10);
