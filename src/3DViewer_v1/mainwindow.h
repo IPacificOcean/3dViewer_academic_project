@@ -36,6 +36,10 @@ class MainWindow : public QMainWindow {
 
   void free_vertex_and_facet();
 
+  void load_settings();
+
+  void save_settings();
+
   //___ GIF
   QVector<QImage> mas_image;
   //____
@@ -79,7 +83,7 @@ class MainWindow : public QMainWindow {
 
   void on_load_setting_clicked();
 
-  void on_save_sattings_clicked();
+  void on_save_settings_clicked();
 
  private:
   Ui::MainWindow *ui;

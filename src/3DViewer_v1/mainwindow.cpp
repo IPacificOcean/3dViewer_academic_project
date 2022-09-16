@@ -19,12 +19,13 @@ MainWindow::MainWindow(QWidget *parent)
     //set value in file
     this->m_sSettingsFile = QApplication::applicationDirPath() + "/settings.ini";
     qDebug() << m_sSettingsFile;
-//    this->loadSettings();
+//    load_settings();
 
 }
 
 MainWindow::~MainWindow()
 {
+//    save_settings();
     delete ui;
     delete timer_for_gif;
 }
@@ -347,37 +348,56 @@ void MainWindow::on_radioButton_ortho_clicked()
 }
 
 
-void MainWindow::on_load_setting_clicked()
+void MainWindow::load_settings()
 {
 
     QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    ui->dx->setValue(settings.value("dx").toInt());
-    ui->dy->setValue(settings.value("dy").toInt());
-    ui->dz->setValue(settings.value("dz").toInt());
-    ui->rdx->setValue(settings.value("rdx").toInt());
-    ui->rdy->setValue(settings.value("rdy").toInt());
-    ui->rdz->setValue(settings.value("rdz").toInt());
-    ui->doubleSpinBox_Scale->setValue(settings.value("doubleSpinBox_Scale").toDouble());
-    ui->modelScale->setValue(settings.value("modelScale").toDouble());
-    ui->colorPoint->setChecked(settings.value("modelScale").toBool());
-    ui->widget->colorPoint.setNamedColor(settings.value("valueColorPoint").toString());
-    ui->colorLine->setChecked(settings.value("colorLine").toBool());
+    ui->comboBox_point_form->setCurrentIndex(settings.value("comboBox_point_form").toInt());
+    ui->comboBox_line_form->setCurrentIndex(settings.value("comboBox_line_form").toInt());
+
+    ui->spinBox_point_size->setValue(settings.value("spinBox_point_size").toInt());
+    ui->spinBox_line_width->setValue(settings.value("spinBox_line_width").toInt());
+
     ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
+    ui->colorLine->setChecked(settings.value("colorLine").toBool());
+    ui->colorPoint->setChecked(settings.value("colorPoint").toBool());
+
+
+    ui->widget->colorLine = settings.value("colorLine_c").value<QColor>();
+    ui->widget->colorPoint = settings.value("colorPoint_c").value<QColor>();
+    ui->widget->colorWidget = settings.value("colorWidget_c").value<QColor>();
+
+//    ui->dx->setValue(settings.value("dx").toInt());
+//    ui->dy->setValue(settings.value("dy").toInt());
+//    ui->dz->setValue(settings.value("dz").toInt());
+//    ui->rdx->setValue(settings.value("rdx").toInt());
+//    ui->rdy->setValue(settings.value("rdy").toInt());
+//    ui->rdz->setValue(settings.value("rdz").toInt());
+//    ui->doubleSpinBox_Scale->setValue(settings.value("doubleSpinBox_Scale").toDouble());
+//    ui->modelScale->setValue(settings.value("modelScale").toDouble());
+//    ui->colorPoint->setChecked(settings.value("modelScale").toBool());
+//    ui->widget->colorPoint.setNamedColor(settings.value("valueColorPoint").toString());
+//    ui->colorLine->setChecked(settings.value("colorLine").toBool());
+//    ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
 
 }
 
 
-void MainWindow::on_save_sattings_clicked()
+void MainWindow::save_settings()
 {
     QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    settings.setValue("comboBox_point_form", ui->comboBox_point_form->currentText());
+    settings.setValue("comboBox_point_form", ui->comboBox_point_form->currentIndex());
     settings.setValue("spinBox_point_size", ui->spinBox_point_size->value());
-    settings.setValue("comboBox_line_form", ui->comboBox_line_form->currentText());
+    settings.setValue("comboBox_line_form", ui->comboBox_line_form->currentIndex());
     settings.setValue("spinBox_line_width", ui->spinBox_line_width->value());
+
     settings.setValue("colorBackground", ui->colorBackground->isChecked());
     settings.setValue("colorLine", ui->colorLine->isChecked());
     settings.setValue("colorPoint", ui->colorPoint->isChecked());
-    settings.setValue("colorWidget", ui->widget->colorWidget.toExtendedRgb());
+
+    settings.setValue("colorLine_c", ui->widget->colorLine);
+    settings.setValue("colorPoint_c", ui->widget->colorPoint);
+    settings.setValue("colorWidget_c", ui->widget->colorWidget);
 
 
 //    QColor colorWidget;
@@ -406,4 +426,19 @@ void MainWindow::on_save_sattings_clicked()
 //    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
 
 }
+
+void MainWindow::on_save_settings_clicked()
+{
+    save_settings();
+//    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
+
+}
+
+void MainWindow::on_load_setting_clicked()
+{
+    load_settings();
+}
+
+
+
 
