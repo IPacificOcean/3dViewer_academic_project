@@ -31,15 +31,16 @@ GLviewer::GLviewer(QWidget *parent)
 
 GLviewer::~GLviewer()
 {
-//    delete ui;
+    //    delete ui;
 }
+
+
 
 //setlocale(LC_ALL, C);
 
 void GLviewer::initializeGL()
 {
     glEnable(GL_DEPTH_TEST);
-/////////////////////////////
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -81,8 +82,6 @@ void GLviewer::paintGL()
     glRotatef(xRot, 1, 0, 0);
     glRotatef(yRot, 0, 1, 0);
 
-
-
     drawShape();
     update();
 
@@ -91,7 +90,6 @@ void GLviewer::paintGL()
 
 void GLviewer::drawShape()
 {
-
         //Projection//
 //
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -116,50 +114,49 @@ void GLviewer::drawShape()
 //        glTranslatef(x, y, z); //  перемещение по x y z
         glScaled(scale, scale, scale); // масштаб
 
-
-
-    glEnableClientState(GL_VERTEX_ARRAY);
+     glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
-
-        //Poligons//
-//        glPolygonMode(GL_FRONT, GL_TRIANGLES);
-//        glPolygonMode(GL_BACK, GL_QUADS);
 
         // Points//
         if (pointForm != EMPTY){
-        if (pointForm == POINT_ROUND){
-        glEnable(GL_POINT_SMOOTH);
-        } else if (pointForm == POINT_QUADRO) {
-        glDisable(GL_POINT_SMOOTH);
-        }
-        glPointSize(pointSize);
-        glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
-        glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
+            pointSettingForm();
         }
         //Lines//
-//        glLineStipple(4, 0x00FF);
-//        glLineStipple(2, 255);
         if (lineForm != EMPTY){
-        if (lineForm == LINE_DASHED) {
-            glEnable(GL_LINE_STIPPLE);
-        glLineStipple(4, 0x00FF);
+            lineSettingForm();
+        }
+//        glMatrixMode(GL_MODELVIEW);
+//        glLoadIdentity();
+//        glDisable(GL_LINE_STIPPLE);
+    glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+void GLviewer::pointSettingForm()
+{
+    if (pointForm == POINT_ROUND){
+    glEnable(GL_POINT_SMOOTH);
+    } else if (pointForm == POINT_QUADRO) {
+    glDisable(GL_POINT_SMOOTH);
+    }
+    glPointSize(pointSize);
+    glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
+    glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
+
+}
+
+void GLviewer::lineSettingForm()
+{
+    if (lineForm == LINE_DASHED) {
+        glEnable(GL_LINE_STIPPLE);
+    glLineStipple(4, 0x00FF);
 ////        glLineStipple(2, 255);
 ////        glLineStipple(1, 0x1C47);
 //        glLineStipple(4, 0x00FF);
-
-        }
-        glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
-        glLineWidth(lineWidth);
-        glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
-        }
-
-
-
-//        glMatrixMode(GL_MODELVIEW);
-//        glLoadIdentity();
-        glDisable(GL_LINE_STIPPLE);
-
-     glDisableClientState(GL_VERTEX_ARRAY);
+    }
+    glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
+    glLineWidth(lineWidth);
+    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
+    glDisable(GL_LINE_STIPPLE);
 }
 
 
@@ -172,18 +169,11 @@ void GLviewer::mousePressEvent(QMouseEvent* mo)
 
 void GLviewer::mouseMoveEvent(QMouseEvent* mo)
 {
-//    xRot += 0.09/M_PI * (mo->pos().y() - mPos.y());
-//    yRot += 0.09/M_PI * (mo->pos().x() - mPos.x());
-//    update();
-
     if (!(mo->pos().x() >= 625 && mo->pos().x() <= 901 && mo->pos().y() >= 630 && mo->pos().y() <= 851)) {
         xRot += 1 / M_PI*(mo->pos().y()-mPos.y());
         yRot += 1 / M_PI*(mo->pos().x()-mPos.x());
     }
-
-
     mPos = mo->pos();
-
     update();
 }
 

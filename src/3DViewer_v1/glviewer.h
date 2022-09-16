@@ -61,10 +61,12 @@ public:
         POINT_ROUND = 1,
         POINT_QUADRO,
         LINE_SOLID = 1,
-        LINE_DASHED
+        LINE_DASHED,
+        IS_CHECKED = 1
 
      };
-
+    void pointSettingForm();
+    void lineSettingForm();
 
 
 
