@@ -54,6 +54,7 @@ public:
     int pointForm;
     int lineWidth;
     int lineForm;
+    int frustum;
 
 
     enum {
@@ -67,6 +68,7 @@ public:
      };
     void pointSettingForm();
     void lineSettingForm();
+    void projectionSelect();
 
 
 

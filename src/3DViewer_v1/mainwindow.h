@@ -27,67 +27,71 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+ public:
+  MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
 
-   void free_vertex_and_facet();
+  void free_vertex_and_facet();
 
-    //___ GIF
-    QVector<QImage> mas_image;
-    //____
-    QString m_sSettingsFile;
+  //___ GIF
+  QVector<QImage> mas_image;
+  //____
+  QString m_sSettingsFile;
 
-private slots:
-    void on_openFile_clicked();
+ private
+  slots:
+	  void on_openFile_clicked();
 
-    void on_doubleSpinBox_Scale_valueChanged(double valueScale);
+  void on_doubleSpinBox_Scale_valueChanged(double valueScale);
 
-    void on_update_clicked();
+  void on_update_clicked();
 
-    void on_spinBox_line_width_valueChanged(int value);
+  void on_spinBox_line_width_valueChanged(int value);
 
-    void on_spinBox_point_size_valueChanged(int value);
+  void on_spinBox_point_size_valueChanged(int value);
 
-    void on_color_clicked();
+  void on_color_clicked();
 
-    //_______GIF
-    void on_Pthoto_clicked();
+  //_______GIF
+  void on_Pthoto_clicked();
 
-    void create_screen();
+  void create_screen();
 
-    void on_stop_and_save_GIF_clicked();
+  void on_stop_and_save_GIF_clicked();
 
-    void save_gif();
-    //_______
+  void save_gif();
+  //_______
 
-    void on_optimization_clicked();
+  void on_optimization_clicked();
 
-    void on_gebug_cactus_clicked();
+  void on_gebug_cactus_clicked();
 
-    void on_comboBox_point_form_currentIndexChanged(int index);
+  void on_comboBox_point_form_currentIndexChanged(int index);
 
-    void on_comboBox_line_form_currentIndexChanged(int index);
+  void on_comboBox_line_form_currentIndexChanged(int index);
 
-    void on_load_setting_clicked();
+  void on_radioButton_frustum_clicked(bool checked);
 
-    void on_save_sattings_clicked();
+  void on_radioButton_ortho_clicked();
 
-private:
-    Ui::MainWindow *ui;
-    void wheelEvent(QWheelEvent *event) override;
+  void on_load_setting_clicked();
 
-    //_____GIF
-    QTimer *timer;
-    QTimer *timer_for_gif;
-    QThread* somethread;
-    double time = 0;
-    int xyz = 1;
-    int flag_record = 0;
-    //_-----
+  void on_save_sattings_clicked();
+
+ private:
+  Ui::MainWindow *ui;
+  void wheelEvent(QWheelEvent *event) override;
+
+  //_____GIF
+  QTimer *timer;
+  QTimer *timer_for_gif;
+  QThread *somethread;
+  double time = 0;
+  int xyz = 1;
+  int flag_record = 0;
+  //_-----
 };
 #endif // MAINWINDOW_H

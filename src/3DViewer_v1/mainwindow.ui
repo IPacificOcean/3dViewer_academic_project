@@ -197,6 +197,9 @@
     <property name="text">
      <string>Frustum</string>
     </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_ortho">
     <property name="geometry">
@@ -215,6 +218,9 @@
     </property>
     <property name="text">
      <string>Ortho</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="transform">

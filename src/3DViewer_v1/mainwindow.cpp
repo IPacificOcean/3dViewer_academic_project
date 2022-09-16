@@ -324,7 +324,6 @@ void MainWindow::on_comboBox_point_form_currentIndexChanged(int index)
 {
     ui->widget->pointForm = index;
     ui->widget->update();
-    qDebug() << ui->widget->pointForm;
 
 }
 
@@ -333,7 +332,18 @@ void MainWindow::on_comboBox_line_form_currentIndexChanged(int index)
 {
     ui->widget->lineForm = index;
     ui->widget->update();
-    qDebug() << ui->widget->lineForm;
+}
+
+
+void MainWindow::on_radioButton_frustum_clicked(bool checked)
+{
+    ui->widget->frustum = checked;
+
+}
+
+void MainWindow::on_radioButton_ortho_clicked()
+{
+    ui->widget->frustum = ui->widget->EMPTY;
 }
 
 
