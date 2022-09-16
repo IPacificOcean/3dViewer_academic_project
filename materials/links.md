@@ -16,3 +16,5 @@
 [OpenGL: Массивы текстур (Vertex Arrays)](https://masandilov.ru/opengl/vertex-arrays)
 
 [http://xn--e1akicaccic2c.xn--p1ai/](http://xn--e1akicaccic2c.xn--p1ai/pdf/cppmingw/)
+
+[Как загрузить настройки в приложение Qt с помощью QSettings](https://stackoverflow.com/questions/14365653/how-to-load-settings-in-qt-app-with-qsettings)
