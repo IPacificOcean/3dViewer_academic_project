@@ -1,6 +1,5 @@
 
 #include "parser.h"
-#include "s21_matrix.h"
 
 int main() {
   int error = 0;
