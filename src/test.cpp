@@ -6,22 +6,26 @@ using namespace std;
 class Test {
  private:
   int age;
-  char* sex;
+  char *sex;
 
  public:
   void setX(int age) {
-    // The 'this' pointer is used to retrieve the object's x
-    // hidden by the local variable 'x'
-    this->age = age;
+	// The 'this' pointer is used to retrieve the object's x
+	// hidden by the local variable 'x'
+	this->age = age;
   }
-  void print() { cout << "x = " << age << endl; }
+
+  void print() {
+
+	cout << "x = " << age << endl;
+  }
 };
 
 typedef struct Test_c {
   int x;
 } t_test;
 
-void _setX(t_test* _this, int x) { _this->x = x; }
+void _setX(t_test *_this, int x) { _this->x = x; }
 
 int main() {
   int age = 20;

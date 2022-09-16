@@ -5,6 +5,8 @@
 #include "glviewer.h"
 #include <QColorDialog>
 
+#include <QMessageBox>
+
 //_________GIF
 #include <QLabel>
 #include <QPixmap>
@@ -32,27 +34,24 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
    void free_vertex_and_facet();
 
     //___ GIF
     QVector<QImage> mas_image;
     //____
+    QString m_sSettingsFile;
 
 private slots:
     void on_openFile_clicked();
 
-
     void on_doubleSpinBox_Scale_valueChanged(double valueScale);
-
-
-
 
     void on_update_clicked();
 
     void on_spinBox_line_width_valueChanged(int value);
 
     void on_spinBox_point_size_valueChanged(int value);
-
 
     void on_color_clicked();
 
@@ -73,6 +72,10 @@ private slots:
     void on_comboBox_point_form_currentIndexChanged(int index);
 
     void on_comboBox_line_form_currentIndexChanged(int index);
+
+    void on_load_setting_clicked();
+
+    void on_save_sattings_clicked();
 
 private:
     Ui::MainWindow *ui;
