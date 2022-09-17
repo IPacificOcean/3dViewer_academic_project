@@ -286,15 +286,6 @@ void MainWindow::on_optimization_clicked(){
 }
 
 
-
-
-
-
-
-
-
-
-
 void MainWindow::on_gebug_cactus_clicked()
 {
 
