@@ -6,6 +6,8 @@
 #include <QColorDialog>
 
 #include <QMessageBox>
+#include <QMovie>
+
 
 //_________GIF
 #include <QLabel>
@@ -47,7 +49,8 @@ class MainWindow : public QMainWindow {
 
  private
   slots:
-	  void on_openFile_clicked();
+
+  void on_openFile_clicked();
 
   void on_doubleSpinBox_Scale_valueChanged(double valueScale);
 
@@ -85,7 +88,8 @@ class MainWindow : public QMainWindow {
 
   void on_save_settings_clicked();
 
- private:
+
+private:
   Ui::MainWindow *ui;
   void wheelEvent(QWheelEvent *event) override;
 
@@ -97,5 +101,8 @@ class MainWindow : public QMainWindow {
   int xyz = 1;
   int flag_record = 0;
   //_-----
+
+
+
 };
 #endif // MAINWINDOW_H

@@ -86,11 +86,6 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 }
 
 
-
-
-
-
-
 void MainWindow::on_update_clicked()
 {
 //    if((ui->dx->text() != "0" ||
@@ -215,6 +210,7 @@ void MainWindow::on_stop_and_save_GIF_clicked(){
 
     timer_for_gif->start(100);
     create_screen();
+
 
 }
 
@@ -367,19 +363,6 @@ void MainWindow::load_settings()
     ui->widget->colorPoint = settings.value("colorPoint_c").value<QColor>();
     ui->widget->colorWidget = settings.value("colorWidget_c").value<QColor>();
 
-//    ui->dx->setValue(settings.value("dx").toInt());
-//    ui->dy->setValue(settings.value("dy").toInt());
-//    ui->dz->setValue(settings.value("dz").toInt());
-//    ui->rdx->setValue(settings.value("rdx").toInt());
-//    ui->rdy->setValue(settings.value("rdy").toInt());
-//    ui->rdz->setValue(settings.value("rdz").toInt());
-//    ui->doubleSpinBox_Scale->setValue(settings.value("doubleSpinBox_Scale").toDouble());
-//    ui->modelScale->setValue(settings.value("modelScale").toDouble());
-//    ui->colorPoint->setChecked(settings.value("modelScale").toBool());
-//    ui->widget->colorPoint.setNamedColor(settings.value("valueColorPoint").toString());
-//    ui->colorLine->setChecked(settings.value("colorLine").toBool());
-//    ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
-
 }
 
 
@@ -399,32 +382,6 @@ void MainWindow::save_settings()
     settings.setValue("colorPoint_c", ui->widget->colorPoint);
     settings.setValue("colorWidget_c", ui->widget->colorWidget);
 
-
-//    QColor colorWidget;
-//    QColor colorLine;
-//    QColor colorPoint;
-
-//    settings.setValue("dx", ui->dx->value());
-//    settings.setValue("dy", ui->dy->value());
-//    settings.setValue("dz", ui->dz->value());
-//    settings.setValue("rdx", ui->rdx->value());
-//    settings.setValue("rdy", ui->rdy->value());
-//    settings.setValue("rdz", ui->rdz->value());
-//    settings.setValue("doubleSpinBox_Scale", ui->doubleSpinBox_Scale->value());
-//    settings.setValue("modelScale", ui->modelScale->value());
-//    if (ui->colorPoint->isChecked()) {
-//        settings.setValue("colorPoint", ui->colorPoint->isChecked());
-//        settings.setValue("valueColorPoint", ui->widget->colorPoint.value());
-//    }
-//    if (ui->colorLine->isChecked()) {
-//        settings.setValue("colorLine", ui->colorLine->isChecked());
-//    }
-//    if (ui->colorBackground->isChecked()) {
-//        settings.setValue("colorLine", ui->colorBackground->isChecked());
-//    }
-
-//    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
-
 }
 
 void MainWindow::on_save_settings_clicked()
@@ -438,7 +395,4 @@ void MainWindow::on_load_setting_clicked()
 {
     load_settings();
 }
-
-
-
 
