@@ -1,11 +1,9 @@
 #include "glviewer.h"
-//#include <clocale.h>
 
 
 GLviewer::GLviewer(QWidget *parent)
     : QOpenGLWidget(parent)
 {
-//    ui->setupUi(this);
     setWindowTitle("3Dviewer");
     setGeometry(400, 200, 1200, 900);
     vertex = {0, nullptr};
@@ -24,9 +22,6 @@ GLviewer::GLviewer(QWidget *parent)
     pointForm = POINT_ROUND;
     lineForm = LINE_SOLID;
     frustum = EMPTY;
-
-
-
 }
 
 
@@ -36,10 +31,6 @@ GLviewer::~GLviewer()
     //    delete ui;
 }
 
-
-
-//setlocale(LC_ALL, C);
-
 void GLviewer::initializeGL()
 {
     glEnable(GL_DEPTH_TEST);
@@ -47,36 +38,22 @@ void GLviewer::initializeGL()
     glLoadIdentity();
     glClearColor(0.0, 0.0, 0.0, 1.0);
 
-
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_MODELVIEW);
-
 }
 
 void GLviewer::resizeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
-//    glMatrixMode(GL_MODELVIEW);
-//    glLoadIdentity();
-
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-//    glOrtho(-1, 1, -1, 1, 1, 10);
-//    glFrustum(-10, 10, -10, 10, -1, 10);
-//     glFrustum(-1, 1, -1, 1, 1, 100);
-//     glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
-
-
 }
-
 
 void GLviewer::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(colorWidget.redF(), colorWidget.greenF(), colorWidget.blueF(), 0);
 
-//    glMatrixMode(GL_MODELVIEW);
-//    glLoadIdentity();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -86,9 +63,7 @@ void GLviewer::paintGL()
 
     drawShape();
     update();
-
 }
-
 
 void GLviewer::drawShape()
 {
@@ -135,7 +110,6 @@ void GLviewer::lineSettingForm()
     glLineStipple(4, 0x00FF);
 ////        glLineStipple(2, 255);
 ////        glLineStipple(1, 0x1C47);
-//        glLineStipple(4, 0x00FF);
     }
     glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
     glLineWidth(lineWidth);
@@ -149,14 +123,11 @@ void GLviewer::projectionSelect()
       glEnable(GL_DEPTH_TEST);
 //            glOrtho(-1, 1, -1, 1, 100, 100);
       glOrtho(-100, 100, 800, 800, 100, 100);
-//          glOrtho(-1, 1, -1, 1, -1000, 1000);
     } else {
         glDisable(GL_DEPTH_TEST);
         glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
     }
 }
-
-
 
 void GLviewer::mousePressEvent(QMouseEvent* mo)
 {
@@ -178,18 +149,3 @@ void GLviewer::change_zoom(double value) {
   scale *= value;
   update();
 }
-
-
-//        glEnable(GL_DEPTH_TEST);
-//          glDisable(GL_DEPTH_TEST);
-//          glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
-//        glFrustum(-1, 1, -1, 1, 1, 100);
-
-
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        glEnable(GL_DEPTH_TEST);
-//        glOrtho(-100, 100, 800, 800, 100, 10);
-//          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//          glEnable(GL_DEPTH_TEST);
-//          glOrtho(-1, 1, -1, 1, -1000, 1000);
-//          glOrtho(-100, 100, 800, 800, 100, 10);

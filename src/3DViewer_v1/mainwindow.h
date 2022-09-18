@@ -74,8 +74,6 @@ class MainWindow : public QMainWindow {
 
   void on_optimization_clicked();
 
-  void on_gebug_cactus_clicked();
-
   void on_comboBox_point_form_currentIndexChanged(int index);
 
   void on_comboBox_line_form_currentIndexChanged(int index);

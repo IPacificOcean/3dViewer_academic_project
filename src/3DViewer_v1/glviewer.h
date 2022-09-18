@@ -6,11 +6,6 @@
 #include <QtWidgets/QWidget>
 #include <QtOpenGL>
 #include <QtOpenGLWidgets>
-//#include <OpenGL/gl.h>
-//#include <OpenGL/GLU.h>
-//#include <GLUT/glut.h>
-//#include <QOpenGLShaderProgram>
-//#include <QOpenGLBuffer>
 #include <QFileDialog>
 #include <QColorDialog>
 
@@ -21,9 +16,6 @@
 extern "C" {
 #include "../backend/parser.h"
 }
-
-//#pragma comment(lib, "opengl32.lib")
-//#pragma comment(lib, "GlU32.lib")
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GLviewer; }

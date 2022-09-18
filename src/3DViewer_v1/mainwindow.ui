@@ -1057,19 +1057,6 @@
      <string>Scale optimization</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gebug_cactus">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>900</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>debag cactus</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_Timer_GIF">
     <property name="geometry">
      <rect>
