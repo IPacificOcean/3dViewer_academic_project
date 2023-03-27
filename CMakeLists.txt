@@ -18,20 +18,20 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 set(HEADER_FILES
-
+        src/model/facade.h
         )
 
 set(SOURCE_FILES
-
+        src/model/facade.cc
         )
 
-#add_library(viewer_2_0 STATIC ${SOURCE_FILES} ${HEADER_FILES})
+add_library(viewer_2_0 STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
 add_executable(viewer_tests
         src/tests/tests.cc)
 
 target_link_libraries(viewer_tests
-#        viewer_2_0
+        viewer_2_0
         gtest
         gtest_main
         )
