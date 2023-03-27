@@ -31,7 +31,7 @@ add_executable(viewer_tests
         src/tests/tests.cc)
 
 target_link_libraries(viewer_tests
-        viewer_2_0
+#        viewer_2_0
         gtest
         gtest_main
         )
