@@ -2,19 +2,23 @@
 // Created by Violator Emilie on 3/27/23.
 //
 
-#include <iostream>
-#include <fstream>
-#include <string>
 
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_FACADE_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_FACADE_H_
 
-class Facade {
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "./observer/observer.h"
+#include "./observer/observable.h"
+#include "./dao/data_model.h"
 
+namespace s21 {
+
+class Facade : public Observable {
  public:
-
+  Facade(std::vector<double> vertex) : vertex_(vertex) {}
   void test() {
-
 	std::string line;
 	std::ifstream testfile("/Users/violator/github/3DViewer_v2.0/src/model/test.txt");
 	if (testfile.is_open()) {
@@ -22,12 +26,20 @@ class Facade {
 		std::cout << line << '\n';
 	  }
 	  testfile.close();
-	} else std::cout << "Unable to open file";
+	} else {
+	  std::cout << "Unable to open file";
+	}
+  }
 
+  void changeColor() {
+	this->notifyUpdate(vertex_);
   }
 
  private:
-
+  std::vector<double> vertex_{};
+  DataModel data_model_{};
 };
+
+}
 
 #endif //INC_3DVIEWER_V2_0_SRC_MODEL_FACADE_H_
