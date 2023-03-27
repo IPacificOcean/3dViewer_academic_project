@@ -19,10 +19,18 @@ enable_testing()
 
 set(HEADER_FILES
         src/model/facade.h
+        src/view/test_view.h
+        src/model/observer/observable.h
+        src/model/observer/observer.h
+        src/model/dao/data_model.h
+
         )
 
 set(SOURCE_FILES
         src/model/facade.cc
+        src/view/test_view.cc
+        src/model/dao/data_model.cc
+
         )
 
 add_library(viewer_2_0 STATIC ${SOURCE_FILES} ${HEADER_FILES})
