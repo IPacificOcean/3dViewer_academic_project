@@ -30,5 +30,4 @@ TEST_F(ModelTest, testFacade) {
 
   facade_.test();
   facade_.changeColor();
-
 }
