@@ -24,20 +24,13 @@ class DataModel {
 
   const std::string &GetFileName() const { return file_name_; }
   void SetFileName(const std::string &file_name) { file_name_ = file_name; }
-
-  static DataModel *GetInstance() {
-    if (!instance_) {
-      instance_ = new DataModel();
-    }
-    return instance_;
-  }
-
- private:
-  DataModel() = default;
+  static DataModel *GetInstance();
 
   ~DataModel() { delete instance_; }
 
-  static DataModel *instance_{};
+ private:
+  DataModel() = default;
+  static inline DataModel *instance_;
   std::vector<double> vertex_{};
   std::vector<size_t> facets_{};
   size_t vertex_size_{};
