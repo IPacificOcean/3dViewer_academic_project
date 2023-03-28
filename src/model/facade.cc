@@ -3,3 +3,6 @@
 //
 
 #include "facade.h"
+void s21::Facade::OpenFile() {
+  parser_.OpenFile();
+}

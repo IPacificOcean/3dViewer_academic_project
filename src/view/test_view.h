@@ -15,7 +15,8 @@ class TestView : public Observer {
 
     void OpenFile();
     void SaveSettings();
-    void ChangeObject();
+
+    void TransformObject();
     void SetProjection();
     void Customize();
     void SavePng();
