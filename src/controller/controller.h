@@ -11,7 +11,6 @@
 
 namespace s21 {
 
-
 class Controller {
  public:
 
@@ -23,9 +22,9 @@ class Controller {
     facade_.ParseObj();
   }
 
-
  private:
   Facade facade_{};
+
 };
 
 }
