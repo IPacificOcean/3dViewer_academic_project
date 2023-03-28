@@ -37,7 +37,7 @@ class DataModel {
 
   ~DataModel() { delete instance_; }
 
-  static DataModel *instance_;
+  static DataModel *instance_{};
   std::vector<double> vertex_{};
   std::vector<size_t> facets_{};
   size_t vertex_size_{};

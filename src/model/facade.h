@@ -17,7 +17,7 @@ namespace s21 {
 
 class Facade : public Observable {
  public:
-  Facade(std::vector<double> vertex) : vertex_(vertex) {}
+  Facade()  {}
   void test() {
 	std::string line;
 	std::ifstream testfile("/Users/violator/github/3DViewer_v2.0/src/model/test.txt");
@@ -32,12 +32,11 @@ class Facade : public Observable {
   }
 
   void changeColor() {
-	this->notifyUpdate(vertex_);
+//	this->notifyUpdate(vertex_);
   }
 
  private:
-  std::vector<double> vertex_{};
-  DataModel data_model_{};
+
 };
 
 }
