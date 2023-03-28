@@ -13,6 +13,7 @@ class Observable {
   void addObserver(Observer *observer) {
 	observers_.push_back(observer);
   }
+
   void notifyUpdate() {
 	int size = observers_.size();
 	for (int i = 0; i < size; i++) {
