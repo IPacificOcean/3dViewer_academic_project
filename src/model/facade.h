@@ -10,6 +10,7 @@
 #include <string>
 
 #include "./dao/data_model.h"
+#include "./kernel/parser.h"
 #include "./observer/observable.h"
 #include "./observer/observer.h"
 
@@ -31,12 +32,15 @@ class Facade : public Observable {
       std::cout << "Unable to open file";
     }
   }
-
-  void changeColor() {
-    //	this->notifyUpdate(vertex_);
+  //  void OpeningAndDrawing(std::string path) {}
+  void Parse() {
+    DataModel *data_model = DataModel::GetInstance();
+    data_model->SetFacetsSize(123);
+    this->notifyUpdate();
   }
 
  private:
+  Parser parser_{};
 };
 
 }  // namespace s21

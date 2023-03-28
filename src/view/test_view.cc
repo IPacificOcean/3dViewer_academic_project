@@ -3,10 +3,9 @@
 //
 
 #include "test_view.h"
-void s21::TestView::update(std::vector<double> &vertex) {
-  std::cout << "\n____changed____\n" << std::endl;
-  for (auto& i : vertex) {
-	std::cout << i << " ";
-  }
+void s21::TestView::update() {
+  std::cout << "\n____ОТРИСОВКА____\n" << std::endl;
+  DataModel* data_model = DataModel::GetInstance();
+  std::cout << "_____Кол-фасетов = " << data_model->GetFacetsSize() << std::endl;
   std::cout << std::endl;
 }
