@@ -55,6 +55,8 @@ TEST_F(ModelTest, TestViewConnectFacade) {
 
   test_view_.SubscribeToChangeDataModel();
   test_view_.controller_.ParseObj();
+}
 
-
+TEST_F(ModelTest, Parser_OpenFile) {
+  facade_.OpenFile();
 }

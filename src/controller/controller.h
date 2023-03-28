@@ -22,6 +22,16 @@ class Controller {
     facade_.ParseObj();
   }
 
+  void OpenFile();
+  void SaveSettings();
+  void TransformObject() {
+    facade_.TransformObject();
+  }
+  void SetProjection();
+  void Customize();
+  void SavePng();
+  void SaveGif();
+
  private:
   Facade facade_{};
 

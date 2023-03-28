@@ -3,6 +3,8 @@
 //
 
 #include "test_view.h"
+
+
 void s21::TestView::update() {
   std::cout << "\n____ОТРИСОВКА____\n" << std::endl;
   std::cout << "_____Кол-фасетов = " << DataModel::GetInstance()->GetFacetsSize() << std::endl;
