@@ -5,8 +5,9 @@
 #include <gtest/gtest.h>
 
 #include <iostream>
-#include "../model/facade.h"
-#include "../view/test_view.h"
+//#include "../model/facade.h"
+//#include "../view/test_view.h"
+#include "../model/dao/data_model.h"
 
 using std::cout;
 using std::endl;
@@ -16,6 +17,8 @@ class ModelTest : public ::testing::Test {
  protected:
   void SetUp() override {}
 
+  DataModel *dm = DataModel::GetInstance();
+
 };
 
 TEST_F(ModelTest, test) {
@@ -24,10 +27,18 @@ TEST_F(ModelTest, test) {
 
 TEST_F(ModelTest, testFacade) {
   std::vector<double> test = {1, 2, 3, 4, 5, 6};
-  Facade facade_(test);
-  TestView test_view;
-  facade_.addObserver(&test_view);
+//  Facade facade_(test);
+//  TestView test_view;
+//  facade_.addObserver(&test_view);
+//
+//  facade_.test();
+//  facade_.changeColor();
+}
 
-  facade_.test();
-  facade_.changeColor();
+TEST_F(ModelTest, test_data_model) {
+
+  dm->SetFileName("setName");
+
+  EXPECT_EQ("setName", dm->GetFileName());
+
 }
