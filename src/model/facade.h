@@ -19,6 +19,9 @@ namespace s21 {
 class Facade : public Observable {
  public:
   Facade() {}
+
+
+
   void test() {
     std::string line;
     std::ifstream testfile(
@@ -33,9 +36,9 @@ class Facade : public Observable {
     }
   }
   //  void OpeningAndDrawing(std::string path) {}
-  void Parse() {
-    DataModel *data_model = DataModel::GetInstance();
-    data_model->SetFacetsSize(123);
+
+  void ParseObj() {
+    DataModel::GetInstance()->SetFacetsSize(123);
     this->notifyUpdate();
   }
 

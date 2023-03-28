@@ -16,6 +16,10 @@ using namespace s21;
 class ModelTest : public ::testing::Test {
  protected:
   void SetUp() override {}
+
+  Facade facade_;
+  TestView test_view_;
+  Controller controller_;
 };
 
 TEST_F(ModelTest, test) { cout << "first try" << endl; }
@@ -44,9 +48,14 @@ TEST_F(ModelTest, test_data_model) {
 }
 
 TEST_F(ModelTest, TestViewConnectFacade) {
-  Facade facade;
-  TestView test_view;
-  facade.addObserver(&test_view);
+  //  controller_.addObserver(&test_view_);
+  //
+  //  facade_.addObserver(&test_view_);
+  //  facade_.ParseObj();
 
-  facade.Parse();
+  test_view_.SubscribeToChangeDataModel();
+  test_view_.controller_.ParseObj();
+
+
+
 }
