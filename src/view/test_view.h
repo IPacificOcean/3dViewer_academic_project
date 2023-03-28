@@ -6,7 +6,7 @@
 namespace s21 {
 class TestView : public Observer {
  public:
-  void update(std::vector<double> &vertex) override;
+  void update() override;
 
  private:
 };

@@ -7,8 +7,7 @@
 #include <iostream>
 
 #include "../model/facade.h"
-//#include "../view/test_view.h"
-#include "../model/dao/data_model.h"
+#include "../view/test_view.h"
 
 using std::cout;
 using std::endl;
@@ -32,17 +31,22 @@ TEST_F(ModelTest, testFacade) {
 }
 
 TEST_F(ModelTest, test_data_model) {
-  //  DataModel *dm;
-  //  DataModel *test = dm->GetInstance();
-  //  test->SetFileName("setName");
-  //
-  //  EXPECT_EQ("setName", test->GetFileName());
+  DataModel *dm;
+  DataModel *test = dm->GetInstance();
+  test->SetFileName("setName");
+  test->SetFacets({1234});
+  test->SetVertex({1234});
 
-  DataModel* s = DataModel::GetInstance();  // Ok
-  DataModel* r = DataModel::GetInstance();
-  /* The addresses will be the same. */
-  std::cout << s << std::endl;
-  std::cout << r << std::endl;
+  cout << test->GetVertex().at(0) << endl;
+  cout << test->GetFacets().at(0) << endl;
+
+  EXPECT_EQ("setName", test->GetFileName());
 }
-// 0x1045bc508
-// 0x7fd78d4065e0
+
+TEST_F(ModelTest, TestViewConnectFacade) {
+  Facade facade;
+  TestView test_view;
+  facade.addObserver(&test_view);
+
+  facade.Parse();
+}
