@@ -57,5 +57,4 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   test_view_.controller_.ParseObj();
 
 
-
 }

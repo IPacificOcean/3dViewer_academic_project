@@ -12,6 +12,16 @@ class TestView : public Observer {
 
   void SubscribeToChangeDataModel () {
     controller_.addObserver(this);
+
+    void OpenFile();
+    void SaveSettings();
+    void ChangeObject();
+    void SetProjection();
+    void Customize();
+    void SavePng();
+    void SaveGif();
+
+
   }
 
   Controller controller_{};
