@@ -13,9 +13,9 @@ class TestView : public Observer {
 
   void SubscribeToChangeDataModel() { controller_.addObserver(this); }
   void OpenFile();
-  void SaveSettings();
-
   void TransformObject(TypeTransform type_transform);
+
+  void SaveSettings();
   void SetProjection();
   void Customize();
   void SavePng();

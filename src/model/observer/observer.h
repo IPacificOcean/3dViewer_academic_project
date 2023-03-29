@@ -10,4 +10,4 @@ class Observer {
  public:
   virtual void update() = 0;
 };
-#endif //INC_3DVIEWER_V2_0_SRC_MODEL_OBSERVER_OBSERVER_H_
+#endif  // INC_3DVIEWER_V2_0_SRC_MODEL_OBSERVER_OBSERVER_H_

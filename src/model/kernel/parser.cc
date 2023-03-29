@@ -19,6 +19,4 @@ void s21::Parser::OpenFile() {
   }
   WriteData();
 }
-void s21::Parser::WriteData() {
-  DataModel::GetInstance()->SetFacetsSize(123);
-}
+void s21::Parser::WriteData() { DataModel::GetInstance()->SetFacetsSize(123); }
