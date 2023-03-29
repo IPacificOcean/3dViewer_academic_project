@@ -51,6 +51,7 @@ void MainWindow::on_openFile_clicked()
     char *str = ba.data();
     int error = 0;
     error = parser(str , &ui->widget->vertex, &ui->widget->facet);
+    qDebug() << controller_.test();
 
     if (error) {
         ui->statusBar->showMessage("file not found");
