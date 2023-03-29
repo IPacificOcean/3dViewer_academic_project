@@ -60,8 +60,6 @@ class Facade : public Observable {
   Transformer* transformer_move_;
   Transformer* transformer_rotate_;
   Transformer* transformer_scale_;
-
-  //  TransformStrategy transform_{};
 };
 
 }  // namespace s21
