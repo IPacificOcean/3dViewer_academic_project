@@ -3,7 +3,7 @@
 //
 
 #include "facade.h"
-//void s21::Facade::OpenFile() {
-//  parser_.OpenFile();
-//  this->notifyUpdate();
-//}
+// void s21::Facade::OpenFile() {
+//   parser_.OpenFile();
+//   this->notifyUpdate();
+// }

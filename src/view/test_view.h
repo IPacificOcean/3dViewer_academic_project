@@ -3,6 +3,7 @@
 
 #include "../controller/controller.h"
 #include "../model/observer/observer.h"
+#include "./type_transform.h"
 
 namespace s21 {
 class TestView : public Observer {
@@ -14,7 +15,7 @@ class TestView : public Observer {
   void OpenFile();
   void SaveSettings();
 
-  void TransformObject();
+  void TransformObject(TypeTransform type_transform);
   void SetProjection();
   void Customize();
   void SavePng();
