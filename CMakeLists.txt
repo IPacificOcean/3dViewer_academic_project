@@ -19,7 +19,7 @@ enable_testing()
 
 set(HEADER_FILES
         src/model/facade.h
-        src/view/test_view.h
+        src/view/test_view/test_view.h
         src/model/dao/data_model.h
         src/model/kernel/parser.h
         src/controller/controller.h
@@ -32,7 +32,7 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
         src/model/facade.cc
-        src/view/test_view.cc
+        src/view/test_view/test_view.cc
         src/model/dao/data_model.cc
         src/model/kernel/parser.cc
         src/controller/controller.cc
