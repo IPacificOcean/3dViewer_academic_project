@@ -12,6 +12,11 @@ namespace s21 {
 
 class Controller {
  public:
+  int test() {
+    return facade_.testFacade();
+  }
+
+
   void addObserver(Observer *observer) { facade_.addObserver(observer); }
 
   void ParseObj() { facade_.ParseObj(); }

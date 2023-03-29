@@ -19,6 +19,12 @@ namespace s21 {
 
 class Facade : public Observable {
  public:
+
+  int testFacade() {
+      return 2;
+  }
+
+
   Facade() {
     transformer_move_ = new Transformer(new Move());
     transformer_rotate_ = new Transformer(new Rotate());

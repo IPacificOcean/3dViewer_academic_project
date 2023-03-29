@@ -7,6 +7,7 @@
 
 #include <QMessageBox>
 #include <QMovie>
+#include "../controller/controller.h"
 
 
 //_________GIF
@@ -90,6 +91,8 @@ class MainWindow : public QMainWindow {
 private:
   Ui::MainWindow *ui;
   void wheelEvent(QWheelEvent *event) override;
+  s21::Controller controller_;
+
 
   //_____GIF
   QTimer *timer;
