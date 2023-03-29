@@ -15,7 +15,9 @@ class Controller {
   int test() {
     return facade_.testFacade();
   }
-
+  int OpenOld(char* filePath, Vertexes* vertexes, Facets* facets) {
+    return facade_.OpenOld(filePath, vertexes, facets);
+  }
 
   void addObserver(Observer *observer) { facade_.addObserver(observer); }
 

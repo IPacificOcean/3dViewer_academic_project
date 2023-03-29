@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer_for_gif = new QTimer(0); // parent must be null
     connect(timer_for_gif, SIGNAL(timeout()), this, SLOT(create_screen()));
     //_____
-
+    qDebug() << controller_.test();
     //set value in file
     this->m_sSettingsFile = QApplication::applicationDirPath() + "/settings.ini";
     qDebug() << m_sSettingsFile;
@@ -50,8 +50,8 @@ void MainWindow::on_openFile_clicked()
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
     int error = 0;
-    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
-    qDebug() << controller_.test();
+//    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
+    error = controller_.OpenOld(str , &ui->widget->vertex, &ui->widget->facet);
 
     if (error) {
         ui->statusBar->showMessage("file not found");
