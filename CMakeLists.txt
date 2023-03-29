@@ -22,6 +22,8 @@ set(HEADER_FILES
         src/view/test_view.h
         src/model/dao/data_model.h
         src/model/kernel/parser.h
+        src/controller/controller.h
+
         )
 
 set(SOURCE_FILES
@@ -29,6 +31,7 @@ set(SOURCE_FILES
         src/view/test_view.cc
         src/model/dao/data_model.cc
         src/model/kernel/parser.cc
+        src/controller/controller.cc
         )
 
 add_library(viewer_2_0 STATIC ${SOURCE_FILES} ${HEADER_FILES})

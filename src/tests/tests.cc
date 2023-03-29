@@ -53,10 +53,12 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   //  facade_.addObserver(&test_view_);
   //  facade_.ParseObj();
 
-  test_view_.SubscribeToChangeDataModel();
-  test_view_.controller_.ParseObj();
+//  test_view_.SubscribeToChangeDataModel();
+//  test_view_.controller_.ParseObj();
 }
 
 TEST_F(ModelTest, Parser_OpenFile) {
-  facade_.OpenFile();
+//  test_view_.SubscribeToChangeDataModel();
+  test_view_.OpenFile();
+//  controller_.OpenFile();
 }

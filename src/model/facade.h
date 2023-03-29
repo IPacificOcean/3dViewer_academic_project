@@ -25,7 +25,11 @@ class Facade : public Observable {
     this->notifyUpdate();
   }
 
-  void OpenFile();
+  void OpenFile() {
+    parser_.OpenFile();
+    this->notifyUpdate();
+  }
+
   void TransformObject();
 
  private:

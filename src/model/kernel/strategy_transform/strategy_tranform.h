@@ -10,7 +10,7 @@ namespace s21 {
 class StrategyTransform {
  public:
 
-  virtual void transform ();
+  virtual void transform();
 
  private:
 
