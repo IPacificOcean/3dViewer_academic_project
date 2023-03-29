@@ -58,11 +58,10 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   //  test_view_.controller_.ParseObj();
 }
 
-TEST_F(ModelTest, Parser_OpenFile) {
-  //  test_view_.SubscribeToChangeDataModel();
-  test_view_.OpenFile();
+TEST_F(ModelTest, ParserOpenFile) { test_view_.OpenFile(); }
+
+TEST_F(ModelTest, TestTransformStrategy) {
   test_view_.TransformObject(MOVE);
   test_view_.TransformObject(SCALE);
   test_view_.TransformObject(ROTATE);
-  //  controller_.OpenFile();
 }

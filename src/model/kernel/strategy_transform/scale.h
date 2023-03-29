@@ -5,14 +5,13 @@
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_SCALE_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_SCALE_H_
 
-#include "tranform_strategy.h"
 #include <iostream>
+
+#include "tranform_strategy.h"
 
 namespace s21 {
 class Scale : public TransformStrategy {
-  void transform() override {
-    std::cout << "___SCALE___" << std::endl;
-  }
+  void transform() override { std::cout << "___SCALE___" << std::endl; }
 };
 }  // namespace s21
 
