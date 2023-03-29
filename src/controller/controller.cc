@@ -3,3 +3,6 @@
 //
 
 #include "controller.h"
+void s21::Controller::OpenFile() {
+  facade_.OpenFile();
+}
