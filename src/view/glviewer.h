@@ -14,7 +14,7 @@
 #include <QTimer>
 
 extern "C" {
-#include "../backend/parser.h"
+#include "../model/old_backend/parser.h"
 }
 
 QT_BEGIN_NAMESPACE

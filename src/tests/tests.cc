@@ -7,7 +7,7 @@
 #include <iostream>
 
 #include "../model/facade.h"
-#include "../view/test_view.h"
+#include "../view/test_view/test_view.h"
 #include "../view/type_transform.h"
 
 using std::cout;
