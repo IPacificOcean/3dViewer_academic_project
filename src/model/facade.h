@@ -15,15 +15,19 @@
 #include "./observer/observable.h"
 #include "kernel/strategy_transform/transformer.h"
 
+extern "C" {
+#include "../model/old_backend/parser.h"
+}
+
 namespace s21 {
 
 class Facade : public Observable {
  public:
+  int testFacade() { return 2; }
 
-  int testFacade() {
-      return 2;
+  int OpenOld(char* filePath, Vertexes* vertexes, Facets* facets) {
+    return parser(filePath, vertexes, facets);
   }
-
 
   Facade() {
     transformer_move_ = new Transformer(new Move());
