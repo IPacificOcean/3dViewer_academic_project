@@ -5,11 +5,14 @@
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_MOVE_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_MOVE_H_
 
-#include "strategy_tranform.h"
+#include "tranform_strategy.h"
+#include <iostream>
 
 namespace s21 {
-class Move : public StrategyTransform {
-  void transform() override;
+class Move : public TransformStrategy {
+  void transform() override {
+    std::cout << "___MOVE___" << std::endl;
+  }
 };
 }  // namespace s21
 

@@ -8,6 +8,7 @@
 
 #include "../model/facade.h"
 #include "../view/test_view.h"
+#include "../view/type_transform.h"
 
 using std::cout;
 using std::endl;
@@ -35,8 +36,8 @@ TEST_F(ModelTest, testFacade) {
 }
 
 TEST_F(ModelTest, test_data_model) {
-  DataModel *dm;
-  DataModel *test = dm->GetInstance();
+  DataModel* dm;
+  DataModel* test = dm->GetInstance();
   test->SetFileName("setName");
   test->SetFacets({1234});
   test->SetVertex({1234});
@@ -53,12 +54,15 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   //  facade_.addObserver(&test_view_);
   //  facade_.ParseObj();
 
-//  test_view_.SubscribeToChangeDataModel();
-//  test_view_.controller_.ParseObj();
+  //  test_view_.SubscribeToChangeDataModel();
+  //  test_view_.controller_.ParseObj();
 }
 
 TEST_F(ModelTest, Parser_OpenFile) {
-//  test_view_.SubscribeToChangeDataModel();
+  //  test_view_.SubscribeToChangeDataModel();
   test_view_.OpenFile();
-//  controller_.OpenFile();
+  test_view_.TransformObject(MOVE);
+  test_view_.TransformObject(SCALE);
+  test_view_.TransformObject(ROTATE);
+  //  controller_.OpenFile();
 }
