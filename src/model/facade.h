@@ -53,6 +53,7 @@ class Facade : public Observable {
         transformer_scale_->TransformObject();
         break;
     }
+    this->notifyUpdate();
   }
 
  private:
