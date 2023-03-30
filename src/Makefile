@@ -66,7 +66,7 @@ $(LIBA): $(OBJ)
 	ar rcs $(LIBA) $^
 
 tests: $(LIBA)
-	$(CC) $(CFLAGS) $(TEST)  -L. $(LIBFLAGS) $(LIBA) -o $(EXE) -lm
+	$(CC) $(CFLAGS) $(TEST)  -L. $(LIBFLAGS) $(LIBA) -o $(EXE)  -lm
 	./$(EXE)
 
 gcov_report: $(LIBA)
