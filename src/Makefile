@@ -79,7 +79,7 @@ gcov_report: $(LIBA)
 check:
 	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(TEST) $(SRC) $(HEADERS)
 	@clang-format -i $(TEST) $(SRC) $(HEADERS)
-	clang-format -n $(TEST) $(SRC) $(HEADERS) -Werror
+	clang-format -n $(TEST) $(SRC) $(HEADERS)  -Werror
 
 leaks: tests
 ifeq ($(OS), Darwin)
