@@ -1,0 +1,23 @@
+default:
+  tags:
+    - runner
+
+stages:
+  - code_style
+  - unit_tests
+
+code_style:
+  stage: code_style
+  script:
+    - cd ./src/
+    - make check
+#  after_script:
+#    - sh ./src/telegram_not.sh ✅
+
+unit_tests:
+  stage: unit_tests
+  script:
+    - cd ./src/
+    - make tests
+#  after_script:
+#    - sh ./src/telegram_not.sh ✅
