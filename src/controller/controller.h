@@ -12,18 +12,16 @@ namespace s21 {
 
 class Controller {
  public:
-  int test() {
-    return facade_.testFacade();
-  }
+  int test() { return facade_.testFacade(); }
   int OpenOld(char* filePath, Vertexes* vertexes, Facets* facets) {
     return facade_.OpenOld(filePath, vertexes, facets);
   }
 
-  void addObserver(Observer *observer) { facade_.addObserver(observer); }
+  void addObserver(Observer* observer) { facade_.addObserver(observer); }
 
   void ParseObj() { facade_.ParseObj(); }
 
-  void OpenFile(std::string &input_file);
+  void OpenFile(std::string& input_file);
   void SaveSettings();
   void TransformObject(TypeTransform type_transform) {
     facade_.TransformObject(type_transform);

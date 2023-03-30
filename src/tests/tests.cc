@@ -8,7 +8,6 @@
 
 #include "../model/facade.h"
 #include "../view/test_view/test_view.h"
-#include "../view/type_transform.h"
 
 using std::cout;
 using std::endl;
@@ -49,13 +48,12 @@ TEST_F(ModelTest, test_data_model) {
 }
 
 TEST_F(ModelTest, TestViewConnectFacade) {
-  //  controller_.addObserver(&test_view_);
-  //
-  //  facade_.addObserver(&test_view_);
-  //  facade_.ParseObj();
+  controller_.addObserver(&test_view_);
 
-  //  test_view_.SubscribeToChangeDataModel();
-  //  test_view_.controller_.ParseObj();
+  facade_.addObserver(&test_view_);
+  facade_.ParseObj();
+
+  test_view_.SubscribeToChangeDataModel();
 }
 
 TEST_F(ModelTest, ParserOpenFile) {

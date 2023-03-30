@@ -7,9 +7,7 @@
 void s21::Parser::OpenFile(std::string &input_file) {
   std::string line;
 
-
   std::ifstream testfile(input_file);
-
 
   if (testfile.is_open()) {
     while (getline(testfile, line)) {
@@ -19,7 +17,6 @@ void s21::Parser::OpenFile(std::string &input_file) {
   } else {
     std::cout << "Unable to open file";
   }
-
 
   WriteData();
 }
