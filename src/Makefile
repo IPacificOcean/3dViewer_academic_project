@@ -76,7 +76,7 @@ gcov_report: $(LIBA)
 	genhtml ./coverage.info --output-directory ./report/
 	open ./report/index.html
 
-check: tests
+check:
 	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(TEST) $(SRC) $(HEADERS)
 	@clang-format -i $(TEST) $(SRC) $(HEADERS)
 	clang-format -n $(TEST) $(SRC) $(HEADERS) -Werror
