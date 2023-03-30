@@ -11,7 +11,7 @@ void s21::TestView::update() {
   std::cout << std::endl;
 }
 
-void s21::TestView::OpenFile() { controller_.OpenFile(); }
+void s21::TestView::OpenFile(std::string &input_file) { controller_.OpenFile(input_file); }
 
 void s21::TestView::TransformObject(TypeTransform type_transform) {
   controller_.TransformObject(type_transform);

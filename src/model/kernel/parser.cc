@@ -4,11 +4,13 @@
 
 #include "parser.h"
 
-void s21::Parser::OpenFile() {
+void s21::Parser::OpenFile(std::string &input_file) {
   std::string line;
-  std::ifstream testfile(
-      "/Users/tysaneno/Desktop/My_projects/C++/3DViewer_v2.0/src/tests/"
-      "test.txt");
+
+
+  std::ifstream testfile(input_file);
+
+
   if (testfile.is_open()) {
     while (getline(testfile, line)) {
       std::cout << line << '\n';
@@ -17,6 +19,9 @@ void s21::Parser::OpenFile() {
   } else {
     std::cout << "Unable to open file";
   }
+
+
   WriteData();
 }
+
 void s21::Parser::WriteData() { DataModel::GetInstance()->SetFacetsSize(123); }

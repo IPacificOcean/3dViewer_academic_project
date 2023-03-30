@@ -46,8 +46,8 @@ class Facade : public Observable {
     this->notifyUpdate();
   }
 
-  void OpenFile() {
-    parser_.OpenFile();
+  void OpenFile(std::string &input_file) {
+    parser_.OpenFile(input_file);
     this->notifyUpdate();
   }
 

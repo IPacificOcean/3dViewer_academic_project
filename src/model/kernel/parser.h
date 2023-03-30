@@ -15,7 +15,7 @@ namespace s21 {
 
 class Parser {
  public:
-  void OpenFile();
+  void OpenFile(std::string &input_file);
   void WriteData();
 
  private:

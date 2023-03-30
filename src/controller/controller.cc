@@ -3,6 +3,6 @@
 //
 
 #include "controller.h"
-void s21::Controller::OpenFile() {
-  facade_.OpenFile();
+void s21::Controller::OpenFile(std::string &input_file) {
+  facade_.OpenFile(input_file);
 }
