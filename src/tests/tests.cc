@@ -58,10 +58,23 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   //  test_view_.controller_.ParseObj();
 }
 
-TEST_F(ModelTest, ParserOpenFile) { test_view_.OpenFile(); }
+TEST_F(ModelTest, ParserOpenFile) {
+  std::string input_file =
+      "/Users/tysaneno/Desktop/My_projects/C++/3DViewer_v2.0/src/objFiles/"
+      "cube.obj";
+  test_view_.OpenFile(input_file);
+}
 
 TEST_F(ModelTest, TestTransformStrategy) {
   test_view_.TransformObject(MOVE);
   test_view_.TransformObject(SCALE);
   test_view_.TransformObject(ROTATE);
+}
+
+TEST_F(ModelTest, ParserOpenFileTest) {
+  std::string input_file =
+      "/Users/tysaneno/Desktop/My_projects/C++/3DViewer_v2.0/src/objFiles/"
+      "cube.obj";
+
+  test_view_.OpenFile(input_file);
 }

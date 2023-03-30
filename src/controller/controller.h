@@ -23,7 +23,7 @@ class Controller {
 
   void ParseObj() { facade_.ParseObj(); }
 
-  void OpenFile();
+  void OpenFile(std::string &input_file);
   void SaveSettings();
   void TransformObject(TypeTransform type_transform) {
     facade_.TransformObject(type_transform);
