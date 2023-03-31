@@ -6,6 +6,7 @@ stages:
   - code_style
   - unit_tests
   - memory_tests
+  - notify
 
 code_style:
   stage: code_style
@@ -28,6 +29,8 @@ memory_tests:
   script:
     - cd ./src/
     - make leaks
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
 
 notify_error:
   stage: notify
