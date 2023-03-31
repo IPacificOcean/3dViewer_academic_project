@@ -73,6 +73,5 @@ TEST_F(ModelTest, ParserOpenFileTest) {
   std::string input_file =
       "/Users/tysaneno/Desktop/My_projects/C++/3DViewer_v2.0/src/objFiles/"
       "cube.obj";
-  int* leaks = new int[100];
   test_view_.OpenFile(input_file);
 }
