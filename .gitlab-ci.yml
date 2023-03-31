@@ -12,19 +12,25 @@ code_style:
   script:
     - cd ./src/
     - make check
-#  after_script:
-#    - sh ./src/telegram_not.sh ✅
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
 
 unit_tests:
   stage: unit_tests
   script:
     - cd ./src/
     - make tests
-#  after_script:
-#    - sh ./src/telegram_not.sh ✅
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
 
 memory_tests:
   stage: memory_tests
   script:
     - cd ./src/
     - make leaks
+
+notify_error:
+  stage: notify
+  script:
+    - sh ./src/telegram_bot.sh ❌
+  when: on_failure #fail
