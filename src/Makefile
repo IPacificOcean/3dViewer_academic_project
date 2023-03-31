@@ -85,7 +85,7 @@ leaks: tests
 ifeq ($(OS), Darwin)
 	leaks -atExit -- ./$(EXE)
 else
-	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./$(EXE)
+	CK_FORK=no valgrind --vgdb=no --leak-check=full --error-exitcode=1 --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./$(EXE)
 endif
 
 rebuild: clean uninstall all

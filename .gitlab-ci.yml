@@ -5,6 +5,7 @@ default:
 stages:
   - code_style
   - unit_tests
+  - memory_tests
 
 code_style:
   stage: code_style
@@ -21,3 +22,9 @@ unit_tests:
     - make tests
 #  after_script:
 #    - sh ./src/telegram_not.sh ✅
+
+memory_tests:
+  stage: memory_tests
+  script:
+    - cd ./src/
+    - make leaks

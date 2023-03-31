@@ -16,7 +16,7 @@ class Transformer {
 
   void SetStrategyTransform(TransformStrategy* strategy_transform) {
     transform_strategy_ = strategy_transform;
-  } // todo: not necessary, apparently. Delete?
+  }  // todo: not necessary, apparently. Delete?
 
   void TransformObject() { transform_strategy_->transform(); }
 
