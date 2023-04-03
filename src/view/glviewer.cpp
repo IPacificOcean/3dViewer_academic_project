@@ -1,4 +1,5 @@
 #include "glviewer.h"
+#include <QDebug>
 
 
 GLviewer::GLviewer(QWidget *parent)
@@ -34,27 +35,32 @@ GLviewer::~GLviewer()
 void GLviewer::initializeGL()
 {
     glEnable(GL_DEPTH_TEST);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
+//    glClearColor(0.0, 0.0, 0.0, 1.0);
 
-    glEnable(GL_DEPTH_TEST);
-    glMatrixMode(GL_MODELVIEW);
+//    glEnable(GL_DEPTH_TEST);
+//    glMatrixMode(GL_MODELVIEW);
 }
 
 void GLviewer::resizeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
 }
 
 void GLviewer::paintGL(){
     // бесконечный цикл
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(colorWidget.redF(), colorWidget.greenF(), colorWidget.blueF(), 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    projectionSelect();
+
+    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
     glTranslatef(0, 0, 0);
@@ -69,11 +75,11 @@ void GLviewer::paintGL(){
 void GLviewer::drawShape()
 {
         //Projection//
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        glMatrixMode(GL_MODELVIEW);
+//        glLoadIdentity();
 
-        projectionSelect();
+//        projectionSelect();
 
         glScaled(scale, scale, scale);
 
@@ -122,11 +128,15 @@ void GLviewer::projectionSelect()
 {
     if (frustum == EMPTY) {
       glEnable(GL_DEPTH_TEST);
-//            glOrtho(-1, 1, -1, 1, 100, 100);
+////            glOrtho(-1, 1, -1, 1, 100, 100);
       glOrtho(-100, 100, 800, 800, 100, 100);
+//        glOrtho(-1, 1, -1, 1, 1, 3);
+      qDebug()<<"frustum";
     } else {
-        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
         glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
+//        glFrustum(-1, 1, -1, 1, 1 / (2 * tan((60.0 * M_PI / 180) / 2)), 6);
+        qDebug()<<"frustum";
     }
 }
 
