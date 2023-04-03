@@ -15,7 +15,8 @@ class TestView : public Observer {
 
   void SubscribeToChangeDataModel() { controller_.addObserver(this); }
   void OpenFile(std::string &input_file);
-  void TransformObject(TypeTransform type_transform);
+  void TransformObject(TypeTransform type_transform, double offset,
+                       Axis axis = X);
 
   void SaveSettings();
   void SetProjection();

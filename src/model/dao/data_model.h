@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+
+// TODO нужно инкапсулировать сеттеры от view, можно добавить friend классы
 namespace s21 {
 class DataModel {
  public:

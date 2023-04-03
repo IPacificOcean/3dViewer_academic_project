@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 
+#include <filesystem>
 #include <iostream>
 
 #include "../model/facade.h"
@@ -57,9 +58,9 @@ TEST_F(ModelTest, TestViewConnectFacade) {
 }
 
 TEST_F(ModelTest, TestTransformStrategy) {
-  test_view_.TransformObject(MOVE);
-  test_view_.TransformObject(SCALE);
-  test_view_.TransformObject(ROTATE);
+  test_view_.TransformObject(MOVE, 12);
+  test_view_.TransformObject(SCALE, 11);
+  test_view_.TransformObject(ROTATE, 2);
 }
 
 TEST_F(ModelTest, Parser_OpenFile_ECXEPTION_bab_file) {
@@ -68,8 +69,8 @@ TEST_F(ModelTest, Parser_OpenFile_ECXEPTION_bab_file) {
 }
 
 TEST_F(ModelTest, ParserOpenFileTest) {
-  std::string input_file =
-      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
+  std::string current_path(std::filesystem::current_path().generic_string());
+  std::cout << "Текущая папка ======" << current_path << std::endl;
+  std::string input_file = current_path + "/objFiles/cube.obj";
   test_view_.OpenFile(input_file);
-
 }

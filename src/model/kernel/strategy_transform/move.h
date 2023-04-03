@@ -11,7 +11,28 @@
 
 namespace s21 {
 class Move : public TransformStrategy {
-  void transform() override { std::cout << "___MOVE___" << std::endl; }
+  void transform(double offset, Axis axis) override {
+    std::vector<double> vertex =
+        DataModel::GetInstance()
+            ->GetVertex();  // TODO лучше использовать ссылку
+
+    for (unsigned int i = 3; i < vertex.size(); i += 3) {
+      switch (axis) {
+        case X:
+          vertex[i] += offset;
+          break;
+        case Y:
+          vertex[i + 1] += offset;
+          break;
+        case Z:
+          vertex[i + 2] += offset;
+          break;
+      }
+    }
+
+    DataModel::GetInstance()->SetVertex(vertex);
+    std::cout << "___MOVE___" << std::endl;
+  }
 };
 }  // namespace s21
 

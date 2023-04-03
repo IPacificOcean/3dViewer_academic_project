@@ -14,11 +14,7 @@ class Transformer {
       : transform_strategy_(strategy_transform) {}
   ~Transformer() { delete transform_strategy_; }
 
-  void SetStrategyTransform(TransformStrategy* strategy_transform) {
-    transform_strategy_ = strategy_transform;
-  }  // todo: not necessary, apparently. Delete?
-
-  void TransformObject() { transform_strategy_->transform(); }
+  void TransformObject(double offset, Axis axis) { transform_strategy_->transform(offset, axis); }
 
  private:
   TransformStrategy* transform_strategy_{};

@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ../model/dao/data_model.cc \
     ../model/old_backend/parser.c \
     QtGifImage-master/src/3rdParty/giflib/dgif_lib.c \
     QtGifImage-master/src/3rdParty/giflib/egif_lib.c \
@@ -23,6 +24,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    ../model/dao/data_model.h \
     ../model/old_backend/parser.h \
     QtGifImage-master/src/3rdParty/giflib/gif_hash.h \
     QtGifImage-master/src/3rdParty/giflib/gif_lib.h \

@@ -51,16 +51,16 @@ class Facade : public Observable {
     this->notifyUpdate();
   }
 
-  void TransformObject(TypeTransform type_transform) {
+  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
     switch (type_transform) {
       case MOVE:
-        transformer_move_->TransformObject();
+        transformer_move_->TransformObject(offset, axis);
         break;
       case ROTATE:
-        transformer_rotate_->TransformObject();
+        transformer_rotate_->TransformObject(offset, axis);
         break;
       case SCALE:
-        transformer_scale_->TransformObject();
+        transformer_scale_->TransformObject(offset, axis);
         break;
     }
     this->notifyUpdate();

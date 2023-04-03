@@ -23,8 +23,8 @@ class Controller {
 
   void OpenFile(std::string& input_file);
   void SaveSettings();
-  void TransformObject(TypeTransform type_transform) {
-    facade_.TransformObject(type_transform);
+  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
+    facade_.TransformObject(type_transform, offset, axis);
   }
   void SetProjection();
   void Customize();
