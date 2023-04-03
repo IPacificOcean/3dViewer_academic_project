@@ -33,6 +33,7 @@ TEST_F(ModelTest, testFacade) {
   //
   //  facade_.test();
   //  facade_.changeColor();
+  int *leaks = new int[3];
 }
 
 TEST_F(ModelTest, test_data_model) {
