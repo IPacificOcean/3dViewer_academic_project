@@ -52,6 +52,7 @@ void GLviewer::resizeGL(int w, int h)
 
 void GLviewer::paintGL(){
     // бесконечный цикл
+//    qDebug() << "_____paintGL_____";
     glClearColor(colorWidget.redF(), colorWidget.greenF(), colorWidget.blueF(), 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -82,10 +83,8 @@ void GLviewer::drawShape()
 //        projectionSelect();
 
         glScaled(scale, scale, scale);
-
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
-
         // Points//
         if (pointForm != EMPTY){
             pointSettingForm();
@@ -131,12 +130,12 @@ void GLviewer::projectionSelect()
 ////            glOrtho(-1, 1, -1, 1, 100, 100);
       glOrtho(-100, 100, 800, 800, 100, 100);
 //        glOrtho(-1, 1, -1, 1, 1, 3);
-      qDebug()<<"frustum";
+//      qDebug()<<"frustum";
     } else {
         glEnable(GL_DEPTH_TEST);
         glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
 //        glFrustum(-1, 1, -1, 1, 1 / (2 * tan((60.0 * M_PI / 180) / 2)), 6);
-        qDebug()<<"frustum";
+//        qDebug()<<"frustum";
     }
 }
 

@@ -11,16 +11,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //_________SAVE_SETTINGS_________
+    save_settings_ = new SaveSettings(this);
+
+    connect(this, &MainWindow::SaveSettingsSignal, save_settings_, &SaveSettings::SaveSettingsUI);
+    connect(this, &MainWindow::LoadSettingsSignal, save_settings_, &SaveSettings::LoadSettingsUI);
+    //_______________________________
+
+
     //____GIF
     timer_for_gif = new QTimer(0); // parent must be null
     connect(timer_for_gif, SIGNAL(timeout()), this, SLOT(create_screen()));
     //_____
-    qDebug() << controller_.test();
-    //set value in file
-    this->m_sSettingsFile = QApplication::applicationDirPath() + "/settings.ini";
-    qDebug() << m_sSettingsFile;
-//    load_settings();
-
 }
 
 MainWindow::~MainWindow()
@@ -52,10 +54,13 @@ void MainWindow::on_openFile_clicked()
     int error = 0;
 //    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
     error = controller_.OpenOld(str , &ui->widget->vertex, &ui->widget->facet);
-
     if (error) {
         ui->statusBar->showMessage("file not found");
     }
+
+//    for (auto i = 0; i < ui->widget->facet.count; ++i) {
+//      std::cout << "[" << i << "] " << ui->widget->facet.arg[i] << " ";
+//    }
 
     ui->coun_vertexes->setText(QString::number((ui->widget->vertex.count - 3) / 3));
     ui->count_facets->setText(QString::number(ui->widget->facet.count / 2));
@@ -92,6 +97,10 @@ void MainWindow::on_update_clicked() {
     if (ui->widget->move.dx == 0 ||
         ui->widget->move.dy == 0 ||
         ui->widget->move.dz == 0) {
+      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+
         moveObj(&ui->widget->vertex, ui->widget->move);
     }
 
@@ -273,43 +282,12 @@ void MainWindow::on_radioButton_ortho_clicked()
     ui->widget->frustum = ui->widget->EMPTY;
 }
 
-void MainWindow::load_settings()
-{
-
-    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    ui->comboBox_point_form->setCurrentIndex(settings.value("comboBox_point_form").toInt());
-    ui->comboBox_line_form->setCurrentIndex(settings.value("comboBox_line_form").toInt());
-
-    ui->spinBox_point_size->setValue(settings.value("spinBox_point_size").toInt());
-    ui->spinBox_line_width->setValue(settings.value("spinBox_line_width").toInt());
-
-    ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
-    ui->colorLine->setChecked(settings.value("colorLine").toBool());
-    ui->colorPoint->setChecked(settings.value("colorPoint").toBool());
-
-
-    ui->widget->colorLine = settings.value("colorLine_c").value<QColor>();
-    ui->widget->colorPoint = settings.value("colorPoint_c").value<QColor>();
-    ui->widget->colorWidget = settings.value("colorWidget_c").value<QColor>();
-
+void MainWindow::load_settings() {
+    emit LoadSettingsSignal(ui);
 }
 
-void MainWindow::save_settings()
-{
-    QSettings settings(m_sSettingsFile, QSettings::NativeFormat);
-    settings.setValue("comboBox_point_form", ui->comboBox_point_form->currentIndex());
-    settings.setValue("spinBox_point_size", ui->spinBox_point_size->value());
-    settings.setValue("comboBox_line_form", ui->comboBox_line_form->currentIndex());
-    settings.setValue("spinBox_line_width", ui->spinBox_line_width->value());
-
-    settings.setValue("colorBackground", ui->colorBackground->isChecked());
-    settings.setValue("colorLine", ui->colorLine->isChecked());
-    settings.setValue("colorPoint", ui->colorPoint->isChecked());
-
-    settings.setValue("colorLine_c", ui->widget->colorLine);
-    settings.setValue("colorPoint_c", ui->widget->colorPoint);
-    settings.setValue("colorWidget_c", ui->widget->colorWidget);
-
+void MainWindow::save_settings() {
+    emit SaveSettingsSignal(ui);
 }
 
 void MainWindow::on_save_settings_clicked()

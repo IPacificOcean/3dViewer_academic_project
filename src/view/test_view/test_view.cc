@@ -9,6 +9,7 @@ void s21::TestView::update() {
   std::cout << "_____Кол-фасетов = "
             << DataModel::GetInstance()->GetFacetsSize() << std::endl;
   std::cout << std::endl;
+  
 }
 
 void s21::TestView::OpenFile(std::string &input_file) {
