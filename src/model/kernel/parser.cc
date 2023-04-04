@@ -34,6 +34,7 @@ void s21::Parser::OpenFile(std::string &input_file) {
   std::cout << "s21::Parser::OpenFile\n";  // !!!
 
   std::pair<size_t, size_t> pair{};
+  std::pair<std::vector<double>, std::vector<size_t>> vectors{};
 
   try {
     //    print(testfile); // del
@@ -43,17 +44,19 @@ void s21::Parser::OpenFile(std::string &input_file) {
     std::cout << "vertexes_count = " << pair.first << '\n';
     std::cout << "facets_count = " << pair.second << '\n';
 
-    GetDataVetrtexAndFacet(input_file, pair.first, pair.second);
+
+
+    vectors = GetDataVetrtexAndFacet(input_file, pair.first, pair.second);
 
   } catch (...) {
     throw;
   }
 
-  std::vector<double> vertexes;
-  std::vector<size_t> facets;
   //    ----WRITE DATA----
   DataModel::GetInstance()->SetVertexSize(pair.first);
   DataModel::GetInstance()->SetFacetsSize(pair.second);
+  DataModel::GetInstance()->SetVertex(vectors.first);
+  DataModel::GetInstance()->SetFacets(vectors.second);
   //  WriteData();
   //    ----WRITE DATA----
   unsigned int end_time = clock();  // конечное время
@@ -92,7 +95,7 @@ std::pair<size_t, size_t> s21::Parser::PreParser(std::string &input_file) {
   return {vertexes_count, space_count};
 }
 
-void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
+std::pair<std::vector<double>, std::vector<size_t>> s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
                                          size_t f_size) {
   std::ifstream s_file(input_file);
   if (!s_file.is_open()) {
@@ -125,8 +128,6 @@ void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
     }
 
     //     facets c++
-
-
     if (line[0] == 'f' && line[1] == ' ') {
       count = 0;
       while (getline(s_stream, token, ' ')) {
@@ -146,48 +147,6 @@ void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
       facets.push_back(f_temp);
     }
 
-
-
-//    std::string temp_string{};
-//
-//    char seps[] = " ";
-//    char *token = NULL;
-//    unsigned int arg_f_index = 0;
-//    char temp[32];
-//    int countTokes = 0;
-//    size_t numberOfTokens = 0;
-//
-//    if (line[0] == 'f' && line[1] == ' ') {
-//      numberOfTokens = 1;
-//      countTokes = 0;
-//      count_number_in_string(&numberOfTokens, temp_string);
-//      token = strtok(temp_string, seps);
-//      countTokes++;
-//
-//      while (token != NULL) {
-//        token = strtok(NULL, seps);
-//        countTokes++;
-//        if (countTokes == 2) {
-//          memset(temp, 0, 32);
-//          strcpy(temp, token);
-//        }
-//        if (token == NULL || *token == '\n') break;
-//        if (countTokes == 2) {
-//          facets->arg[arg_f_index] = atoi(token);
-//          arg_f_index++;
-//        } else {
-//          facets->arg[arg_f_index] = atoi(token);
-//          arg_f_index++;
-//          facets->arg[arg_f_index] = atoi(token);
-//          arg_f_index++;
-//        }
-//        if (numberOfTokens == countTokes) {
-//          facets->arg[arg_f_index] = atoi(temp);
-//          arg_f_index++;
-//        }
-//      }
-//    }
-
   } // end while
 
   if (vertexes.size() != v_size) {
@@ -200,42 +159,9 @@ void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
         "GetDataVetrtexAndFacet: facets.size() != f_size");
   }
   s_file.close();
+  return {vertexes, facets};
 }
 
-// facets
-//      if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-//        numberOfTokens = 1;
-//        countTokes = 0;
-//        count_number_in_string(&numberOfTokens, temp_string);
-//        token = strtok(temp_string, seps);
-//        countTokes++;
-//
-//        while (token != NULL) {
-//          token = strtok(NULL, seps);
-//          countTokes++;
-//          if (countTokes == 2) {
-//            memset(temp, 0, 32);
-//            strcpy(temp, token);
-//          }
-//          if (token == NULL || *token == '\n') break;
-//          if (countTokes == 2) {
-//            facets->arg[arg_f_index] = atoi(token);
-//            arg_f_index++;
-//          } else {
-//            facets->arg[arg_f_index] = atoi(token);
-//            arg_f_index++;
-//            facets->arg[arg_f_index] = atoi(token);
-//            arg_f_index++;
-//          }
-//          if (numberOfTokens == countTokes) {
-//            facets->arg[arg_f_index] = atoi(temp);
-//            arg_f_index++;
-//          }
-//        }
-//      }
-//    }
-//  }
-
-//  return error;
-
-void s21::Parser::WriteData() { DataModel::GetInstance()->SetFacetsSize(123); }
+void s21::Parser::WriteData() {
+  DataModel::GetInstance()->SetFacetsSize(123);
+}
