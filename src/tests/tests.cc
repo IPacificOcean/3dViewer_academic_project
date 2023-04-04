@@ -69,29 +69,29 @@ TEST_F(ModelTest, Parser_OpenFile_ECXEPTION_bab_file) {
   EXPECT_ANY_THROW(test_view_.OpenFile(input_file););
 }
 
-TEST_F(ModelTest, ParserOpenFileTest) {
-  std::string current_path(std::filesystem::current_path().generic_string());
-  std::cout << "Текущая папка ======" << current_path << std::endl;
-  std::string input_file = current_path + "/objFiles/cube.obj";
+//TEST_F(ModelTest, ParserOpenFileTest) {
+//  std::string current_path(std::filesystem::current_path().generic_string());
+//  std::cout << "Текущая папка ======" << current_path << std::endl;
+//  std::string input_file = current_path + "/objFiles/cube.obj";
+//  test_view_.OpenFile(input_file);
+//}
+
+TEST_F(ModelTest, ParserOpenFileTest_violator) {
+  std::string input_file =
+      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
   test_view_.OpenFile(input_file);
 }
 
-//TEST_F(ModelTest, ParserOpenFileTest_violator) {
-//  std::string input_file =
-//      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
-//  test_view_.OpenFile(input_file);
-//}
-//
-//TEST_F(ModelTest, ParserVertexesCount) {
-//  std::string input_file =
-//      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
-//  test_view_.OpenFile(input_file);
-//  EXPECT_EQ(DataModel::GetInstance()->GetVertexSize(), 27);
-//}
-//
-//TEST_F(ModelTest, ParserFacetsCount) {
-//  std::string input_file =
-//      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
-//  test_view_.OpenFile(input_file);
-//  EXPECT_EQ(DataModel::GetInstance()->GetFacetsSize(), 60);
-//}
+TEST_F(ModelTest, ParserVertexesCount) {
+  std::string input_file =
+      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
+  test_view_.OpenFile(input_file);
+  EXPECT_EQ(DataModel::GetInstance()->GetVertexSize(), 27);
+}
+
+TEST_F(ModelTest, ParserFacetsCount) {
+  std::string input_file =
+      "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
+  test_view_.OpenFile(input_file);
+  EXPECT_EQ(DataModel::GetInstance()->GetFacetsSize(), 60);
+}
