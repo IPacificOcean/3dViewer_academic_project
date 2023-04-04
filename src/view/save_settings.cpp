@@ -6,11 +6,11 @@
 SaveSettings::SaveSettings(QObject *parent)
   : QObject{parent}
 {
-   this->m_sSettingsFile = QApplication::applicationDirPath() + "/settings.ini";
+   this->settings_file = QApplication::applicationDirPath() + "/settings.ini";
 }
 
 void SaveSettings::SaveSettingsUI(Ui::MainWindow *ui) {
-  QSettings settings(this->m_sSettingsFile, QSettings::NativeFormat);
+  QSettings settings(this->settings_file, QSettings::NativeFormat);
   settings.setValue("comboBox_point_form", ui->comboBox_point_form->currentIndex());
   settings.setValue("spinBox_point_size", ui->spinBox_point_size->value());
   settings.setValue("comboBox_line_form", ui->comboBox_line_form->currentIndex());
@@ -27,7 +27,7 @@ void SaveSettings::SaveSettingsUI(Ui::MainWindow *ui) {
 }
 
 void SaveSettings::LoadSettingsUI(Ui::MainWindow* ui) {
-  QSettings settings(this->m_sSettingsFile, QSettings::NativeFormat);
+  QSettings settings(this->settings_file, QSettings::NativeFormat);
   ui->comboBox_point_form->setCurrentIndex(settings.value("comboBox_point_form").toInt());
   ui->comboBox_line_form->setCurrentIndex(settings.value("comboBox_line_form").toInt());
 

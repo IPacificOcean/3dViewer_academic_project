@@ -30,6 +30,7 @@ MainWindow::~MainWindow()
 //    save_settings();
     delete ui;
     delete timer_for_gif;
+    delete save_settings_;
 }
 
 void MainWindow::free_vertex_and_facet()

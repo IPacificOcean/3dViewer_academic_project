@@ -107,6 +107,10 @@ void GLviewer::pointSettingForm()
     glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
     glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
 
+//    for (auto i = 0; i < facet.count; ++i) {
+//      std::cout <<  "[" << i << "] " << facet.arg[i] << " ";
+//    }
+
 }
 
 void GLviewer::lineSettingForm()
