@@ -67,7 +67,6 @@ std::pair<size_t, size_t> s21::Parser::PreParser(std::string &input_file) {
     throw std::invalid_argument("PreParser: file open error");
   }
 
-  std::pair<size_t, size_t> pair;
   size_t vertexes_count{};
   size_t space_count{};
   std::string line{};
@@ -88,19 +87,15 @@ std::pair<size_t, size_t> s21::Parser::PreParser(std::string &input_file) {
   vertexes_count = vertexes_count * 3 + 3;
   space_count = space_count * 2;
 
-  pair.first = vertexes_count;
-  pair.second = space_count;
-
   file.close();
 
-  return pair;
+  return {vertexes_count, space_count};
 }
 
 void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
                                          size_t f_size) {
-
-  std::ifstream file(input_file);
-  if (!file.is_open()) {
+  std::ifstream s_file(input_file);
+  if (!s_file.is_open()) {
     throw std::invalid_argument("GetDataVetrtexAndFacet: file open error");
   }
 
@@ -112,70 +107,135 @@ void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
   vertexes.push_back(0);
   vertexes.push_back(0);
   vertexes.push_back(0);
-  facets.push_back(0);
 
   std::string line;
-  while (getline(file, line)) {
+  int count{};
+
+  while (getline(s_file, line)) {
     std::stringstream s_stream(line);
-    std::string intermediate;
+    std::string token;
+    int f_temp{};
 
     // vertex c++
     if (line[0] == 'v' && line[1] == ' ') {
-      while (getline(s_stream, intermediate, ' ')) {
-        if (intermediate == "v") continue;
-        vertexes.push_back(std::stod(intermediate));
+      while (getline(s_stream, token, ' ')) {
+        if (token == "v") continue;
+        vertexes.push_back(std::stod(token));
       }
     }
 
-    // facets c++
-    if (line[0] == 'f' && line[1] == ' ') {
+    //     facets c++
 
+
+    if (line[0] == 'f' && line[1] == ' ') {
+      count = 0;
+      while (getline(s_stream, token, ' ')) {
+        if (token == "f") {
+          ++count;
+          continue;
+        }
+        if (count == 1) {
+          f_temp = std::stoi(token);
+          facets.push_back(f_temp);
+          ++count;
+        } else {
+          facets.push_back(std::stoi(token));
+          facets.push_back(std::stoi(token));
+        }
+      }
+      facets.push_back(f_temp);
     }
 
-  }
 
+
+//    std::string temp_string{};
+//
+//    char seps[] = " ";
+//    char *token = NULL;
+//    unsigned int arg_f_index = 0;
+//    char temp[32];
+//    int countTokes = 0;
+//    size_t numberOfTokens = 0;
+//
+//    if (line[0] == 'f' && line[1] == ' ') {
+//      numberOfTokens = 1;
+//      countTokes = 0;
+//      count_number_in_string(&numberOfTokens, temp_string);
+//      token = strtok(temp_string, seps);
+//      countTokes++;
+//
+//      while (token != NULL) {
+//        token = strtok(NULL, seps);
+//        countTokes++;
+//        if (countTokes == 2) {
+//          memset(temp, 0, 32);
+//          strcpy(temp, token);
+//        }
+//        if (token == NULL || *token == '\n') break;
+//        if (countTokes == 2) {
+//          facets->arg[arg_f_index] = atoi(token);
+//          arg_f_index++;
+//        } else {
+//          facets->arg[arg_f_index] = atoi(token);
+//          arg_f_index++;
+//          facets->arg[arg_f_index] = atoi(token);
+//          arg_f_index++;
+//        }
+//        if (numberOfTokens == countTokes) {
+//          facets->arg[arg_f_index] = atoi(temp);
+//          arg_f_index++;
+//        }
+//      }
+//    }
+
+  } // end while
 
   if (vertexes.size() != v_size) {
     throw std::invalid_argument(
         "GetDataVetrtexAndFacet: vertexes.size() != v_size");
   }
 
-
-  // facets
-  //      if (temp_string[0] == 'f' && temp_string[1] == ' ') {
-  //        numberOfTokens = 1;
-  //        countTokes = 0;
-  //        count_number_in_string(&numberOfTokens, temp_string);
-  //        token = strtok(temp_string, seps);
-  //        countTokes++;
-  //
-  //        while (token != NULL) {
-  //          token = strtok(NULL, seps);
-  //          countTokes++;
-  //          if (countTokes == 2) {
-  //            memset(temp, 0, 32);
-  //            strcpy(temp, token);
-  //          }
-  //          if (token == NULL || *token == '\n') break;
-  //          if (countTokes == 2) {
-  //            facets->arg[arg_f_index] = atoi(token);
-  //            arg_f_index++;
-  //          } else {
-  //            facets->arg[arg_f_index] = atoi(token);
-  //            arg_f_index++;
-  //            facets->arg[arg_f_index] = atoi(token);
-  //            arg_f_index++;
-  //          }
-  //          if (numberOfTokens == countTokes) {
-  //            facets->arg[arg_f_index] = atoi(temp);
-  //            arg_f_index++;
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
-
-  //  return error;
+  if (facets.size() != f_size) {
+    throw std::invalid_argument(
+        "GetDataVetrtexAndFacet: facets.size() != f_size");
+  }
+  s_file.close();
 }
+
+// facets
+//      if (temp_string[0] == 'f' && temp_string[1] == ' ') {
+//        numberOfTokens = 1;
+//        countTokes = 0;
+//        count_number_in_string(&numberOfTokens, temp_string);
+//        token = strtok(temp_string, seps);
+//        countTokes++;
+//
+//        while (token != NULL) {
+//          token = strtok(NULL, seps);
+//          countTokes++;
+//          if (countTokes == 2) {
+//            memset(temp, 0, 32);
+//            strcpy(temp, token);
+//          }
+//          if (token == NULL || *token == '\n') break;
+//          if (countTokes == 2) {
+//            facets->arg[arg_f_index] = atoi(token);
+//            arg_f_index++;
+//          } else {
+//            facets->arg[arg_f_index] = atoi(token);
+//            arg_f_index++;
+//            facets->arg[arg_f_index] = atoi(token);
+//            arg_f_index++;
+//          }
+//          if (numberOfTokens == countTokes) {
+//            facets->arg[arg_f_index] = atoi(temp);
+//            arg_f_index++;
+//          }
+//        }
+//      }
+//    }
+//  }
+
+//  return error;
 
 void s21::Parser::WriteData() { DataModel::GetInstance()->SetFacetsSize(123); }
