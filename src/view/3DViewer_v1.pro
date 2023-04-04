@@ -21,7 +21,8 @@ SOURCES += \
     QtGifImage-master/src/gifimage/qgifimage.cpp \
     glviewer.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    save_settings.cpp
 
 HEADERS += \
     ../model/dao/data_model.h \
@@ -33,7 +34,8 @@ HEADERS += \
     QtGifImage-master/src/gifimage/qgifimage.h \
     QtGifImage-master/src/gifimage/qgifimage_p.h \
     glviewer.h \
-    mainwindow.h
+    mainwindow.h \
+    save_settings.h
 
 FORMS += \
     mainwindow.ui

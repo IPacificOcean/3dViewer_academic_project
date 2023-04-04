@@ -10,6 +10,11 @@
 #include "../controller/controller.h"
 
 
+//_________SAVE_SETTINGS_________
+#include "save_settings.h"
+//_______________________________
+
+
 //_________GIF
 #include <QLabel>
 #include <QPixmap>
@@ -46,7 +51,14 @@ class MainWindow : public QMainWindow {
   //___ GIF
   QVector<QImage> mas_image;
   //____
-  QString m_sSettingsFile;
+
+  signals:
+  //_________SAVE_SETTINGS_________
+  void SaveSettingsSignal(Ui::MainWindow *ui);
+  void LoadSettingsSignal(Ui::MainWindow *ui);
+  //_______________________________
+
+
 
  private
   slots:
@@ -92,6 +104,11 @@ private:
   Ui::MainWindow *ui;
   void wheelEvent(QWheelEvent *event) override;
   s21::Controller controller_;
+
+  //_________SAVE_SETTINGS_________
+  SaveSettings* save_settings_;
+  //_______________________________
+
 
 
   //_____GIF
