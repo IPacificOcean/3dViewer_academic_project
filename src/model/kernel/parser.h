@@ -20,7 +20,6 @@ class Parser {
   void GetDataVetrtexAndFacet(std::string& input_file,
                               std::vector<double>& vertex,
                               std::vector<unsigned int>& facets);
-  void WriteData();
 
  private:
 };

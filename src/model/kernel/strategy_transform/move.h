@@ -30,7 +30,7 @@ class Move : public TransformStrategy {
       }
     }
 
-    DataModel::GetInstance()->SetVertex(vertex);
+//    DataModel::GetInstance()->SetVertex(vertex);
     std::cout << "___MOVE___" << std::endl;
   }
 };

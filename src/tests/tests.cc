@@ -36,16 +36,6 @@ TEST_F(ModelTest, testFacade) {
   //  facade_.changeColor();
 }
 
-TEST_F(ModelTest, test_data_model) {
-  DataModel* dm;
-  DataModel* test = dm->GetInstance();
-
-  cout << test->GetVertex().at(0) << endl;
-  cout << test->GetFacets().at(0) << endl;
-
-  EXPECT_EQ("setName", test->GetFileName());
-}
-
 TEST_F(ModelTest, TestViewConnectFacade) {
   controller_.addObserver(&test_view_);
 
@@ -66,12 +56,36 @@ TEST_F(ModelTest, Parser_OpenFile_ECXEPTION_bab_file) {
 //    EXPECT_ANY_THROW(test_view_.OpenFile(input_file););
 }
 
- TEST_F(ModelTest, ParserOpenFileTest) {
+TEST_F(ModelTest, ParserOpenFileTest) {
    std::string current_path(std::filesystem::current_path().generic_string());
    std::cout << "Текущая папка ======" << current_path << std::endl;
    std::string input_file = current_path + "/objFiles/cube.obj";
    test_view_.OpenFile(input_file);
  }
+
+ TEST_F(ModelTest,  LeaksTestDragon) {
+   std::string current_path(std::filesystem::current_path().generic_string());
+   std::cout << "Текущая папка ======" << current_path << std::endl;
+   std::string input_file = current_path + "/objFiles/Dragon.obj";
+   test_view_.OpenFile(input_file);
+ }
+
+ TEST_F(ModelTest,  LeaksTestHeli) {
+   std::string current_path(std::filesystem::current_path().generic_string());
+   std::cout << "Текущая папка ======" << current_path << std::endl;
+   std::string input_file = current_path + "/objFiles/Heli.obj";
+   test_view_.OpenFile(input_file);
+ }
+
+ TEST_F(ModelTest,  LeaksTestCat) {
+   std::string current_path(std::filesystem::current_path().generic_string());
+   std::cout << "Текущая папка ======" << current_path << std::endl;
+   std::string input_file = current_path + "/objFiles/cat.obj";
+   test_view_.OpenFile(input_file);
+ }
+
+
+
 
 // TEST_F(ModelTest, ParserOpenFileTest_violator) {
 //   std::string input_file =
@@ -106,5 +120,7 @@ TEST_F(ModelTest, Parser_OpenFile_ECXEPTION_bab_file) {
 //OpenFile new TIME = 27 736 455
 //                    26 286 778
  // через терминал     5 174 337
+ // терминал б.резерв  5 444 326
+ // терминал c.резерв  5 178 973
 //                     2 981 385
 

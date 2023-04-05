@@ -44,7 +44,7 @@ class Rotate : public TransformStrategy {
       vertex[i + b] = sin(angle) * a1 + cos(angle) * a2;
     }
 
-    DataModel::GetInstance()->SetVertex(vertex);
+//    DataModel::GetInstance()->SetVertex(vertex);
 
     std::cout << "___ROTATE___" << std::endl;
   }

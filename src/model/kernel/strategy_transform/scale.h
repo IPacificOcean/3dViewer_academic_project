@@ -22,7 +22,7 @@ class Scale : public TransformStrategy {
       vertex[i + 2] *= scale;
     }
 
-    DataModel::GetInstance()->SetVertex(vertex);
+//    DataModel::GetInstance()->SetVertex(vertex);
     std::cout << "___SCALE___" << std::endl;
   }
 };
