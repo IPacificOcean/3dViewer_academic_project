@@ -16,11 +16,10 @@ namespace s21 {
 
 class Parser {
  public:
-  void OpenFile(std::string &input_file);
-  std::pair<size_t, size_t> PreParser(std::string &input_file);
-  std::pair<std::vector<double>, std::vector<unsigned int>> GetDataVetrtexAndFacet(std::string &input_file,
-                              size_t v_size,
-                              size_t f_size);
+  void OpenFile(std::string& input_file);
+  void GetDataVetrtexAndFacet(std::string& input_file,
+                              std::vector<double>& vertex,
+                              std::vector<unsigned int>& facets);
   void WriteData();
 
  private:

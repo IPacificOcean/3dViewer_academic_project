@@ -34,8 +34,8 @@ class Facade : public Observable {
   }
 
   void ParseObj() {
-    DataModel::GetInstance()->SetFacetsSize(123);
-    this->notifyUpdate();
+//    DataModel::GetInstance()->SetFacetsSize(123);
+//    this->notifyUpdate();
   }
 
   void OpenFile(std::string& input_file) {

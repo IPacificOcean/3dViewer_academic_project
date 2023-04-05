@@ -119,7 +119,6 @@ void GLviewer::lineSettingForm()
     glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
     glLineWidth(lineWidth);
 //    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
-//    std::vector<unsigned int> temp =  s21::DataModel::GetInstance()->GetFacets();
     glDrawElements(GL_LINES, s21::DataModel::GetInstance()->GetFacets().size(), GL_UNSIGNED_INT, s21::DataModel::GetInstance()->GetFacets().data());
 
     glDisable(GL_LINE_STIPPLE);

@@ -33,30 +33,20 @@ void s21::Parser::OpenFile(std::string &input_file) {
 
   std::cout << "s21::Parser::OpenFile\n";  // !!!
 
-  std::pair<size_t, size_t> pair{};
-  std::pair<std::vector<double>, std::vector<unsigned int>> vectors{};
-
+  std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
+  std::vector<unsigned int> &facets = DataModel::GetInstance()->AccessFacets();
   try {
-    //    print(testfile); // del
-
-//    pair = PreParser(input_file);
-
-    std::cout << "vertexes_count = " << (pair.first = 1000000) << '\n';
-    std::cout << "facets_count = " << (pair.second = 1000000) << '\n';
-
-
-
-    vectors = GetDataVetrtexAndFacet(input_file, pair.first, pair.second);
+    GetDataVetrtexAndFacet(input_file, vertex, facets);
 
   } catch (...) {
     throw;
   }
 
   //    ----WRITE DATA----
-  DataModel::GetInstance()->SetVertexSize(pair.first);
-  DataModel::GetInstance()->SetFacetsSize(pair.second);
-  DataModel::GetInstance()->SetVertex(vectors.first);
-  DataModel::GetInstance()->SetFacets(vectors.second);
+  //  DataModel::GetInstance()->SetVertexSize(pair.first);
+  //  DataModel::GetInstance()->SetFacetsSize(pair.second);
+  //  DataModel::GetInstance()->SetVertex(vectors.first);
+  //  DataModel::GetInstance()->SetFacets(vectors.second);
   //  WriteData();
   //    ----WRITE DATA----
   unsigned int end_time = clock();  // конечное время
@@ -64,52 +54,20 @@ void s21::Parser::OpenFile(std::string &input_file) {
   std::cout << "OpenFile TIME = " << end_time - start_time;  // искомое время
 }
 
-std::pair<size_t, size_t> s21::Parser::PreParser(std::string &input_file) {
-  std::ifstream file(input_file);
-  if (!file.is_open()) {
-    throw std::invalid_argument("PreParser: file open error");
-  }
-
-  size_t vertexes_count{};
-  size_t space_count{};
-  std::string line{};
-
-  // первый проход с подсчетом строк v f
-  while (getline(file, line)) {
-    //    std::cout << line << '\n';
-    if (line[0] == 'v' && line[1] == ' ') {
-      //      std::cout << "vertexes_count" << vertexes_count << '\n';
-      ++vertexes_count;
-    }
-
-    if (line[0] == 'f' && line[1] == ' ') {
-      count_number_in_string(&space_count, line);
-    }
-  }
-
-  vertexes_count = vertexes_count * 3 + 3;
-  space_count = space_count * 2;
-
-  file.close();
-
-  return {vertexes_count, space_count};
-}
-
-std::pair<std::vector<double>, std::vector<unsigned int>> s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
-                                         size_t f_size) {
+void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file,
+                                         std::vector<double> &vertex,
+                                         std::vector<unsigned int> &facets) {
   std::ifstream s_file(input_file);
   if (!s_file.is_open()) {
     throw std::invalid_argument("GetDataVetrtexAndFacet: file open error");
   }
 
-  std::vector<double> vertexes;
-  std::vector<unsigned int> facets;
-  vertexes.reserve(v_size);
-  facets.reserve(f_size);
+  vertex.reserve(10000);
+  facets.reserve(10000);
 
-  vertexes.push_back(0);
-  vertexes.push_back(0);
-  vertexes.push_back(0);
+  vertex.push_back(0);
+  vertex.push_back(0);
+  vertex.push_back(0);
 
   std::string line;
   int count{};
@@ -123,7 +81,7 @@ std::pair<std::vector<double>, std::vector<unsigned int>> s21::Parser::GetDataVe
     if (line[0] == 'v' && line[1] == ' ') {
       while (getline(s_stream, token, ' ')) {
         if (token == "v") continue;
-        vertexes.push_back(std::stod(token));
+        vertex.push_back(std::stod(token));
       }
     }
 
@@ -147,21 +105,20 @@ std::pair<std::vector<double>, std::vector<unsigned int>> s21::Parser::GetDataVe
       facets.push_back(f_temp);
     }
 
-  } // end while
+  }  // end while
 
-//  if (vertexes.size() != v_size) {
-//    throw std::invalid_argument(
-//        "GetDataVetrtexAndFacet: vertexes.size() != v_size");
-//  }
-//
-//  if (facets.size() != f_size) {
-//    throw std::invalid_argument(
-//        "GetDataVetrtexAndFacet: facets.size() != f_size");
-//  }
+  //  if (vertex.size() != v_size) {
+  //    throw std::invalid_argument(
+  //        "GetDataVetrtexAndFacet: vertex.size() != v_size");
+  //  }
+  //
+  //  if (facets.size() != f_size) {
+  //    throw std::invalid_argument(
+  //        "GetDataVetrtexAndFacet: facets.size() != f_size");
+  //  }
   s_file.close();
-  return {vertexes, facets};
 }
 
 void s21::Parser::WriteData() {
-  DataModel::GetInstance()->SetFacetsSize(123);
+  //  DataModel::GetInstance()->SetFacetsSize(123);
 }

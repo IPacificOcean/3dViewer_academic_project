@@ -6,26 +6,22 @@
 #define INC_3DVIEWER_V2_0_SRC_MODEL_DAO_DATA_MODEL_H_
 #include <string>
 #include <vector>
+#include "../model/kernel/parser.h"
 
 
 // TODO нужно инкапсулировать сеттеры от view, можно добавить friend классы
 namespace s21 {
 class DataModel {
  public:
-  std::vector<double> &GetVertex()  { return vertex_; }
-  void SetVertex(const std::vector<double> &vertex) { vertex_ = vertex; }
+  const std::vector<double> &GetVertex() const { return vertex_; }
+  const std::vector<unsigned int> &GetFacets()  const { return facets_; }
 
-  std::vector<unsigned int> &GetFacets()  { return facets_; }
-  void SetFacets(const std::vector<unsigned int> &facets) { facets_ = facets; }
+  size_t GetVertexSize() const { return vertex_.size(); }
 
-  size_t GetVertexSize() const { return vertex_size_; }
-  void SetVertexSize(size_t vertex_size) { vertex_size_ = vertex_size; }
-
-  size_t GetFacetsSize() const { return facets_size_; }
-  void SetFacetsSize(size_t facets_size) { facets_size_ = facets_size; }
+  size_t GetFacetsSize() const { return facets_.size(); }
 
   const std::string &GetFileName() const { return file_name_; }
-  void SetFileName(const std::string &file_name) { file_name_ = file_name; }
+
   static DataModel *GetInstance();
 
   ~DataModel() { delete instance_; }
@@ -35,9 +31,15 @@ class DataModel {
   static inline DataModel *instance_;
   std::vector<double> vertex_{};
   std::vector<unsigned int> facets_{};
-  size_t vertex_size_{};
-  size_t facets_size_{};
+//  size_t vertex_size_{};
+//  size_t facets_size_{};
   std::string file_name_{};
+
+  friend class Parser;
+  std::vector<double> &AccessVertex()  { return vertex_; }
+  std::vector<unsigned int> &AccessFacets()  { return facets_; }
+  std::string &AccessFileName()  { return file_name_; }
+
 };
 
 }  // namespace s21

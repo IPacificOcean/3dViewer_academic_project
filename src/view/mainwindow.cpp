@@ -49,8 +49,8 @@ void MainWindow::on_openFile_clicked()
 
     if (file != ""){
     free_vertex_and_facet(); // можно сделать просто clear векторов
-    s21::DataModel::GetInstance()->SetFacets({});
-    s21::DataModel::GetInstance()->SetFacets({});
+//    s21::DataModel::GetInstance()->SetFacets({});
+//    s21::DataModel::GetInstance()->SetFacets({});
     ui->statusBar->showMessage(file);
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
