@@ -12,11 +12,11 @@
 namespace s21 {
 class DataModel {
  public:
-  const std::vector<double> &GetVertex() const { return vertex_; }
+  std::vector<double> &GetVertex()  { return vertex_; }
   void SetVertex(const std::vector<double> &vertex) { vertex_ = vertex; }
 
-  const std::vector<size_t> &GetFacets() const { return facets_; }
-  void SetFacets(const std::vector<size_t> &facets) { facets_ = facets; }
+  std::vector<unsigned int> &GetFacets()  { return facets_; }
+  void SetFacets(const std::vector<unsigned int> &facets) { facets_ = facets; }
 
   size_t GetVertexSize() const { return vertex_size_; }
   void SetVertexSize(size_t vertex_size) { vertex_size_ = vertex_size; }
@@ -34,7 +34,7 @@ class DataModel {
   DataModel() = default;
   static inline DataModel *instance_;
   std::vector<double> vertex_{};
-  std::vector<size_t> facets_{};
+  std::vector<unsigned int> facets_{};
   size_t vertex_size_{};
   size_t facets_size_{};
   std::string file_name_{};

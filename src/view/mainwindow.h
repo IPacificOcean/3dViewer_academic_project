@@ -42,7 +42,7 @@ class MainWindow : public QMainWindow {
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-  void free_vertex_and_facet();
+  void free_vertex_and_facet(); // скорее всего не нужно т.к. используем вектор
 
   void load_settings();
 
@@ -67,7 +67,7 @@ class MainWindow : public QMainWindow {
 
   void on_doubleSpinBox_Scale_valueChanged(double valueScale);
 
-  void on_update_clicked();
+//  void on_update_clicked();
 
   void on_spinBox_line_width_valueChanged(int value);
 
@@ -85,7 +85,7 @@ class MainWindow : public QMainWindow {
   void save_gif();
   //_______
 
-  void on_optimization_clicked();
+//  void on_optimization_clicked();
 
   void on_comboBox_point_form_currentIndexChanged(int index);
 

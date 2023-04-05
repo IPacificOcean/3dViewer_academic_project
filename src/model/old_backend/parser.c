@@ -4,8 +4,11 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <stdio.h>
 
 int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
+  unsigned int start_time = clock();  // начальное время
   int error = 0;
   //************************
   FILE *f = fopen(filePath, "r");
@@ -17,7 +20,9 @@ int parser(char *filePath, Vertexes *vertexes, Facets *facets) {
   if (!error) error = getDataVetrtexAndFacet(f, vertexes, facets);
 
   if (f) fclose(f);
-
+  unsigned int end_time = clock();  // конечное время
+  printf("OpenFile TIME = %d", ( end_time - start_time));
+//  std::cout << "OpenFile TIME = " << end_time - start_time;  // искомое время
   return error;
 }
 

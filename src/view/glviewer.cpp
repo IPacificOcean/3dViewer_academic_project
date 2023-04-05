@@ -1,5 +1,6 @@
 #include "glviewer.h"
 #include <QDebug>
+#include <memory>
 
 
 GLviewer::GLviewer(QWidget *parent)
@@ -7,19 +8,15 @@ GLviewer::GLviewer(QWidget *parent)
 {
     setWindowTitle("3Dviewer");
     setGeometry(400, 200, 1200, 900);
-    vertex = {0, nullptr};
-    facet = {0, nullptr};
-    move = {0, 0, 0};
-    rotate = {0, 0, 0};
     modelScale = 1;
     scale = 0.05;
 
-    colorWidget = QColor(Qt::black);
+    colorWidget = QColor(Qt::gray);
     colorLine = QColor(Qt::darkBlue);
     colorPoint = QColor(Qt::red);
 
-    pointSize = 1;
-    lineWidth = 1;
+    pointSize = 4;
+    lineWidth = 2;
     pointForm = POINT_ROUND;
     lineForm = LINE_SOLID;
     frustum = EMPTY;
@@ -84,7 +81,9 @@ void GLviewer::drawShape()
 
         glScaled(scale, scale, scale);
         glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
+//        glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
+        glVertexPointer(3,GL_DOUBLE, 0, s21::DataModel::GetInstance()->GetVertex().data());
+
         // Points//
         if (pointForm != EMPTY){
             pointSettingForm();
@@ -105,12 +104,8 @@ void GLviewer::pointSettingForm()
     }
     glPointSize(pointSize);
     glColor3d(colorPoint.redF(),colorPoint.greenF(),colorPoint.blueF());
-    glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
-
-//    for (auto i = 0; i < facet.count; ++i) {
-//      std::cout <<  "[" << i << "] " << facet.arg[i] << " ";
-//    }
-
+//    glDrawElements(GL_POINTS, facet.count, GL_UNSIGNED_INT, facet.arg);
+    glDrawElements(GL_POINTS, s21::DataModel::GetInstance()->GetFacets().size(), GL_UNSIGNED_INT, s21::DataModel::GetInstance()->GetFacets().data());
 }
 
 void GLviewer::lineSettingForm()
@@ -123,7 +118,10 @@ void GLviewer::lineSettingForm()
     }
     glColor3d(colorLine.redF(),colorLine.greenF(),colorLine.blueF());
     glLineWidth(lineWidth);
-    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
+//    glDrawElements(GL_LINES, facet.count, GL_UNSIGNED_INT, facet.arg);
+//    std::vector<unsigned int> temp =  s21::DataModel::GetInstance()->GetFacets();
+    glDrawElements(GL_LINES, s21::DataModel::GetInstance()->GetFacets().size(), GL_UNSIGNED_INT, s21::DataModel::GetInstance()->GetFacets().data());
+
     glDisable(GL_LINE_STIPPLE);
 }
 

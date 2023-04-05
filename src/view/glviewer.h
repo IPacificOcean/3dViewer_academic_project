@@ -9,13 +9,14 @@
 #include <QFileDialog>
 #include <QColorDialog>
 
-#include<iostream>
+#include <iostream>
+#include "../model/dao/data_model.h"
+
+//extern "C" {
+//#include "../model/old_backend/parser.h"
+//}
 
 #include <QTimer>
-
-extern "C" {
-#include "../model/old_backend/parser.h"
-}
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GLviewer; }
@@ -29,14 +30,8 @@ public:
     GLviewer(QWidget *parent = nullptr);
     ~GLviewer();
 
-
-    Vertexes vertex;
-    Facets facet;
-
     double scale;
     double modelScale;
-    Move move;
-    Rotate rotate;
 
     QColor colorWidget;
     QColor colorLine;
@@ -47,6 +42,9 @@ public:
     int lineWidth;
     int lineForm;
     int frustum;
+//    Vretex vertex;
+//    Facet facet;
+
 
 
     enum {

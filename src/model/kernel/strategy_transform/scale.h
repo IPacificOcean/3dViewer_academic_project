@@ -11,7 +11,7 @@
 
 namespace s21 {
 class Scale : public TransformStrategy {
-  void transform(double scale, Axis axis) override {
+  void transform(double scale, Axis axis = X) override {
     std::vector<double> vertex =
         DataModel::GetInstance()
             ->GetVertex();  // TODO лучше использовать ссылку

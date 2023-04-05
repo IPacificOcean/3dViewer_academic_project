@@ -35,12 +35,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::free_vertex_and_facet()
 {
-    if (ui->widget->vertex.arg || ui->widget->facet.arg) {
-    free (ui->widget->vertex.arg);
-    ui->widget->vertex.count = 0;
-    free (ui->widget->facet.arg);
-    ui->widget->facet.count = 0;
-    }
+//    if (ui->widget->vertex.arg || ui->widget->facet.arg) {
+//    free (ui->widget->vertex.arg);
+//    ui->widget->vertex.count = 0;
+//    free (ui->widget->facet.arg);
+//    ui->widget->facet.count = 0;
+//    }
 }
 
 void MainWindow::on_openFile_clicked()
@@ -48,24 +48,26 @@ void MainWindow::on_openFile_clicked()
     QString file = QFileDialog::getOpenFileName(this, "Выберите файл", ".", tr( " (*.obj)"));
 
     if (file != ""){
-    free_vertex_and_facet();
+    free_vertex_and_facet(); // можно сделать просто clear векторов
+    s21::DataModel::GetInstance()->SetFacets({});
+    s21::DataModel::GetInstance()->SetFacets({});
     ui->statusBar->showMessage(file);
     QByteArray ba = file.toLocal8Bit();
     char *str = ba.data();
     int error = 0;
 //    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
-    error = controller_.OpenOld(str , &ui->widget->vertex, &ui->widget->facet);
+//    error = controller_.OpenOld(str , &ui->widget->vertex, &ui->widget->facet);
+
+    std::string input_file = file.toStdString();
+    controller_.OpenFile(input_file);
+
     if (error) {
         ui->statusBar->showMessage("file not found");
     }
 
-//    for (auto i = 0; i < ui->widget->facet.count; ++i) {
-//      std::cout << "[" << i << "] " << ui->widget->facet.arg[i] << " ";
-//    }
-
-    ui->coun_vertexes->setText(QString::number((ui->widget->vertex.count - 3) / 3));
-    ui->count_facets->setText(QString::number(ui->widget->facet.count / 2));
-    ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
+//    ui->coun_vertexes->setText(QString::number((ui->widget->vertex.count - 3) / 3));
+//    ui->count_facets->setText(QString::number(ui->widget->facet.count / 2));
+//    ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
     }
 }
 
@@ -89,55 +91,55 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 }
 
 
-void MainWindow::on_update_clicked() {
-     // move
-    ui->widget->move.dx = ui->widget->move.dx - (double) ui->dx->value();
-    ui->widget->move.dy = ui->widget->move.dy - (double) ui->dy->value();
-    ui->widget->move.dz = ui->widget->move.dz - (double) ui->dz->value();
+//void MainWindow::on_update_clicked() {
+//     // move
+//    ui->widget->move.dx = ui->widget->move.dx - (double) ui->dx->value();
+//    ui->widget->move.dy = ui->widget->move.dy - (double) ui->dy->value();
+//    ui->widget->move.dz = ui->widget->move.dz - (double) ui->dz->value();
 
-    if (ui->widget->move.dx == 0 ||
-        ui->widget->move.dy == 0 ||
-        ui->widget->move.dz == 0) {
-      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
-      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
-      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+//    if (ui->widget->move.dx == 0 ||
+//        ui->widget->move.dy == 0 ||
+//        ui->widget->move.dz == 0) {
+//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
+//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
 
-        moveObj(&ui->widget->vertex, ui->widget->move);
-    }
+//        moveObj(&ui->widget->vertex, ui->widget->move);
+//    }
 
-    ui->widget->move.dx = (double) ui->dx->value();
-    ui->widget->move.dy = (double) ui->dy->value();
-    ui->widget->move.dz = (double) ui->dz->value();
+//    ui->widget->move.dx = (double) ui->dx->value();
+//    ui->widget->move.dy = (double) ui->dy->value();
+//    ui->widget->move.dz = (double) ui->dz->value();
 
-    // rotate
-    ui->widget->rotate.dx = ui->widget->rotate.dx - (double)ui->rdx->value();
-    ui->widget->rotate.dy = ui->widget->rotate.dy - (double)ui->rdy->value();
-    ui->widget->rotate.dz = ui->widget->rotate.dz - (double)ui->rdz->value();
+//    // rotate
+//    ui->widget->rotate.dx = ui->widget->rotate.dx - (double)ui->rdx->value();
+//    ui->widget->rotate.dy = ui->widget->rotate.dy - (double)ui->rdy->value();
+//    ui->widget->rotate.dz = ui->widget->rotate.dz - (double)ui->rdz->value();
 
-    if(ui->widget->rotate.dx != 0 ||
-       ui->widget->rotate.dy != 0 ||
-       ui->widget->rotate.dz != 0) {
-       rotationObj(&ui->widget->vertex, ui->widget->rotate);
-    }
+//    if(ui->widget->rotate.dx != 0 ||
+//       ui->widget->rotate.dy != 0 ||
+//       ui->widget->rotate.dz != 0) {
+//       rotationObj(&ui->widget->vertex, ui->widget->rotate);
+//    }
 
-    ui->widget->rotate.dx = (double)ui->rdx->value();
-    ui->widget->rotate.dy = (double)ui->rdy->value();
-    ui->widget->rotate.dz = (double)ui->rdz->value();
+//    ui->widget->rotate.dx = (double)ui->rdx->value();
+//    ui->widget->rotate.dy = (double)ui->rdy->value();
+//    ui->widget->rotate.dz = (double)ui->rdz->value();
 
-    // scale
-    if (ui->modelScale->value() <= 0) {
-        ui->modelScale->setValue(1);
-    }
+//    // scale
+//    if (ui->modelScale->value() <= 0) {
+//        ui->modelScale->setValue(1);
+//    }
 
-    ui->widget->modelScale = ui->modelScale->value() / ui->widget->modelScale;
+//    ui->widget->modelScale = ui->modelScale->value() / ui->widget->modelScale;
 
-    if(ui->widget->modelScale != 0 &&
-       ui->modelScale->value() > 0) {
-       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
-    }
-    ui->widget->modelScale = ui->modelScale->value();
+//    if(ui->widget->modelScale != 0 &&
+//       ui->modelScale->value() > 0) {
+//       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
+//    }
+//    ui->widget->modelScale = ui->modelScale->value();
 
-}
+//}
 
 
 void MainWindow::on_spinBox_line_width_valueChanged(int value)
@@ -225,36 +227,36 @@ void MainWindow::create_screen()
 
 //_________GIF end
 
-void MainWindow::on_optimization_clicked(){
-    double xMax = 0;
-    double xMin = 0;
-    double yMax = 0;
-    double yMin = 0;
-    double zMax = 0;
-    double zMin = 0;
-    double maxSize = 0;
-    double scale = 100;
+//void MainWindow::on_optimization_clicked(){
+//    double xMax = 0;
+//    double xMin = 0;
+//    double yMax = 0;
+//    double yMin = 0;
+//    double zMax = 0;
+//    double zMin = 0;
+//    double maxSize = 0;
+//    double scale = 100;
 
-    for (unsigned int var = 3; var < ui->widget->vertex.count; var += 3) {
+//    for (unsigned int var = 3; var < ui->widget->vertex.count; var += 3) {
 
-        if(ui->widget->vertex.arg[var] > xMax) xMax = ui->widget->vertex.arg[var];
-        if(ui->widget->vertex.arg[var] < xMin) xMin = ui->widget->vertex.arg[var];
-        if(ui->widget->vertex.arg[var+1] > yMax) yMax = ui->widget->vertex.arg[var];
-        if(ui->widget->vertex.arg[var+1] < yMin) yMin = ui->widget->vertex.arg[var];
-        if(ui->widget->vertex.arg[var+2] > zMax) zMax = ui->widget->vertex.arg[var];
-        if(ui->widget->vertex.arg[var+2] < zMin) zMin = ui->widget->vertex.arg[var];
-    }
-    maxSize = xMax - xMin;
-    if (maxSize < yMax - yMin) maxSize = yMax - yMin;
-    if (maxSize < zMax - zMin) maxSize = zMax - zMin;
+//        if(ui->widget->vertex.arg[var] > xMax) xMax = ui->widget->vertex.arg[var];
+//        if(ui->widget->vertex.arg[var] < xMin) xMin = ui->widget->vertex.arg[var];
+//        if(ui->widget->vertex.arg[var+1] > yMax) yMax = ui->widget->vertex.arg[var];
+//        if(ui->widget->vertex.arg[var+1] < yMin) yMin = ui->widget->vertex.arg[var];
+//        if(ui->widget->vertex.arg[var+2] > zMax) zMax = ui->widget->vertex.arg[var];
+//        if(ui->widget->vertex.arg[var+2] < zMin) zMin = ui->widget->vertex.arg[var];
+//    }
+//    maxSize = xMax - xMin;
+//    if (maxSize < yMax - yMin) maxSize = yMax - yMin;
+//    if (maxSize < zMax - zMin) maxSize = zMax - zMin;
 
 
-    while(maxSize * scale > 1 && scale > 0.0001) {
-        scale *= 0.9;
-    }
+//    while(maxSize * scale > 1 && scale > 0.0001) {
+//        scale *= 0.9;
+//    }
 
-      ui->doubleSpinBox_Scale->setValue(scale);
-}
+//      ui->doubleSpinBox_Scale->setValue(scale);
+//}
 
 
 void MainWindow::on_comboBox_point_form_currentIndexChanged(int index)

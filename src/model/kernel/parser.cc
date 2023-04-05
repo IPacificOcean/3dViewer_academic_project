@@ -34,15 +34,15 @@ void s21::Parser::OpenFile(std::string &input_file) {
   std::cout << "s21::Parser::OpenFile\n";  // !!!
 
   std::pair<size_t, size_t> pair{};
-  std::pair<std::vector<double>, std::vector<size_t>> vectors{};
+  std::pair<std::vector<double>, std::vector<unsigned int>> vectors{};
 
   try {
     //    print(testfile); // del
 
-    pair = PreParser(input_file);
+//    pair = PreParser(input_file);
 
-    std::cout << "vertexes_count = " << pair.first << '\n';
-    std::cout << "facets_count = " << pair.second << '\n';
+    std::cout << "vertexes_count = " << (pair.first = 1000000) << '\n';
+    std::cout << "facets_count = " << (pair.second = 1000000) << '\n';
 
 
 
@@ -95,7 +95,7 @@ std::pair<size_t, size_t> s21::Parser::PreParser(std::string &input_file) {
   return {vertexes_count, space_count};
 }
 
-std::pair<std::vector<double>, std::vector<size_t>> s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
+std::pair<std::vector<double>, std::vector<unsigned int>> s21::Parser::GetDataVetrtexAndFacet(std::string &input_file, size_t v_size,
                                          size_t f_size) {
   std::ifstream s_file(input_file);
   if (!s_file.is_open()) {
@@ -103,7 +103,7 @@ std::pair<std::vector<double>, std::vector<size_t>> s21::Parser::GetDataVetrtexA
   }
 
   std::vector<double> vertexes;
-  std::vector<size_t> facets;
+  std::vector<unsigned int> facets;
   vertexes.reserve(v_size);
   facets.reserve(f_size);
 
@@ -149,15 +149,15 @@ std::pair<std::vector<double>, std::vector<size_t>> s21::Parser::GetDataVetrtexA
 
   } // end while
 
-  if (vertexes.size() != v_size) {
-    throw std::invalid_argument(
-        "GetDataVetrtexAndFacet: vertexes.size() != v_size");
-  }
-
-  if (facets.size() != f_size) {
-    throw std::invalid_argument(
-        "GetDataVetrtexAndFacet: facets.size() != f_size");
-  }
+//  if (vertexes.size() != v_size) {
+//    throw std::invalid_argument(
+//        "GetDataVetrtexAndFacet: vertexes.size() != v_size");
+//  }
+//
+//  if (facets.size() != f_size) {
+//    throw std::invalid_argument(
+//        "GetDataVetrtexAndFacet: facets.size() != f_size");
+//  }
   s_file.close();
   return {vertexes, facets};
 }
