@@ -29,6 +29,7 @@ class DataModel {
   std::string file_name_{};
 
   friend class Parser;
+  friend class OptimalScaleCalculator;
   friend class Move;
   friend class Rotate;
   friend class Scale;

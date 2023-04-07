@@ -27,6 +27,7 @@ set(HEADER_FILES
         src/model/kernel/strategy_transform/move.h
         src/model/kernel/strategy_transform/rotate.h
         src/model/kernel/strategy_transform/scale.h
+        src/model/kernel/optimal_scale_calculator.h
 
         )
 
@@ -40,6 +41,7 @@ set(SOURCE_FILES
         src/model/kernel/strategy_transform/move.cc
         src/model/kernel/strategy_transform/rotate.cc
         src/model/kernel/strategy_transform/scale.cc
+        src/model/kernel/optimal_scale_calculator.cc
         )
 
 add_library(viewer_2_0 STATIC ${SOURCE_FILES} ${HEADER_FILES})

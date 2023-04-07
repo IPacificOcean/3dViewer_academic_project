@@ -3,6 +3,7 @@
 
 //#include "../view/type_transform.h"
 //#include "./dao/data_model.h"
+#include "./kernel/optimal_scale_calculator.h"
 #include "./kernel/parser.h"
 #include "./kernel/strategy_transform/move.h"
 #include "./kernel/strategy_transform/rotate.h"
@@ -47,11 +48,16 @@ class Facade : public Observable {
     this->notifyUpdate();
   }
 
+  double GetOptimizeScale() {
+    return optimal_scale_calculator_.GetOptimizeScale();
+  }
+
  private:
   Parser parser_{};
   Transformer* transformer_move_;
   Transformer* transformer_rotate_;
   Transformer* transformer_scale_;
+  OptimalScaleCalculator optimal_scale_calculator_;
 };
 
 }  // namespace s21

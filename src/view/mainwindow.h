@@ -78,7 +78,7 @@ class MainWindow : public QMainWindow {
   void save_gif();
   //_______
 
-//  void on_optimization_clicked();
+  void on_optimization_clicked();
 
   void on_comboBox_point_form_currentIndexChanged(int index);
 
