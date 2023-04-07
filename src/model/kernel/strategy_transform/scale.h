@@ -9,14 +9,17 @@ namespace s21 {
 class Scale : public TransformStrategy {
   void transform(double scale, Axis axis = X) override {
     std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
+    if (scale <= 0) {
+      scale = 1;
+    }
+    SetDifferenceScale(scale);
 
     for (unsigned int i = 3; i < vertex.size(); i += 3) {
-      vertex[i] *= scale;
-      vertex[i + 1] *= scale;
-      vertex[i + 2] *= scale;
+      vertex[i] *= this->scale_;
+      vertex[i + 1] *= this->scale_;
+      vertex[i + 2] *= this->scale_;
     }
-
-    std::cout << "___SCALE___" << std::endl;
+    SetDifferenceScaleBack(scale);
   }
 };
 }  // namespace s21

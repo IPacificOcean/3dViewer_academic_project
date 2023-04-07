@@ -11,17 +11,17 @@ class Move : public TransformStrategy {
     for (unsigned int i = 3; i < vertex.size(); i += 3) {
       switch (axis) {
         case X:
-          vertex[i] += this->offset_x;
+          vertex[i] += this->offset_x_;
           break;
         case Y:
-          vertex[i + 1] += this->offset_y;
+          vertex[i + 1] += this->offset_y_;
           break;
         case Z:
-          vertex[i + 2] += this->offset_z;
+          vertex[i + 2] += this->offset_z_;
           break;
       }
     }
-    setDifferenceBack(offset, axis);
+    setDifferenceOffsetBack(offset, axis);
   }
 };
 }  // namespace s21

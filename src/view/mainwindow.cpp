@@ -11,16 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //_________AFFINE_TRANSFORMATIONS_________
-//    connect(ui->dx, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
-//    connect(ui->dy, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
-//    connect(ui->dz, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
-//    connect(ui->rdx, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
-//    connect(ui->rdy, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
-//    connect(ui->rdz, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
-//    connect(ui->doubleSpinBox_Scale, &QDoubleSpinBox::valueChanged, this, &MainWindow::AffineTransformationsScale);
-    //________________________________________
-
     //_________SAVE_SETTINGS_________
     save_settings_ = new SaveSettings(this);
     connect(this, &MainWindow::SaveSettingsSignal, save_settings_, &SaveSettings::SaveSettingsUI);
@@ -33,44 +23,26 @@ MainWindow::MainWindow(QWidget *parent)
     //_____
 }
 
-MainWindow::~MainWindow()
-{
-//    save_settings();
+MainWindow::~MainWindow() {
     delete ui;
     delete timer_for_gif;
     delete save_settings_;
 }
 
-void MainWindow::free_vertex_and_facet()
-{
-//    if (ui->widget->vertex.arg || ui->widget->facet.arg) {
-//    free (ui->widget->vertex.arg);
-//    ui->widget->vertex.count = 0;
-//    free (ui->widget->facet.arg);
-//    ui->widget->facet.count = 0;
-//    }
-}
 
 void MainWindow::on_openFile_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this, "Выберите файл", ".", tr( " (*.obj)"));
 
     if (file != ""){
-    free_vertex_and_facet(); // можно сделать просто clear векторов
-//    s21::DataModel::GetInstance()->SetFacets({});
-//    s21::DataModel::GetInstance()->SetFacets({});
     ui->statusBar->showMessage(file);
-    QByteArray ba = file.toLocal8Bit();
-    char *str = ba.data();
-    int error = 0;
-//    error = parser(str , &ui->widget->vertex, &ui->widget->facet);
-//    error = controller_.OpenOld(str , &ui->widget->vertex, &ui->widget->facet);
 
     std::string input_file = file.toStdString();
-    controller_.OpenFile(input_file);
+    try {
+      controller_.OpenFile(input_file);
 
-    if (error) {
-        ui->statusBar->showMessage("file not found");
+    } catch(std::exception& e) {
+       ui->statusBar->showMessage(e.what());
     }
 
 //    ui->coun_vertexes->setText(QString::number((ui->widget->vertex.count - 3) / 3));
@@ -98,72 +70,17 @@ void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
 }
 
 
-//void MainWindow::on_update_clicked() {
-//     // move
-//    ui->widget->move.dx = ui->widget->move.dx - (double) ui->dx->value();
-//    ui->widget->move.dy = ui->widget->move.dy - (double) ui->dy->value();
-//    ui->widget->move.dz = ui->widget->move.dz - (double) ui->dz->value();
-
-//    if (ui->widget->move.dx == 0 ||
-//        ui->widget->move.dy == 0 ||
-//        ui->widget->move.dz == 0) {
-//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
-//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
-//      std::cout << "move.dx = " << ui->widget->move.dx << std::endl;
-
-//        moveObj(&ui->widget->vertex, ui->widget->move);
-//    }
-
-//    ui->widget->move.dx = (double) ui->dx->value();
-//    ui->widget->move.dy = (double) ui->dy->value();
-//    ui->widget->move.dz = (double) ui->dz->value();
-
-//    // rotate
-//    ui->widget->rotate.dx = ui->widget->rotate.dx - (double)ui->rdx->value();
-//    ui->widget->rotate.dy = ui->widget->rotate.dy - (double)ui->rdy->value();
-//    ui->widget->rotate.dz = ui->widget->rotate.dz - (double)ui->rdz->value();
-
-//    if(ui->widget->rotate.dx != 0 ||
-//       ui->widget->rotate.dy != 0 ||
-//       ui->widget->rotate.dz != 0) {
-//       rotationObj(&ui->widget->vertex, ui->widget->rotate);
-//    }
-
-//    ui->widget->rotate.dx = (double)ui->rdx->value();
-//    ui->widget->rotate.dy = (double)ui->rdy->value();
-//    ui->widget->rotate.dz = (double)ui->rdz->value();
-
-//    // scale
-//    if (ui->modelScale->value() <= 0) {
-//        ui->modelScale->setValue(1);
-//    }
-
-//    ui->widget->modelScale = ui->modelScale->value() / ui->widget->modelScale;
-
-//    if(ui->widget->modelScale != 0 &&
-//       ui->modelScale->value() > 0) {
-//       scaleObj(&ui->widget->vertex, ui->widget->modelScale);
-//    }
-//    ui->widget->modelScale = ui->modelScale->value();
-
-//}
-
-
-void MainWindow::on_spinBox_line_width_valueChanged(int value)
-{
+void MainWindow::on_spinBox_line_width_valueChanged(int value) {
     ui->widget->lineWidth = value;
 }
 
 
-void MainWindow::on_spinBox_point_size_valueChanged(int value)
-{
+void MainWindow::on_spinBox_point_size_valueChanged(int value) {
      ui->widget->pointSize = value;
-//     qDebug() << ui->widget->pointSize;
 }
 
 
-void MainWindow::on_color_clicked()
-{
+void MainWindow::on_color_clicked() {
     if (ui->colorPoint->isChecked()) {
         ui->widget->colorPoint = QColorDialog::getColor(Qt::gray);
     } else if (ui->colorLine->isChecked()) {
@@ -174,21 +91,20 @@ void MainWindow::on_color_clicked()
 }
 
 // ________PHOTO ___GIF
-void MainWindow::on_Pthoto_clicked()
-{
-      QFileDialog file_dialog_photo(this);
-      QString f_name_photo =
-          file_dialog_photo.getSaveFileName(this,"Save as...", QDir::currentPath(), "BMP (*.bmp);; JPEG (*.jpeg)");
-      QFile file(f_name_photo);
-      file.open(QIODevice::WriteOnly);
-      QRect rect(0, 0, ui->widget->width(), ui->widget->height());
-      QPixmap pixmap = ui->widget->grab(rect);
-      pixmap.copy(rect);
-      pixmap.toImage().save(&file, "jpg");
-      QString q_command_line = "open " + f_name_photo;
-      QByteArray temp = q_command_line.toLocal8Bit();
-      char *command_line = temp.data();
-      system(command_line);
+void MainWindow::on_Pthoto_clicked() {
+    QFileDialog file_dialog_photo(this);
+    QString f_name_photo =
+        file_dialog_photo.getSaveFileName(this,"Save as...", QDir::currentPath(), "BMP (*.bmp);; JPEG (*.jpeg)");
+    QFile file(f_name_photo);
+    file.open(QIODevice::WriteOnly);
+    QRect rect(0, 0, ui->widget->width(), ui->widget->height());
+    QPixmap pixmap = ui->widget->grab(rect);
+    pixmap.copy(rect);
+    pixmap.toImage().save(&file, "jpg");
+    QString q_command_line = "open " + f_name_photo;
+    QByteArray temp = q_command_line.toLocal8Bit();
+    char *command_line = temp.data();
+    system(command_line);
 }
 
 void MainWindow::on_stop_and_save_GIF_clicked(){
@@ -199,7 +115,6 @@ void MainWindow::on_stop_and_save_GIF_clicked(){
 }
 
 void MainWindow::save_gif() {
-
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
     QGifImage gif(QSize(640, 480));
 
@@ -208,20 +123,16 @@ void MainWindow::save_gif() {
 
     for (QVector<QImage>::Iterator img = mas_image.begin(); img != mas_image.end(); ++img) {
         gif.addFrame(*img);
-
     }
-
     gif.save(fileName);
     mas_image.clear();
     ui->label_Timer_GIF->clear();
     time = 0.0;
-
 }
 
 
 
-void MainWindow::create_screen()
-{
+void MainWindow::create_screen() {
     if ( time <= 5.0) {
         mas_image.push_back(ui->widget->grab().toImage());
         time += 0.1;
@@ -266,70 +177,49 @@ void MainWindow::create_screen()
 //}
 
 
-void MainWindow::on_comboBox_point_form_currentIndexChanged(int index)
-{
+void MainWindow::on_comboBox_point_form_currentIndexChanged(int index) {
     ui->widget->pointForm = index;
     ui->widget->update();
 
 }
 
 
-void MainWindow::on_comboBox_line_form_currentIndexChanged(int index)
-{
+void MainWindow::on_comboBox_line_form_currentIndexChanged(int index) {
     ui->widget->lineForm = index;
     ui->widget->update();
 }
 
 
-void MainWindow::on_radioButton_frustum_clicked(bool checked)
-{
+void MainWindow::on_radioButton_frustum_clicked(bool checked) {
     ui->widget->frustum = checked;
 
 }
 
-void MainWindow::on_radioButton_ortho_clicked()
-{
+void MainWindow::on_radioButton_ortho_clicked() {
     ui->widget->frustum = ui->widget->EMPTY;
 }
 
-void MainWindow::load_settings() {
-    emit LoadSettingsSignal(ui);
+//_________SAVE_AND_LOAD_SETTINGS_________
+void MainWindow::on_save_settings_clicked() {
+    save_settings();
+    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
 }
 
 void MainWindow::save_settings() {
     emit SaveSettingsSignal(ui);
 }
 
-void MainWindow::on_save_settings_clicked()
-{
-    save_settings();
-    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
-
+void MainWindow::on_load_setting_clicked() {
+  load_settings();
 }
 
-  //_________AFFINE_TRANSFORMATIONS_________
-//void MainWindow::AffineTransformationsTranslate() {
-//  std::cout << "кнопка Translate нажата" << std::endl;
+void MainWindow::load_settings() {
+    emit LoadSettingsSignal(ui);
+}
+//________________________________________
 
-//  QSpinBox* send = qobject_cast<QSpinBox*>(sender());
-//  Axis axis = X;
-//  QString sender = send->objectName();
-//  std::cout << sender.toStdString() << std::endl;
-//  controller_.TransformObject(MOVE, send->value(), axis);
-//}
 
-//void MainWindow::AffineTransformationsRotate() {
-//    std::cout << "кнопка Rotate нажата" << std::endl;
-//    QSpinBox* send = qobject_cast<QSpinBox*>(sender());
-//}
-
-//void MainWindow::AffineTransformationsScale() {
-//  std::cout << "кнопка Scale нажата" << std::endl;
-////  controller_.TransformObject();
-//  QSpinBox* send = qobject_cast<QSpinBox*>(sender());
-
-//}
-
+//_________AFFINE_TRANSFORMATIONS_________
 void MainWindow::on_dx_textChanged() {
     controller_.TransformObject(MOVE, ui->dx->value(), X);
 }
@@ -354,15 +244,13 @@ void MainWindow::on_rdz_textChanged() {
   controller_.TransformObject(ROTATE, ui->rdz->value(), Z);
 }
 
-
-  //________________________________________
-
-
-  //_________SAVE_SETTINGS_________
-void MainWindow::on_load_setting_clicked() {
-    load_settings();
+void MainWindow::on_modelScale_textChanged() {
+  controller_.TransformObject(SCALE, ui->modelScale->value(), {});
 }
- //_______________________________
+//________________________________________
+
+
+
 
 
 

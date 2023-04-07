@@ -37,25 +37,25 @@ class Rotate : public TransformStrategy {
       switch (axis) {
         case X:
           vertex[i + spinning_axes.first] =
-              RotateFirstAxis(offset_x, first_axis, second_axis);
+              RotateFirstAxis(offset_x_, first_axis, second_axis);
           vertex[i + spinning_axes.second] =
-              RotateSecondAxis(offset_x, first_axis, second_axis);
+              RotateSecondAxis(offset_x_, first_axis, second_axis);
           break;
         case Y:
           vertex[i + spinning_axes.first] =
-              RotateFirstAxis(offset_y, first_axis, second_axis);
+              RotateFirstAxis(offset_y_, first_axis, second_axis);
           vertex[i + spinning_axes.second] =
-              RotateSecondAxis(offset_y, first_axis, second_axis);
+              RotateSecondAxis(offset_y_, first_axis, second_axis);
           break;
         case Z:
           vertex[i + spinning_axes.first] =
-              RotateFirstAxis(offset_z, first_axis, second_axis);
+              RotateFirstAxis(offset_z_, first_axis, second_axis);
           vertex[i + spinning_axes.second] =
-              RotateSecondAxis(offset_z, first_axis, second_axis);
+              RotateSecondAxis(offset_z_, first_axis, second_axis);
           break;
       }
     }
-    setDifferenceBack(offset, axis);
+    setDifferenceOffsetBack(offset, axis);
   }
 };
 }  // namespace s21

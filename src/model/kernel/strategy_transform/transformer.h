@@ -10,7 +10,9 @@ class Transformer {
       : transform_strategy_(strategy_transform) {}
   ~Transformer() { delete transform_strategy_; }
 
-  void TransformObject(double offset, Axis axis) { transform_strategy_->transform(offset, axis); }
+  void TransformObject(double offset, Axis axis) {
+    transform_strategy_->transform(offset, axis);
+  }
 
  private:
   TransformStrategy* transform_strategy_{};

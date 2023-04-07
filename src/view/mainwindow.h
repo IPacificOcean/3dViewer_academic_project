@@ -42,22 +42,15 @@ class MainWindow : public QMainWindow {
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-  void free_vertex_and_facet(); // скорее всего не нужно т.к. используем вектор
-
-  void load_settings();
-
-  void save_settings();
-
   //___ GIF
   QVector<QImage> mas_image;
   //____
 
   signals:
-  //_________SAVE_SETTINGS_________
+  //_________SAVE_AND_LOAD_SETTINGS_________
   void SaveSettingsSignal(Ui::MainWindow *ui);
   void LoadSettingsSignal(Ui::MainWindow *ui);
-  //_______________________________
-
+  //________________________________________
 
 
  private
@@ -95,9 +88,9 @@ class MainWindow : public QMainWindow {
 
   void on_radioButton_ortho_clicked();
 
-  void on_load_setting_clicked();
 
-  void on_save_settings_clicked();
+
+
 
   //_________AFFINE_TRANSFORMATIONS_________
   void on_dx_textChanged();
@@ -106,18 +99,13 @@ class MainWindow : public QMainWindow {
   void on_rdx_textChanged();
   void on_rdy_textChanged();
   void on_rdz_textChanged();
-//  void AffineTransformationsTranslate();
-//  void AffineTransformationsRotate();
-//  void AffineTransformationsScale();
+  void on_modelScale_textChanged();
   //________________________________________
 
-
-
-
-
-
-
-
+  //_________SAVE_AND_LOAD_SETTINGS_________
+  void on_save_settings_clicked();
+  void on_load_setting_clicked();
+  //________________________________________
 
 
 
@@ -127,19 +115,11 @@ class MainWindow : public QMainWindow {
   void wheelEvent(QWheelEvent *event) override;
   s21::Controller controller_;
 
-  //_________AFFINE_TRANSFORMATIONS_________
-//  double offset_x_{};
-//  double offset_y_{};
-//  double offset_z_{};
-
-
-  //________________________________________
-
-
-  //_________SAVE_SETTINGS_________
+  //_________SAVE_AND_LOAD_SETTINGS_________
   SaveSettings* save_settings_;
-  //_______________________________
-
+  void save_settings();
+  void load_settings();
+  //________________________________________
 
 
   //_____GIF
@@ -149,7 +129,7 @@ class MainWindow : public QMainWindow {
   double time = 0;
   int xyz = 1;
   int flag_record = 0;
-  //_-----
+  //_______
 
 
 
