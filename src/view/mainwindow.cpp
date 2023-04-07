@@ -170,26 +170,6 @@ void MainWindow::on_radioButton_ortho_clicked() {
     ui->widget->frustum = ui->widget->EMPTY;
 }
 
-//_________SAVE_AND_LOAD_SETTINGS_________
-void MainWindow::on_save_settings_clicked() {
-    save_settings();
-    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
-}
-
-void MainWindow::save_settings() {
-    emit SaveSettingsSignal(ui);
-}
-
-void MainWindow::on_load_setting_clicked() {
-  load_settings();
-}
-
-void MainWindow::load_settings() {
-    emit LoadSettingsSignal(ui);
-}
-//________________________________________
-
-
 //_________AFFINE_TRANSFORMATIONS_________
 void MainWindow::on_dx_textChanged() {
     controller_.TransformObject(MOVE, ui->dx->value(), X);
@@ -221,6 +201,24 @@ void MainWindow::on_modelScale_textChanged() {
 //________________________________________
 
 
+//_________SAVE_AND_LOAD_SETTINGS_________
+void MainWindow::on_save_settings_clicked() {
+    save_settings();
+    QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
+}
+
+void MainWindow::save_settings() {
+    emit SaveSettingsSignal(ui);
+}
+
+void MainWindow::on_load_setting_clicked() {
+  load_settings();
+}
+
+void MainWindow::load_settings() {
+    emit LoadSettingsSignal(ui);
+}
+//________________________________________
 
 
 

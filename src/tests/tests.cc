@@ -84,7 +84,7 @@ TEST_F(ModelTest, ParserOpenFileTest) {
    test_view_.OpenFile(input_file);
  }
 
-
+//  TODO tests affine transform
 // TEST_F(ModelTest, ParserOpenFileTest_violator) {
 //   std::string input_file =
 //       "/Users/violator/CPP4_3DViewer_v2.0-1/src/objFiles/cube.obj";
