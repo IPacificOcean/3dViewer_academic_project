@@ -92,19 +92,10 @@ void MainWindow::on_color_clicked() {
 
 // ________PHOTO ___GIF
 void MainWindow::on_Pthoto_clicked() {
-    QFileDialog file_dialog_photo(this);
-    QString f_name_photo =
-        file_dialog_photo.getSaveFileName(this,"Save as...", QDir::currentPath(), "BMP (*.bmp);; JPEG (*.jpeg)");
-    QFile file(f_name_photo);
-    file.open(QIODevice::WriteOnly);
-    QRect rect(0, 0, ui->widget->width(), ui->widget->height());
-    QPixmap pixmap = ui->widget->grab(rect);
-    pixmap.copy(rect);
-    pixmap.toImage().save(&file, "jpg");
-    QString q_command_line = "open " + f_name_photo;
-    QByteArray temp = q_command_line.toLocal8Bit();
-    char *command_line = temp.data();
-    system(command_line);
+
+    QFileDialog dialog_photo(this);
+    QString name_photo = dialog_photo.getSaveFileName( this, "Save as...", "photo", "BMP (*.bmp);; JPEG (*.jpeg)");
+    ui->widget->grabFramebuffer().save(name_photo);
 }
 
 void MainWindow::on_stop_and_save_GIF_clicked(){
@@ -115,6 +106,7 @@ void MainWindow::on_stop_and_save_GIF_clicked(){
 }
 
 void MainWindow::save_gif() {
+
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
     QGifImage gif(QSize(640, 480));
 
@@ -133,8 +125,9 @@ void MainWindow::save_gif() {
 
 
 void MainWindow::create_screen() {
+
     if ( time <= 5.0) {
-        mas_image.push_back(ui->widget->grab().toImage());
+        mas_image.push_back(ui->widget->grabFramebuffer());
         time += 0.1;
         ui->label_Timer_GIF->setText(QString::number(time));
     } else if (time >= 5.0) {
