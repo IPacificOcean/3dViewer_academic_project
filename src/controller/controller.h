@@ -14,13 +14,11 @@ class Controller {
  public:
   void addObserver(Observer* observer) { facade_.addObserver(observer); }
 
-  void ParseObj() { facade_.ParseObj(); }
-
-  void OpenFile(std::string& input_file) { facade_.OpenFile(input_file);}
+  void OpenFile(std::string& input_file) { facade_.OpenFile(input_file); }
   void SaveSettings();
-//  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
-//    facade_.TransformObject(type_transform, offset, axis);
-//  }
+  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
+    facade_.TransformObject(type_transform, offset, axis);
+  }
   void SetProjection();
   void Customize();
   void SavePng();

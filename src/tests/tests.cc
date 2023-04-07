@@ -40,7 +40,7 @@ TEST_F(ModelTest, TestViewConnectFacade) {
   controller_.addObserver(&test_view_);
 
   facade_.addObserver(&test_view_);
-  facade_.ParseObj();
+//  facade_.ParseObj();
 
   test_view_.SubscribeToChangeDataModel();
 }
@@ -83,8 +83,6 @@ TEST_F(ModelTest, ParserOpenFileTest) {
    std::string input_file = current_path + "/objFiles/cat.obj";
    test_view_.OpenFile(input_file);
  }
-
-
 
 
 // TEST_F(ModelTest, ParserOpenFileTest_violator) {

@@ -35,7 +35,8 @@ void s21::Parser::OpenFile(std::string &input_file) {
 
   std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
   std::vector<unsigned int> &facets = DataModel::GetInstance()->AccessFacets();
-
+  vertex.clear();
+  facets.clear();
   GetDataVetrtexAndFacet(input_file, vertex, facets);
 
   unsigned int end_time = clock();  // конечное время
@@ -51,8 +52,8 @@ void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file,
     throw std::invalid_argument("GetDataVetrtexAndFacet: file open error");
   }
 
-//  vertex.reserve(30000000);
-//  facets.reserve(30000000);
+  //  vertex.reserve(30000000);
+  //  facets.reserve(30000000);
 
   vertex.push_back(0);
   vertex.push_back(0);

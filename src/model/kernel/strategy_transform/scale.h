@@ -1,7 +1,3 @@
-//
-// Created by Violator Emilie on 3/27/23.
-//
-
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_SCALE_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_STRATEGY_TRANSFORM_SCALE_H_
 
@@ -12,9 +8,7 @@
 namespace s21 {
 class Scale : public TransformStrategy {
   void transform(double scale, Axis axis = X) override {
-    std::vector<double> vertex =
-        DataModel::GetInstance()
-            ->GetVertex();  // TODO лучше использовать ссылку
+    std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
 
     for (unsigned int i = 3; i < vertex.size(); i += 3) {
       vertex[i] *= scale;
@@ -22,7 +16,6 @@ class Scale : public TransformStrategy {
       vertex[i + 2] *= scale;
     }
 
-//    DataModel::GetInstance()->SetVertex(vertex);
     std::cout << "___SCALE___" << std::endl;
   }
 };

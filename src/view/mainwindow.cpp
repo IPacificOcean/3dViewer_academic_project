@@ -11,13 +11,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //_________AFFINE_TRANSFORMATIONS_________
+//    connect(ui->dx, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
+//    connect(ui->dy, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
+//    connect(ui->dz, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsTranslate);
+//    connect(ui->rdx, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
+//    connect(ui->rdy, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
+//    connect(ui->rdz, &QSpinBox::valueChanged, this, &MainWindow::AffineTransformationsRotate);
+//    connect(ui->doubleSpinBox_Scale, &QDoubleSpinBox::valueChanged, this, &MainWindow::AffineTransformationsScale);
+    //________________________________________
+
     //_________SAVE_SETTINGS_________
     save_settings_ = new SaveSettings(this);
-
     connect(this, &MainWindow::SaveSettingsSignal, save_settings_, &SaveSettings::SaveSettingsUI);
     connect(this, &MainWindow::LoadSettingsSignal, save_settings_, &SaveSettings::LoadSettingsUI);
     //_______________________________
-
 
     //____GIF
     timer_for_gif = new QTimer(0); // parent must be null
@@ -87,7 +95,6 @@ void MainWindow::wheelEvent(QWheelEvent *event){
 
 void MainWindow::on_doubleSpinBox_Scale_valueChanged(double valueScale){
     ui->widget->scale = valueScale;
-
 }
 
 
@@ -300,8 +307,74 @@ void MainWindow::on_save_settings_clicked()
 
 }
 
-void MainWindow::on_load_setting_clicked()
-{
+  //_________AFFINE_TRANSFORMATIONS_________
+//void MainWindow::AffineTransformationsTranslate() {
+//  std::cout << "кнопка Translate нажата" << std::endl;
+
+//  QSpinBox* send = qobject_cast<QSpinBox*>(sender());
+//  Axis axis = X;
+//  QString sender = send->objectName();
+//  std::cout << sender.toStdString() << std::endl;
+//  controller_.TransformObject(MOVE, send->value(), axis);
+//}
+
+//void MainWindow::AffineTransformationsRotate() {
+//    std::cout << "кнопка Rotate нажата" << std::endl;
+//    QSpinBox* send = qobject_cast<QSpinBox*>(sender());
+//}
+
+//void MainWindow::AffineTransformationsScale() {
+//  std::cout << "кнопка Scale нажата" << std::endl;
+////  controller_.TransformObject();
+//  QSpinBox* send = qobject_cast<QSpinBox*>(sender());
+
+//}
+
+void MainWindow::on_dx_textChanged() {
+    controller_.TransformObject(MOVE, ui->dx->value(), X);
+}
+
+void MainWindow::on_dy_textChanged() {
+  controller_.TransformObject(MOVE, ui->dy->value(), Y);
+}
+
+void MainWindow::on_dz_textChanged() {
+  controller_.TransformObject(MOVE, ui->dz->value(), Z);
+}
+
+void MainWindow::on_rdx_textChanged() {
+  controller_.TransformObject(ROTATE, ui->rdx->value(), X);
+}
+
+void MainWindow::on_rdy_textChanged() {
+  controller_.TransformObject(ROTATE, ui->rdy->value(), Y);
+}
+
+void MainWindow::on_rdz_textChanged() {
+  controller_.TransformObject(ROTATE, ui->rdz->value(), Z);
+}
+
+
+  //________________________________________
+
+
+  //_________SAVE_SETTINGS_________
+void MainWindow::on_load_setting_clicked() {
     load_settings();
 }
+ //_______________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

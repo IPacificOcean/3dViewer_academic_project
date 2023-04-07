@@ -3,13 +3,13 @@
 #include <string>
 #include <vector>
 
-
-// TODO нужно инкапсулировать сеттеры от view, можно добавить friend классы
 namespace s21 {
 class DataModel {
  public:
   [[nodiscard]] const std::vector<double> &GetVertex() const { return vertex_; }
-  [[nodiscard]] const std::vector<unsigned int> &GetFacets()  const { return facets_; }
+  [[nodiscard]] const std::vector<unsigned int> &GetFacets() const {
+    return facets_;
+  }
 
   [[nodiscard]] size_t GetVertexSize() const { return vertex_.size(); }
 
@@ -29,10 +29,13 @@ class DataModel {
   std::string file_name_{};
 
   friend class Parser;
-  std::vector<double> &AccessVertex()  { return vertex_; }
-  std::vector<unsigned int> &AccessFacets()  { return facets_; }
-  std::string &AccessFileName()  { return file_name_; }
+  friend class Move;
+  friend class Rotate;
+  friend class Scale;
 
+  std::vector<double> &AccessVertex() { return vertex_; }
+  std::vector<unsigned int> &AccessFacets() { return facets_; }
+  std::string &AccessFileName() { return file_name_; }
 };
 
 }  // namespace s21

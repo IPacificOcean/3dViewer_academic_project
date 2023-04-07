@@ -1,7 +1,3 @@
-//
-// Created by Tysane Norine on 3/29/23.
-//
-
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 

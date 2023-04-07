@@ -99,11 +99,42 @@ class MainWindow : public QMainWindow {
 
   void on_save_settings_clicked();
 
+  //_________AFFINE_TRANSFORMATIONS_________
+  void on_dx_textChanged();
+  void on_dy_textChanged();
+  void on_dz_textChanged();
+  void on_rdx_textChanged();
+  void on_rdy_textChanged();
+  void on_rdz_textChanged();
+//  void AffineTransformationsTranslate();
+//  void AffineTransformationsRotate();
+//  void AffineTransformationsScale();
+  //________________________________________
 
-private:
+
+
+
+
+
+
+
+
+
+
+
+  private:
   Ui::MainWindow *ui;
   void wheelEvent(QWheelEvent *event) override;
   s21::Controller controller_;
+
+  //_________AFFINE_TRANSFORMATIONS_________
+//  double offset_x_{};
+//  double offset_y_{};
+//  double offset_z_{};
+
+
+  //________________________________________
+
 
   //_________SAVE_SETTINGS_________
   SaveSettings* save_settings_;
