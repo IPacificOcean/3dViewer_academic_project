@@ -13,9 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //_________SAVE_SETTINGS_________
     save_settings_ = new SaveSettings(this);
-    connect(this, &MainWindow::SaveSettingsSignal, save_settings_, &SaveSettings::SaveSettingsUI);
-    connect(this, &MainWindow::LoadSettingsSignal, save_settings_, &SaveSettings::LoadSettingsUI);
+//    connect(this, &MainWindow::SaveSettingsSignal, save_settings_, &SaveSettings::SaveSettingsUI);
+//    connect(this, &MainWindow::LoadSettingsSignal, save_settings_, &SaveSettings::LoadSettingsUI);
     //_______________________________
+//    picture_ = new Media(this);
 
     //____GIF
     timer_for_gif = new QTimer(0); // parent must be null
@@ -93,9 +94,10 @@ void MainWindow::on_color_clicked() {
 // ________PHOTO ___GIF
 void MainWindow::on_Pthoto_clicked() {
 
-    QFileDialog dialog_photo(this);
-    QString name_photo = dialog_photo.getSaveFileName( this, "Save as...", "photo", "BMP (*.bmp);; JPEG (*.jpeg)");
-    ui->widget->grabFramebuffer().save(name_photo);
+//    QFileDialog dialog_photo(this);
+//    QString name_photo = dialog_photo.getSaveFileName( this, "Save as...", "photo", "BMP (*.bmp);; JPEG (*.jpeg)");
+//    ui->widget->grabFramebuffer().save(name_photo);
+    picture_.SavePicture(ui);
 }
 
 void MainWindow::on_stop_and_save_GIF_clicked(){
@@ -168,9 +170,9 @@ void MainWindow::on_save_settings_clicked() {
     save_settings();
     QMessageBox::information(this, "Сохранение настроек", "Сохранение настроек выполнено успешно");
 }
-
+// try
 void MainWindow::save_settings() {
-    emit SaveSettingsSignal(ui);
+    SaveSettingsSignal(ui);
 }
 
 void MainWindow::on_load_setting_clicked() {
@@ -178,7 +180,7 @@ void MainWindow::on_load_setting_clicked() {
 }
 
 void MainWindow::load_settings() {
-    emit LoadSettingsSignal(ui);
+    LoadSettingsSignal(ui);
 }
 //________________________________________
 

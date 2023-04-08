@@ -16,18 +16,20 @@
 
 
 //_________GIF
-#include <QLabel>
-#include <QPixmap>
-#include <QScreen>
-#include <vector>
-#include <cstdint>
-#include <QTimer>
-#include <QSettings>
-#include <QTextEdit>
-#include <math.h>
-#include "QtGifImage-master/src/gifimage/qgifimage.h"
-#include <QPainter>
-#include <QImage>
+//#include <QLabel>
+//#include <QPixmap>
+//#include <QScreen>
+//#include <vector>
+//#include <cstdint>
+//#include <QTimer>
+//#include <QSettings>
+//#include <QTextEdit>
+//#include <math.h>
+//#include "QtGifImage-master/src/gifimage/qgifimage.h"
+//#include <QPainter>
+//#include <QImage>
+
+#include "media.h"
 //__________________
 
 
@@ -45,11 +47,9 @@ class MainWindow : public QMainWindow {
   //___ GIF
   QVector<QImage> mas_image;
   //____
-
-  signals:
+//try
   //_________SAVE_AND_LOAD_SETTINGS_________
-  void SaveSettingsSignal(Ui::MainWindow *ui);
-  void LoadSettingsSignal(Ui::MainWindow *ui);
+  signals:
   //________________________________________
 
 
@@ -119,10 +119,19 @@ class MainWindow : public QMainWindow {
   SaveSettings* save_settings_;
   void save_settings();
   void load_settings();
+  void SaveSettingsSignal(Ui::MainWindow *ui) {
+        save_settings_->SaveSettingsUI(ui);
+  };
+  void LoadSettingsSignal(Ui::MainWindow *ui) {
+      save_settings_->LoadSettingsUI(ui);
+  };
   //________________________________________
 
+  //_____Photo
+  Media picture_;
 
   //_____GIF
+
   QTimer *timer;
   QTimer *timer_for_gif;
   QThread *somethread;

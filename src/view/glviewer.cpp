@@ -53,10 +53,10 @@ void GLviewer::paintGL(){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glTranslatef(0, 0, -3);
+    glTranslatef(0, 0, -5);
     glRotatef(xRot, 1, 0, 0);
     glRotatef(yRot, 0, 1, 0);
-    glRotatef(zRot, 0, 0, 1);
+//    glRotatef(zRot, 0, 0, 1);
 
     drawShape();
     update();

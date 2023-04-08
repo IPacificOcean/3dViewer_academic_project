@@ -16,7 +16,7 @@
 //#include "../model/old_backend/parser.h"
 //}
 
-#include <QTimer>
+//#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GLviewer; }

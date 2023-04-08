@@ -14,11 +14,11 @@ class SaveSettings : public QObject
   public:
     explicit SaveSettings(QObject *parent = nullptr);
 
-  signals:
-
-  public slots:
+//  signals:
+//try
     void SaveSettingsUI(Ui::MainWindow *ui);
     void LoadSettingsUI(Ui::MainWindow *ui);
+//  public slots:
 
   private:
     QString settings_file;
