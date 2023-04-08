@@ -45,7 +45,7 @@ class MainWindow : public QMainWindow {
   ~MainWindow();
 
   //___ GIF
-  QVector<QImage> mas_image;
+//  QVector<QImage> mas_image;
   //____
 //try
   //_________SAVE_AND_LOAD_SETTINGS_________
@@ -71,11 +71,11 @@ class MainWindow : public QMainWindow {
   //_______GIF
   void on_Pthoto_clicked();
 
-  void create_screen();
+//  void create_screen();
 
   void on_stop_and_save_GIF_clicked();
 
-  void save_gif();
+//  void save_gif();
   //_______
 
   void on_optimization_clicked();
@@ -116,14 +116,14 @@ class MainWindow : public QMainWindow {
   s21::Controller controller_;
 
   //_________SAVE_AND_LOAD_SETTINGS_________
-  SaveSettings* save_settings_;
+  SaveSettings save_settings_;
   void save_settings();
   void load_settings();
   void SaveSettingsSignal(Ui::MainWindow *ui) {
-        save_settings_->SaveSettingsUI(ui);
+        save_settings_.SaveSettingsUI(ui);
   };
   void LoadSettingsSignal(Ui::MainWindow *ui) {
-      save_settings_->LoadSettingsUI(ui);
+      save_settings_.LoadSettingsUI(ui);
   };
   //________________________________________
 
@@ -132,12 +132,12 @@ class MainWindow : public QMainWindow {
 
   //_____GIF
 
-  QTimer *timer;
-  QTimer *timer_for_gif;
-  QThread *somethread;
-  double time = 0;
-  int xyz = 1;
-  int flag_record = 0;
+//  QTimer *timer;
+//  QTimer *timer_for_gif;
+////  QThread *somethread;
+//  double time = 0;
+////  int xyz = 1;
+//  int flag_record = 0;
   //_______
 
 
