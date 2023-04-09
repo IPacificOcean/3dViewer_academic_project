@@ -6,7 +6,6 @@ stages:
   - code_style
   - unit_tests
   - memory_tests
-  - notify
 
 code_style:
   stage: code_style
@@ -15,7 +14,9 @@ code_style:
     - make check
   after_script:
     - if [ "$CI_JOB_STATUS" == "success" ]; then
-        sh ./src/telegram_bot.sh ✅
+      sh ./src/telegram_bot.sh ✅
+      else
+      sh ./src/telegram_bot.sh ❌
       fi
 
 unit_tests:
@@ -26,6 +27,8 @@ unit_tests:
   after_script:
     - if [ "$CI_JOB_STATUS" == "success" ]; then
       sh ./src/telegram_bot.sh ✅
+      else
+      sh ./src/telegram_bot.sh ❌
       fi
 
 memory_tests:
@@ -40,10 +43,6 @@ memory_tests:
   after_script:
     - if [ "$CI_JOB_STATUS" == "success" ]; then
       sh ./src/telegram_bot.sh ✅
+      else
+      sh ./src/telegram_bot.sh ❌
       fi
-
-notify_error:
-  stage: notify
-  script:
-    - sh ./src/telegram_bot.sh ❌
-  when: on_failure #fail
