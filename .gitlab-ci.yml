@@ -1,22 +1,30 @@
 default:
   tags:
     - runner
+
 stages:
   - code_style
   - unit_tests
   - memory_tests
   - notify
+
 code_style:
   stage: code_style
   script:
     - cd ./src/
     - make check
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
+  when: on_success
 
 unit_tests:
   stage: unit_tests
   script:
     - cd ./src/
     - make tests
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
+  when: on_success
 
 memory_tests:
   stage: memory_tests
@@ -27,9 +35,12 @@ memory_tests:
     paths:
       - ${PWD}/src/RESULT_VALGRIND.txt
     expire_in: 30 days
+  after_script:
+    - sh ./src/telegram_bot.sh ✅
+  when: on_success
 
-notify:
+notify_error:
   stage: notify
   script:
-    - sh ./src/telegram_bot.sh $CI_JOB_STATUS
-  when: always
+    - sh ./src/telegram_bot.sh ❌
+  when: on_failure #fail
