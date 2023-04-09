@@ -1,13 +1,12 @@
 #include "media.h"
 #include "ui_mainwindow.h"
-#include "mainwindow.h"
 
 
 Media::Media(Ui::MainWindow *ui, QWidget *parent)
     : QMainWindow{parent}, ui(ui)
 {
     timer_for_gif = new QTimer(); // parent must be null
-    connect(timer_for_gif, &QTimer::timeout, this, &Media::create_screen);
+    connect(timer_for_gif, &QTimer::timeout, this, &Media::CreateScreen);
 }
 
 Media::~Media() {
@@ -25,7 +24,7 @@ void Media::SaveGif() {
 }
 
 
-void Media::save_gif() {
+void Media::CreateGif() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
     QGifImage gif(QSize(640, 480));
 
@@ -41,13 +40,13 @@ void Media::save_gif() {
     time = 0.0;
 }
 
-void Media::create_screen() {
+void Media::CreateScreen() {
     if (time <= 4.9) {
         mas_image.push_back(ui->widget->grabFramebuffer());
         time += 0.1;
         ui->label_Timer_GIF->setText(QString::number(time));
     } else {
-        save_gif();
+        CreateGif();
         timer_for_gif->stop();
     }
 }

@@ -2,13 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "glviewer.h"
-#include <QColorDialog>
-
+//#include <QColorDialog>
 #include <QMessageBox>
 #include <QMovie>
-#include "../controller/controller.h"
 
+#include "glviewer.h"
+#include "../controller/controller.h"
 
 //_________SAVE_SETTINGS_________
 #include "save_settings.h"
