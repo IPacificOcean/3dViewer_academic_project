@@ -14,7 +14,9 @@ code_style:
     - cd ./src/
     - make check
   after_script:
-    - sh ./src/telegram_bot.sh ✅
+    - if [ "$CI_JOB_STATUS" == "success" ]; then
+        sh ./src/telegram_bot.sh ✅
+      fi
 
 unit_tests:
   stage: unit_tests
@@ -22,15 +24,23 @@ unit_tests:
     - cd ./src/
     - make tests
   after_script:
-    - sh ./src/telegram_bot.sh ✅
+    - if [ "$CI_JOB_STATUS" == "success" ]; then
+      sh ./src/telegram_bot.sh ✅
+      fi
 
 memory_tests:
   stage: memory_tests
   script:
     - cd ./src/
     - make leaks
+  artifacts:
+    paths:
+      - ${PWD}/src/RESULT_VALGRIND.txt
+    expire_in: 30 days
   after_script:
-    - sh ./src/telegram_bot.sh ✅
+    - if [ "$CI_JOB_STATUS" == "success" ]; then
+      sh ./src/telegram_bot.sh ✅
+      fi
 
 notify_error:
   stage: notify
