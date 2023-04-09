@@ -12,8 +12,13 @@ SOURCES += \
     ../controller/controller.cc \
     ../model/dao/data_model.cc \
     ../model/facade.cc \
+    ../model/kernel/optimal_scale_calculator.cc \
     ../model/kernel/parser.cc \
 #    ../model/old_backend/parser.c \
+    ../model/kernel/strategy_transform/move.cc \
+    ../model/kernel/strategy_transform/rotate.cc \
+    ../model/kernel/strategy_transform/scale.cc \
+    ../model/kernel/strategy_transform/transform_strategy.cc \
     QtGifImage-master/src/3rdParty/giflib/dgif_lib.c \
     QtGifImage-master/src/3rdParty/giflib/egif_lib.c \
     QtGifImage-master/src/3rdParty/giflib/gif_err.c \
@@ -32,7 +37,12 @@ HEADERS += \
     ../controller/controller.h \
     ../model/dao/data_model.h \
     ../model/facade.h \
+    ../model/kernel/optimal_scale_calculator.h \
     ../model/kernel/parser.h \
+    ../model/kernel/strategy_transform/move.h \
+    ../model/kernel/strategy_transform/rotate.h \
+    ../model/kernel/strategy_transform/scale.h \
+    ../model/kernel/strategy_transform/transform_strategy.h \
     ../model/observer/observable.h \
     ../model/observer/observer.h \
 #    ../model/old_backend/parser.h \

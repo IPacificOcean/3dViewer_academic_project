@@ -6,7 +6,7 @@
 #include "./kernel/strategy_transform/move.h"
 #include "./kernel/strategy_transform/rotate.h"
 #include "./kernel/strategy_transform/scale.h"
-#include "./kernel/strategy_transform/tranform_strategy.h"
+#include "./kernel/strategy_transform/transform_strategy.h"
 #include "./observer/observable.h"
 #include "kernel/strategy_transform/transformer.h"
 

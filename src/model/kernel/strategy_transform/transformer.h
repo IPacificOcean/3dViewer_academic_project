@@ -1,7 +1,7 @@
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 
-#include "tranform_strategy.h"
+#include "transform_strategy.h"
 
 namespace s21 {
 class Transformer {

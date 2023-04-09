@@ -13,38 +13,14 @@ class TransformStrategy {
   virtual ~TransformStrategy() {}
   virtual void transform(double offset, Axis axis) = 0;
   // нужно чтобы не было резких перепадов
-  void setDifferenceOffset(const double& offset, Axis axis) {
-    switch (axis) {
-      case X:
-        this->offset_x_ = this->offset_x_ - offset;
-        break;
-      case Y:
-        this->offset_y_ = this->offset_y_ - offset;
-        break;
-      case Z:
-        this->offset_z_ = this->offset_z_ - offset;
-        break;
-    }
-  }
+  void setDifferenceOffset(const double& offset, Axis axis);
 
   void SetDifferenceScale(const double& scale) {
     this->scale_ = scale / this->scale_;
   }
 
   // нужно обратно вернуть значения
-  void setDifferenceOffsetBack(const double& offset, Axis axis) {
-    switch (axis) {
-      case X:
-        this->offset_x_ = offset;
-        break;
-      case Y:
-        this->offset_y_ = offset;
-        break;
-      case Z:
-        this->offset_z_ = offset;
-        break;
-    }
-  }
+  void setDifferenceOffsetBack(const double& offset, Axis axis);
 
   void SetDifferenceScaleBack(const double& scale) { this->scale_ = scale; }
 
