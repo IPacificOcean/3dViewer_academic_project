@@ -1,12 +1,11 @@
 default:
   tags:
     - runner
-
 stages:
   - code_style
   - unit_tests
   - memory_tests
-
+  - notify
 code_style:
   stage: code_style
   script:
