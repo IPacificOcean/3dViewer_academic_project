@@ -14,13 +14,7 @@ class Controller {
   void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
     facade_.TransformObject(type_transform, offset, axis);
   }
-
   double GetOptimizeScale() { return facade_.GetOptimizeScale(); }
-
-  void SetProjection();
-  void Customize();
-  void SavePng();
-  void SaveGif();
 
  private:
   Facade facade_{};

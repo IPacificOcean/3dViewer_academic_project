@@ -5,7 +5,7 @@
 
 #include "../../controller/controller.h"
 #include "../../model/observer/observer.h"
-#include "../type_transform.h"
+#include "../../view/type_transform.h"
 
 namespace s21 {
 class TestView : public Observer {
@@ -17,12 +17,7 @@ class TestView : public Observer {
   void OpenFile(std::string &input_file);
   void TransformObject(TypeTransform type_transform, double offset,
                        Axis axis = X);
-
-  void SaveSettings();
-  void SetProjection();
-  void Customize();
-  void SavePng();
-  void SaveGif();
+  double GetOptimizeScale() { return controller_.GetOptimizeScale(); }
 
  private:
   Controller controller_{};

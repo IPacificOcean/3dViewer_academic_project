@@ -1,7 +1,3 @@
-//
-// Created by Violator Emilie on 3/27/23.
-//
-
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_PARSER_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_PARSER_H_
 
@@ -20,8 +16,6 @@ class Parser {
   void GetDataVetrtexAndFacet(std::string& input_file,
                               std::vector<double>& vertex,
                               std::vector<unsigned int>& facets);
-
- private:
 };
 
 }  // namespace s21

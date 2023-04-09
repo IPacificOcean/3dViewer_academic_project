@@ -17,5 +17,5 @@ void s21::TestView::OpenFile(std::string &input_file) {
 }
 
 void s21::TestView::TransformObject(TypeTransform type_transform, double offset, Axis axis) {
-//  controller_.TransformObject(type_transform, offset, axis);
+  controller_.TransformObject(type_transform, offset, axis);
 }

@@ -11,7 +11,7 @@ PATH_KERNEL = $(PATH_MODEL)/kernel
 PATH_OBSERVER = $(PATH_MODEL)/observer
 PATH_STRATEGY = $(PATH_KERNEL)/strategy_transform
 
-TEST_VIEW = ./view/test_view/test_view.cc # ПОТОМ МОЖНО УДАЛИТЬ
+TEST_VIEW = $(PATH_TESTS)/test_view/test_view.cc # ПОТОМ МОЖНО УДАЛИТЬ
 
 TEST = $(PATH_TESTS)/tests.cc
 SRC = $(PATH_CONTROLLER)/controller.cc $(PATH_MODEL)/facade.cc $(PATH_DATA)/data_model.cc $(PATH_KERNEL)/parser.cc $(PATH_STRATEGY)/move.cc \

@@ -1,8 +1,6 @@
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_FACADE_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_FACADE_H_
 
-//#include "../view/type_transform.h"
-//#include "./dao/data_model.h"
 #include "./kernel/optimal_scale_calculator.h"
 #include "./kernel/parser.h"
 #include "./kernel/strategy_transform/move.h"
@@ -45,7 +43,7 @@ class Facade : public Observable {
         transformer_scale_->TransformObject(offset, axis);
         break;
     }
-    this->notifyUpdate();
+    //    this->notifyUpdate();
   }
 
   double GetOptimizeScale() {
