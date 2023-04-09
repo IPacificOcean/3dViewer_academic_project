@@ -12,24 +12,12 @@ code_style:
   script:
     - cd ./src/
     - make check
-  after_script:
-    - if [ "$CI_JOB_STATUS" == "success" ]; then
-      sh ./src/telegram_bot.sh ✅
-      else
-      sh ./src/telegram_bot.sh ❌
-      fi
 
 unit_tests:
   stage: unit_tests
   script:
     - cd ./src/
     - make tests
-  after_script:
-    - if [ "$CI_JOB_STATUS" == "success" ]; then
-      sh ./src/telegram_bot.sh ✅
-      else
-      sh ./src/telegram_bot.sh ❌
-      fi
 
 memory_tests:
   stage: memory_tests
@@ -40,9 +28,9 @@ memory_tests:
     paths:
       - ${PWD}/src/RESULT_VALGRIND.txt
     expire_in: 30 days
-  after_script:
-    - if [ "$CI_JOB_STATUS" == "success" ]; then
-      sh ./src/telegram_bot.sh ✅
-      else
-      sh ./src/telegram_bot.sh ❌
-      fi
+
+notify:
+  stage: notify
+  script:
+    - sh ./src/telegram_bot.sh $CI_JOB_STATUS
+  when: always
