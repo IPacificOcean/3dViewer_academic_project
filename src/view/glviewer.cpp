@@ -7,11 +7,11 @@ GLviewer::GLviewer(QWidget *parent)
     : QOpenGLWidget(parent)
 {
     setWindowTitle("3Dviewer");
-    setGeometry(400, 200, 1200, 900);
+//    setGeometry(400, 200, 1200, 900);
     modelScale = 1;
     scale = 0.05;
 
-    colorWidget = QColor(Qt::gray);
+    colorWidget = QColor(Qt::green);
     colorLine = QColor(Qt::darkBlue);
     colorPoint = QColor(Qt::red);
 
@@ -32,24 +32,16 @@ GLviewer::~GLviewer()
 void GLviewer::initializeGL()
 {
     glEnable(GL_DEPTH_TEST);
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    glClearColor(0.0, 0.0, 0.0, 1.0);
 
-//    glEnable(GL_DEPTH_TEST);
-//    glMatrixMode(GL_MODELVIEW);
 }
 
 void GLviewer::resizeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
 }
 
 void GLviewer::paintGL(){
     // бесконечный цикл
-//    qDebug() << "_____paintGL_____";
     glClearColor(colorWidget.redF(), colorWidget.greenF(), colorWidget.blueF(), 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -61,9 +53,10 @@ void GLviewer::paintGL(){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glTranslatef(0, 0, 0);
+    glTranslatef(0, 0, -5);
     glRotatef(xRot, 1, 0, 0);
     glRotatef(yRot, 0, 1, 0);
+//    glRotatef(zRot, 0, 0, 1);
 
     drawShape();
     update();
@@ -72,13 +65,6 @@ void GLviewer::paintGL(){
 
 void GLviewer::drawShape()
 {
-        //Projection//
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        glMatrixMode(GL_MODELVIEW);
-//        glLoadIdentity();
-
-//        projectionSelect();
-
         glScaled(scale, scale, scale);
         glEnableClientState(GL_VERTEX_ARRAY);
 //        glVertexPointer(3,GL_DOUBLE, 0, vertex.arg);
@@ -124,19 +110,15 @@ void GLviewer::lineSettingForm()
     glDisable(GL_LINE_STIPPLE);
 }
 
-void GLviewer::projectionSelect()
-{
+void GLviewer::projectionSelect() {
     if (frustum == EMPTY) {
-      glEnable(GL_DEPTH_TEST);
-////            glOrtho(-1, 1, -1, 1, 100, 100);
-      glOrtho(-100, 100, 800, 800, 100, 100);
-//        glOrtho(-1, 1, -1, 1, 1, 3);
-//      qDebug()<<"frustum";
+
+        glOrtho(-1, 1, -1, 1, 1, 99999);
+
     } else {
-        glEnable(GL_DEPTH_TEST);
-        glFrustum(-1000, 1000, -1000, 1000, 1000, 1000);
-//        glFrustum(-1, 1, -1, 1, 1 / (2 * tan((60.0 * M_PI / 180) / 2)), 6);
-//        qDebug()<<"frustum";
+
+        glFrustum(-1, 1, -1, 1, 1, 99999);
+
     }
 }
 
