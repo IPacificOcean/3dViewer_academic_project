@@ -28,24 +28,22 @@ class Media : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit Media(QWidget *parent = nullptr);
+    explicit Media(Ui::MainWindow *ui, QWidget *parent = nullptr);
     ~Media();
 
-    void SavePicture(Ui::MainWindow *ui);
-    void SaveGif(Ui::MainWindow *ui);
+    void SavePicture();
+    void SaveGif();
     QVector<QImage> mas_image;
 
-signals:
-
-
-   private
+private
    slots:
 
-   void create_screen(Ui::MainWindow *ui);
-   void save_gif(Ui::MainWindow *ui);
+   void create_screen();
+   void save_gif();
 
 private:
-  QTimer *timer_for_gif;
+  Ui::MainWindow *ui;
+  QTimer *timer_for_gif{};
   double time = 0;
 
 };

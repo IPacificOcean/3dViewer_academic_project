@@ -10,15 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //____GIF
-//    timer_for_gif = new QTimer(0); // parent must be null
-//    connect(timer_for_gif, SIGNAL(timeout()), this, SLOT(create_screen()));
-    //_____
+    picture_ = new Media(ui);
 }
 
 MainWindow::~MainWindow() {
     delete ui;
-//    delete timer_for_gif;
+    delete picture_;
 }
 
 
@@ -46,7 +43,6 @@ void MainWindow::wheelEvent(QWheelEvent *event){
        ui->widget->change_zoom(0.9);
        ui->doubleSpinBox_Scale->setValue(ui->widget->scale);
    } else {
-
        ui->widget->change_zoom(1.1);
        ui->doubleSpinBox_Scale->setValue(ui->widget->scale);
    }
@@ -79,52 +75,17 @@ void MainWindow::on_color_clicked() {
     }
 }
 
-// ________PHOTO ___GIF
+//_________GIF_PHOTO_SAVE________
 void MainWindow::on_Pthoto_clicked() {
-
-    picture_.SavePicture(ui);
+    picture_->SavePicture();
 }
+//_______________________________
 
 void MainWindow::on_stop_and_save_GIF_clicked(){
-
-//    timer_for_gif->start(100);
-//    create_screen();
-    picture_.SaveGif(ui);
-
+    picture_->SaveGif();
 }
 
-//void MainWindow::save_gif() {
 
-//    QString fileName = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("GIF screenshot (*.gif);;GIF screenshot (*.gif)"));
-//    QGifImage gif(QSize(640, 480));
-
-//    gif.setDefaultTransparentColor(Qt::black);
-//    gif.setDefaultDelay(100);
-
-//    for (QVector<QImage>::Iterator img = mas_image.begin(); img != mas_image.end(); ++img) {
-//        gif.addFrame(*img);
-//    }
-//    gif.save(fileName);
-//    mas_image.clear();
-//    ui->label_Timer_GIF->clear();
-//    time = 0.0;
-//}
-
-
-
-//void MainWindow::create_screen() {
-
-//    if ( time <= 5.0) {
-//        mas_image.push_back(ui->widget->grabFramebuffer());
-//        time += 0.1;
-//        ui->label_Timer_GIF->setText(QString::number(time));
-//    } else if (time >= 5.0) {
-//        save_gif();
-//        timer_for_gif->stop();
-//    }
-//}
-
-//_________GIF end
 
 void MainWindow::on_optimization_clicked() {
     ui->doubleSpinBox_Scale->setValue(controller_.GetOptimizeScale());

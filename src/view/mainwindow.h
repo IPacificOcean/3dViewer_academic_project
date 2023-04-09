@@ -14,23 +14,9 @@
 #include "save_settings.h"
 //_______________________________
 
-
-//_________GIF
-//#include <QLabel>
-//#include <QPixmap>
-//#include <QScreen>
-//#include <vector>
-//#include <cstdint>
-//#include <QTimer>
-//#include <QSettings>
-//#include <QTextEdit>
-//#include <math.h>
-//#include "QtGifImage-master/src/gifimage/qgifimage.h"
-//#include <QPainter>
-//#include <QImage>
-
+//_________GIF_PHOTO_SAVE________
 #include "media.h"
-//__________________
+//_______________________________
 
 
 QT_BEGIN_NAMESPACE
@@ -43,15 +29,6 @@ class MainWindow : public QMainWindow {
  public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
-
-  //___ GIF
-//  QVector<QImage> mas_image;
-  //____
-//try
-  //_________SAVE_AND_LOAD_SETTINGS_________
-  signals:
-  //________________________________________
-
 
  private
   slots:
@@ -68,15 +45,12 @@ class MainWindow : public QMainWindow {
 
   void on_color_clicked();
 
-  //_______GIF
+  //_________GIF_PHOTO_SAVE________
   void on_Pthoto_clicked();
-
-//  void create_screen();
 
   void on_stop_and_save_GIF_clicked();
 
-//  void save_gif();
-  //_______
+  //_______________________________
 
   void on_optimization_clicked();
 
@@ -127,20 +101,9 @@ class MainWindow : public QMainWindow {
   };
   //________________________________________
 
-  //_____Photo
-  Media picture_;
-
-  //_____GIF
-
-//  QTimer *timer;
-//  QTimer *timer_for_gif;
-////  QThread *somethread;
-//  double time = 0;
-////  int xyz = 1;
-//  int flag_record = 0;
-  //_______
-
-
+  //_________GIF_PHOTO_SAVE________
+  Media* picture_;
+  //_______________________________
 
 };
 #endif // MAINWINDOW_H
