@@ -5,33 +5,31 @@
 
 #include "QtGifImage-master/src/gifimage/qgifimage.h"
 
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
-class Media : public QMainWindow
-{
-    Q_OBJECT
-public:
-    explicit Media(Ui::MainWindow *ui, QWidget *parent = nullptr);
-    ~Media();
+class Media : public QMainWindow {
+  Q_OBJECT
+ public:
+  explicit Media(Ui::MainWindow *ui, QWidget *parent = nullptr);
+  ~Media();
 
-    void SavePicture();
-    void SaveGif();
-    QVector<QImage> mas_image;
+  void SavePicture();
+  void SaveGif();
+  QVector<QImage> mas_image;
 
-private
-   slots:
+ private slots:
 
-   void CreateScreen();
-   void CreateGif();
+  void CreateScreen();
+  void CreateGif();
 
-private:
+ private:
   Ui::MainWindow *ui;
   QTimer *timer_for_gif{};
   double time{};
-
 };
 
-#endif // MEDIA_H
+#endif  // MEDIA_H

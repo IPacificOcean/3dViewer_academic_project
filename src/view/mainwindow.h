@@ -5,33 +5,28 @@
 #include <QMessageBox>
 #include <QMovie>
 
-#include "glviewer.h"
 #include "../controller/controller.h"
-#include "save_settings.h"
+#include "glviewer.h"
 #include "media.h"
-
+#include "save_settings.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow, public s21::Observer{
+class MainWindow : public QMainWindow, public s21::Observer {
   Q_OBJECT
 
  public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
- private
-  slots:
+ private slots:
 
   void on_openFile_clicked();
-
-
-
-//  void on_update_clicked();
-
-
+  //  void on_update_clicked();
 
   //_______________OBSERVER_________________
   void update() override;
@@ -51,7 +46,6 @@ class MainWindow : public QMainWindow, public s21::Observer{
   void on_optimization_clicked();
   void on_doubleSpinBox_Scale_valueChanged(double valueScale);
   //________________________________________
-
 
   //_________PAINT__________________________
   void on_color_clicked();
@@ -76,8 +70,7 @@ class MainWindow : public QMainWindow, public s21::Observer{
   void on_stop_and_save_GIF_clicked();
   //________________________________________
 
-
-  private:
+ private:
   Ui::MainWindow *ui;
   s21::Controller controller_;
 
@@ -90,16 +83,15 @@ class MainWindow : public QMainWindow, public s21::Observer{
   void save_settings();
   void load_settings();
   void SaveSettingsSignal(Ui::MainWindow *ui) {
-        save_settings_.SaveSettingsUI(ui);
+    save_settings_.SaveSettingsUI(ui);
   };
   void LoadSettingsSignal(Ui::MainWindow *ui) {
-      save_settings_.LoadSettingsUI(ui);
+    save_settings_.LoadSettingsUI(ui);
   };
   //________________________________________
 
   //_________GIF_PHOTO_SAVE_________________
-  Media* picture_;
+  Media *picture_;
   //________________________________________
-
 };
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H

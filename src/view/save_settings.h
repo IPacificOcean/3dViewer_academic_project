@@ -4,25 +4,21 @@
 #include <QObject>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
+class SaveSettings : public QObject {
+  Q_OBJECT
+ public:
+  explicit SaveSettings(QObject *parent = nullptr);
 
-class SaveSettings : public QObject
-{
-    Q_OBJECT
-  public:
-    explicit SaveSettings(QObject *parent = nullptr);
+  void SaveSettingsUI(Ui::MainWindow *ui);
+  void LoadSettingsUI(Ui::MainWindow *ui);
 
-//  signals:
-//try
-    void SaveSettingsUI(Ui::MainWindow *ui);
-    void LoadSettingsUI(Ui::MainWindow *ui);
-//  public slots:
-
-  private:
-    QString settings_file;
-
+ private:
+  QString settings_file;
 };
 
-#endif // SAVESETTINGS_H
+#endif  // SAVESETTINGS_H
