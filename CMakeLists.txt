@@ -24,6 +24,7 @@ set(HEADER_FILES
         src/model/kernel/parser.h
         src/controller/controller.h
         src/model/kernel/strategy_transform/transformer.h
+        src/model/kernel/strategy_transform/transform_strategy.h
         src/model/kernel/strategy_transform/move.h
         src/model/kernel/strategy_transform/rotate.h
         src/model/kernel/strategy_transform/scale.h
@@ -37,7 +38,7 @@ set(SOURCE_FILES
         src/model/dao/data_model.cc
         src/model/kernel/parser.cc
         src/controller/controller.cc
-        src/model/kernel/strategy_transform/transformer.cc
+        src/model/kernel/strategy_transform/transform_strategy.cc
         src/model/kernel/strategy_transform/move.cc
         src/model/kernel/strategy_transform/rotate.cc
         src/model/kernel/strategy_transform/scale.cc

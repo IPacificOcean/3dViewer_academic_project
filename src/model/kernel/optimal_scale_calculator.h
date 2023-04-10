@@ -7,7 +7,6 @@ namespace s21 {
 class OptimalScaleCalculator {
  public:
   double GetOptimizeScale();
-
 };
 }  // namespace s21
 

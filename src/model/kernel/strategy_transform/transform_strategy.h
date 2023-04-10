@@ -12,16 +12,15 @@ class TransformStrategy {
  public:
   virtual ~TransformStrategy() {}
   virtual void transform(double offset, Axis axis) = 0;
-  // нужно чтобы не было резких перепадов
-  void setDifferenceOffset(const double& offset, Axis axis);
 
+  // нужно чтобы не было резких перепадов
+  void SetDifferenceOffset(const double& offset, Axis axis);
   void SetDifferenceScale(const double& scale) {
     this->scale_ = scale / this->scale_;
   }
 
   // нужно обратно вернуть значения
-  void setDifferenceOffsetBack(const double& offset, Axis axis);
-
+  void SetDifferenceOffsetBack(const double& offset, Axis axis);
   void SetDifferenceScaleBack(const double& scale) { this->scale_ = scale; }
 
  protected:

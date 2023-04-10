@@ -8,7 +8,6 @@
 namespace s21 {
 class Scale : public TransformStrategy {
   void transform(double scale, Axis axis = X) override;
-
 };
 }  // namespace s21
 

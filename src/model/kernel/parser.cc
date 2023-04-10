@@ -6,7 +6,7 @@
 void s21::Parser::OpenFile(std::string &input_file) {
   unsigned int start_time = clock();  // начальное время
 
-//  std::cout << "s21::Parser::OpenFile\n";  // !!!
+  //  std::cout << "s21::Parser::OpenFile\n";  // !!!
 
   std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
   std::vector<unsigned int> &facets = DataModel::GetInstance()->AccessFacets();
@@ -16,7 +16,8 @@ void s21::Parser::OpenFile(std::string &input_file) {
 
   unsigned int end_time = clock();  // конечное время
 
-//  std::cout << "OpenFile TIME = " << end_time - start_time;  // искомое время
+  //  std::cout << "OpenFile TIME = " << end_time - start_time;  // искомое
+  //  время
 }
 
 void s21::Parser::GetDataVetrtexAndFacet(std::string &input_file,

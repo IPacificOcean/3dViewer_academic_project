@@ -11,7 +11,7 @@ GLviewer::GLviewer(QWidget *parent)
     modelScale = 1;
     scale = 0.05;
 
-    colorWidget = QColor(Qt::green);
+    colorWidget = QColor(Qt::lightGray);
     colorLine = QColor(Qt::darkBlue);
     colorPoint = QColor(Qt::red);
 

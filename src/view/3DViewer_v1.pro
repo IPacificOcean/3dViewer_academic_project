@@ -14,7 +14,6 @@ SOURCES += \
     ../model/facade.cc \
     ../model/kernel/optimal_scale_calculator.cc \
     ../model/kernel/parser.cc \
-#    ../model/old_backend/parser.c \
     ../model/kernel/strategy_transform/move.cc \
     ../model/kernel/strategy_transform/rotate.cc \
     ../model/kernel/strategy_transform/scale.cc \
@@ -45,7 +44,6 @@ HEADERS += \
     ../model/kernel/strategy_transform/transform_strategy.h \
     ../model/observer/observable.h \
     ../model/observer/observer.h \
-#    ../model/old_backend/parser.h \
     QtGifImage-master/src/3rdParty/giflib/gif_hash.h \
     QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
     QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \

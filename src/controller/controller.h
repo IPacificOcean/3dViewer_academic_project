@@ -8,13 +8,11 @@ namespace s21 {
 
 class Controller {
  public:
-  void addObserver(Observer* observer) { facade_.addObserver(observer); }
+  void addObserver(Observer* observer);
 
-  void OpenFile(std::string& input_file) { facade_.OpenFile(input_file); }
-  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
-    facade_.TransformObject(type_transform, offset, axis);
-  }
-  double GetOptimizeScale() { return facade_.GetOptimizeScale(); }
+  void OpenFile(std::string& input_file);
+  void TransformObject(TypeTransform type_transform, double offset, Axis axis);
+  double GetOptimizeScale();
 
  private:
   Facade facade_{};

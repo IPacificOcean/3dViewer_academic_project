@@ -5,9 +5,7 @@
 
 namespace s21 {
 class Move : public TransformStrategy {
-
-  void transform(double offset, Axis axis) override ;
-
+  void transform(double offset, Axis axis) override;
 };
 }  // namespace s21
 

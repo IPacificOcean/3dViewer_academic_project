@@ -3,19 +3,19 @@ CFLAGS = -Wall -Wextra #-Werror
 INCLUDES = -I includes
 GCOV_LIBS=--coverage
 RM+=-r
+
 PATH_CONTROLLER = ./controller
 PATH_MODEL = ./model
+TEST_VIEW = $(PATH_TESTS)/test_view/test_view.cc # ПОТОМ МОЖНО УДАЛИТЬ
 PATH_TESTS = ./tests
 PATH_DATA = $(PATH_MODEL)/dao
 PATH_KERNEL = $(PATH_MODEL)/kernel
 PATH_OBSERVER = $(PATH_MODEL)/observer
 PATH_STRATEGY = $(PATH_KERNEL)/strategy_transform
 
-TEST_VIEW = $(PATH_TESTS)/test_view/test_view.cc # ПОТОМ МОЖНО УДАЛИТЬ
-
 TEST = $(PATH_TESTS)/tests.cc
-SRC = $(PATH_CONTROLLER)/controller.cc $(PATH_MODEL)/facade.cc $(PATH_DATA)/data_model.cc $(PATH_KERNEL)/parser.cc $(PATH_STRATEGY)/move.cc \
-	  $(PATH_STRATEGY)/rotate.cc $(PATH_STRATEGY)/scale.cc $(PATH_STRATEGY)/transformer.cc $(TEST_VIEW)
+SRC = $(PATH_CONTROLLER)/controller.cc $(PATH_MODEL)/facade.cc $(PATH_DATA)/data_model.cc $(PATH_KERNEL)/parser.cc $(PATH_KERNEL)/optimal_scale_calculator.cc \
+	  $(PATH_STRATEGY)/move.cc $(PATH_STRATEGY)/rotate.cc $(PATH_STRATEGY)/scale.cc $(PATH_STRATEGY)/transform_strategy.cc $(TEST_VIEW)
 
 HEADERS = $(PATH_CONTROLLER)/*.h $(PATH_MODEL)/*.h $(PATH_DATA)/*.h $(PATH_KERNEL)/*.h $(PATH_OBSERVER)/*.h $(PATH_STRATEGY)/*.h
 OBJ = $(SRC:.cc=.o)

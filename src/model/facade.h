@@ -14,41 +14,12 @@ namespace s21 {
 
 class Facade : public Observable {
  public:
-  Facade() {
-    transformer_move_ = new Transformer(new Move());
-    transformer_rotate_ = new Transformer(new Rotate());
-    transformer_scale_ = new Transformer(new Scale());
-  }
+  Facade();
+  ~Facade();
 
-  ~Facade() {
-    delete transformer_move_;
-    delete transformer_rotate_;
-    delete transformer_scale_;
-  }
-
-  void OpenFile(std::string& input_file) {
-    parser_.OpenFile(input_file);
-    //    this->notifyUpdate();
-  }
-
-  void TransformObject(TypeTransform type_transform, double offset, Axis axis) {
-    switch (type_transform) {
-      case MOVE:
-        transformer_move_->TransformObject(offset, axis);
-        break;
-      case ROTATE:
-        transformer_rotate_->TransformObject(offset, axis);
-        break;
-      case SCALE:
-        transformer_scale_->TransformObject(offset, axis);
-        break;
-    }
-    //    this->notifyUpdate();
-  }
-
-  double GetOptimizeScale() {
-    return optimal_scale_calculator_.GetOptimizeScale();
-  }
+  void OpenFile(std::string& input_file);
+  void TransformObject(TypeTransform type_transform, double offset, Axis axis);
+  double GetOptimizeScale();
 
  private:
   Parser parser_{};

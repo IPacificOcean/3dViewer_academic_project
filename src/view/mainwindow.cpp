@@ -34,6 +34,10 @@ void MainWindow::on_openFile_clicked()
        ui->statusBar->showMessage(e.what());
     }
 
+    //    ui->coun_vertexes->setText(QString::number((ui->widget->vertex.count - 3) / 3));
+    //    ui->count_facets->setText(QString::number(ui->widget->facet.count / 2));
+    //    ui->filename->setText(file.right(file.size()-file.lastIndexOf("/")-1));
+
     }
 }
 
