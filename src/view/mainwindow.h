@@ -7,8 +7,8 @@
 
 #include "../controller/controller.h"
 #include "glviewer.h"
-#include "media.h"
-#include "save_settings.h"
+#include "media_creator/media.h"
+#include "settings/save_settings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

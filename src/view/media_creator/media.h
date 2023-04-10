@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "QtGifImage-master/src/gifimage/qgifimage.h"
+#include "../QtGifImage-master/src/gifimage/qgifimage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

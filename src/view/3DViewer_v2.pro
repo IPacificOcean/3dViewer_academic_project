@@ -29,8 +29,8 @@ SOURCES += \
     glviewer.cpp \
     main.cpp \
     mainwindow.cpp \
-    media.cpp \
-    save_settings.cpp
+    media_creator/media.cpp \
+    settings/save_settings.cpp
 
 HEADERS += \
     ../controller/controller.h \
@@ -52,8 +52,8 @@ HEADERS += \
     QtGifImage-master/src/gifimage/qgifimage_p.h \
     glviewer.h \
     mainwindow.h \
-    media.h \
-    save_settings.h
+    media_creator/media.h \
+    settings/save_settings.h
 
 FORMS += \
     mainwindow.ui
