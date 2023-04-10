@@ -18,7 +18,7 @@ void s21::Parser::OpenFile(std::string &input_file) {
   vertex.clear();
   facets.clear();
   SetDataVertexAndFacet(input_file, vertex, facets);
-  if (vertex.empty() || facets.empty())
+  if (vertex.size() == 3 || facets.empty())
     throw exception_empty_file("File is empty");
 
   //  unsigned int end_time = clock();  // конечное время

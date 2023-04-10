@@ -1,7 +1,5 @@
 #include "save_settings.h"
 
-#include <QDebug>
-
 #include "ui_mainwindow.h"
 
 SaveSettings::SaveSettings(QObject *parent) : QObject{parent} {
@@ -28,21 +26,24 @@ void SaveSettings::SaveSettingsUI(Ui::MainWindow *ui) {
 
 void SaveSettings::LoadSettingsUI(Ui::MainWindow *ui) {
   QSettings settings(this->settings_file, QSettings::NativeFormat);
-  ui->comboBox_point_form->setCurrentIndex(
-      settings.value("comboBox_point_form").toInt());
-  ui->comboBox_line_form->setCurrentIndex(
-      settings.value("comboBox_line_form").toInt());
+  QFile file(this->settings_file);
+  if (file.exists()) {
+    ui->comboBox_point_form->setCurrentIndex(
+        settings.value("comboBox_point_form").toInt());
+    ui->comboBox_line_form->setCurrentIndex(
+        settings.value("comboBox_line_form").toInt());
 
-  ui->spinBox_point_size->setValue(
-      settings.value("spinBox_point_size").toInt());
-  ui->spinBox_line_width->setValue(
-      settings.value("spinBox_line_width").toInt());
+    ui->spinBox_point_size->setValue(
+        settings.value("spinBox_point_size").toInt());
+    ui->spinBox_line_width->setValue(
+        settings.value("spinBox_line_width").toInt());
 
-  ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
-  ui->colorLine->setChecked(settings.value("colorLine").toBool());
-  ui->colorPoint->setChecked(settings.value("colorPoint").toBool());
+    ui->colorBackground->setChecked(settings.value("colorBackground").toBool());
+    ui->colorLine->setChecked(settings.value("colorLine").toBool());
+    ui->colorPoint->setChecked(settings.value("colorPoint").toBool());
 
-  ui->widget->colorLine = settings.value("colorLine_c").value<QColor>();
-  ui->widget->colorPoint = settings.value("colorPoint_c").value<QColor>();
-  ui->widget->colorWidget = settings.value("colorWidget_c").value<QColor>();
+    ui->widget->colorLine = settings.value("colorLine_c").value<QColor>();
+    ui->widget->colorPoint = settings.value("colorPoint_c").value<QColor>();
+    ui->widget->colorWidget = settings.value("colorWidget_c").value<QColor>();
+  }
 }

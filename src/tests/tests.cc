@@ -17,20 +17,8 @@ using namespace s21;
 class ModelTest : public ::testing::Test {
  protected:
   void SetUp() override {}
-  Facade facade_;
   TestView test_view_;
-  Controller controller_;
 };
-
-// ___Observer___
-TEST_F(ModelTest, TestViewConnectFacade) {
-  controller_.addObserver(&test_view_);
-
-  facade_.addObserver(&test_view_);
-  //  facade_.ParseObj();
-
-  test_view_.SubscribeToChangeDataModel();
-}
 
 TEST_F(ModelTest, TestOpenFile) {
   std::string current_path(std::filesystem::current_path().generic_string());

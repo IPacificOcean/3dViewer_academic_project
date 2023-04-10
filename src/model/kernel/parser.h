@@ -14,8 +14,8 @@ class Parser {
  public:
   void OpenFile(std::string& input_file);
   void SetDataVertexAndFacet(std::string& input_file,
-                              std::vector<double>& vertex,
-                              std::vector<unsigned int>& facets);
+                             std::vector<double>& vertex,
+                             std::vector<unsigned int>& facets);
 };
 
 }  // namespace s21

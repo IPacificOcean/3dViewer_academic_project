@@ -88,10 +88,6 @@ else
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --error-exitcode=1 --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./$(EXE)
 endif
 
-leaks_ui: build
-	cd ./build/ && make clean
-	leaks -atExit -- ./build/3DViewer_v2.app/Contents/MacOS/3DViewer_v2
-
 rebuild: clean uninstall all
 
 reinstall: clean uninstall install

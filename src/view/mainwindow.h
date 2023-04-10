@@ -26,7 +26,6 @@ class MainWindow : public QMainWindow, public s21::Observer {
  private slots:
 
   void on_openFile_clicked();
-  //  void on_update_clicked();
 
   //_______________OBSERVER_________________
   void update() override;

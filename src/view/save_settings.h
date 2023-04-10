@@ -18,7 +18,7 @@ class SaveSettings : public QObject {
   void LoadSettingsUI(Ui::MainWindow *ui);
 
  private:
-  QString settings_file;
+  QString settings_file{};
 };
 
 #endif  // SAVESETTINGS_H

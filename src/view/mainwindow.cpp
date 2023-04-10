@@ -9,9 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
   ui->setupUi(this);
   picture_ = new Media(ui);
   controller_.addObserver(this);
+  LoadSettingsSignal(ui);
 }
 
 MainWindow::~MainWindow() {
+  if (ui->checkBox->isChecked()) {
+    SaveSettingsSignal(ui);
+  }
   delete ui;
   delete picture_;
 }
@@ -142,7 +146,10 @@ void MainWindow::on_save_settings_clicked() {
 
 void MainWindow::save_settings() { SaveSettingsSignal(ui); }
 
-void MainWindow::on_load_setting_clicked() { load_settings(); }
+void MainWindow::on_load_setting_clicked() {
+  load_settings();
+  update();
+}
 
 void MainWindow::load_settings() { LoadSettingsSignal(ui); }
 //________________________________________

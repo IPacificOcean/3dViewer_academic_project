@@ -1,21 +1,21 @@
 #include "rotate.h"
 
 namespace s21 {
-constexpr std::pair<int, int> GetIndexSpinningAxes(Axis axis) {
+std::pair<int, int> Rotate::GetIndexSpinningAxes(Axis axis) {
   if (axis == X) return {1, 2};
   if (axis == Y) return {0, 2};
   if (axis == Z) return {0, 1};
   return {};
 }
 
-constexpr double RotateFirstAxis(double &offset, const double &first_axis,
-                                 const double &second_axis) {
+double Rotate::RotateFirstAxis(double &offset, const double &first_axis,
+                               const double &second_axis) {
   return cos(CalculateRadians(offset)) * first_axis -
          sin(CalculateRadians(offset)) * second_axis;
 }
 
-constexpr double RotateSecondAxis(double &offset, const double &first_axis,
-                                  const double &second_axis) {
+double Rotate::RotateSecondAxis(double &offset, const double &first_axis,
+                                const double &second_axis) {
   return sin(CalculateRadians(offset)) * first_axis +
          cos(CalculateRadians(offset)) * second_axis;
 }
