@@ -40,7 +40,7 @@ build: clean
 
 install: build
 	cd ./build/ && make clean
-	./build/3DViewer_v1.app/Contents/MacOS/3DViewer_v1
+	./build/3DViewer_v2.app/Contents/MacOS/3DViewer_v2
 
 uninstall:
 	rm -rf build/
@@ -90,7 +90,7 @@ endif
 
 leaks_ui: build
 	cd ./build/ && make clean
-	leaks -atExit -- ./build/3DViewer_v1.app/Contents/MacOS/3DViewer_v1
+	leaks -atExit -- ./build/3DViewer_v2.app/Contents/MacOS/3DViewer_v2
 
 rebuild: clean uninstall all
 
