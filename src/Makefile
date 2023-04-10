@@ -6,7 +6,7 @@ RM+=-r
 
 PATH_CONTROLLER = ./controller
 PATH_MODEL = ./model
-TEST_VIEW = $(PATH_TESTS)/test_view/test_view.cc # ПОТОМ МОЖНО УДАЛИТЬ
+TEST_VIEW = $(PATH_TESTS)/test_view/test_view.cc
 PATH_TESTS = ./tests
 PATH_DATA = $(PATH_MODEL)/dao
 PATH_KERNEL = $(PATH_MODEL)/kernel
