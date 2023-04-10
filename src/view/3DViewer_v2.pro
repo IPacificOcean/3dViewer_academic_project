@@ -56,6 +56,7 @@ HEADERS += \
     settings/save_settings.h
 
 FORMS += \
+    gl_widget/glviewer.ui \
     mainwindow.ui
 
 # Default rules for deployment.

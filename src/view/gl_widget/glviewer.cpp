@@ -6,11 +6,11 @@ GLviewer::GLviewer(QWidget* parent) : QOpenGLWidget(parent) {
   modelScale = 1;
   scale = 0.05;
 
-  colorWidget = QColor(Qt::lightGray);
-  colorLine = QColor(Qt::darkBlue);
+  colorWidget = QColor(QColor(245, 245, 245));
+  colorLine = QColor(QColor(0, 0, 255));
   colorPoint = QColor(Qt::red);
 
-  pointSize = 4;
+  pointSize = 2;
   lineWidth = 2;
   pointForm = POINT_ROUND;
   lineForm = LINE_SOLID;
