@@ -26,7 +26,7 @@ SOURCES += \
     QtGifImage-master/src/3rdParty/giflib/gifalloc.c \
     QtGifImage-master/src/3rdParty/giflib/quantize.c \
     QtGifImage-master/src/gifimage/qgifimage.cpp \
-    glviewer.cpp \
+    gl_widget/glviewer.cpp \
     main.cpp \
     mainwindow.cpp \
     media_creator/media.cpp \
@@ -50,7 +50,7 @@ HEADERS += \
     QtGifImage-master/src/gifimage/qgifglobal.h \
     QtGifImage-master/src/gifimage/qgifimage.h \
     QtGifImage-master/src/gifimage/qgifimage_p.h \
-    glviewer.h \
+    gl_widget/glviewer.h \
     mainwindow.h \
     media_creator/media.h \
     settings/save_settings.h

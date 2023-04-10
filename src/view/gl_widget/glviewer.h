@@ -10,7 +10,7 @@
 #include <QtWidgets/QWidget>
 #include <iostream>
 
-#include "../model/dao/data_model.h"
+#include "../../model/dao/data_model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

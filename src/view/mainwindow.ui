@@ -1187,7 +1187,7 @@
   <customwidget>
    <class>GLviewer</class>
    <extends>QWidget</extends>
-   <header>glviewer.h</header>
+   <header>gl_widget/glviewer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

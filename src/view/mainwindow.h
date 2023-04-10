@@ -6,7 +6,7 @@
 #include <QMovie>
 
 #include "../controller/controller.h"
-#include "glviewer.h"
+#include "gl_widget/glviewer.h"
 #include "media_creator/media.h"
 #include "settings/save_settings.h"
 
