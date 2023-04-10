@@ -59,7 +59,7 @@ void GLviewer::paintGL(){
 //    glRotatef(zRot, 0, 0, 1);
 
     drawShape();
-    update();
+//    update();
 //    qInfo() << "paintGL()";
 }
 
@@ -112,13 +112,9 @@ void GLviewer::lineSettingForm()
 
 void GLviewer::projectionSelect() {
     if (frustum == EMPTY) {
-
         glOrtho(-1, 1, -1, 1, 1, 99999);
-
     } else {
-
         glFrustum(-1, 1, -1, 1, 1, 99999);
-
     }
 }
 

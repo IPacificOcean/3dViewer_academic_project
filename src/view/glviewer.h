@@ -12,11 +12,6 @@
 #include <iostream>
 #include "../model/dao/data_model.h"
 
-//extern "C" {
-//#include "../model/old_backend/parser.h"
-//}
-
-//#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GLviewer; }
@@ -42,9 +37,6 @@ public:
     int lineWidth;
     int lineForm;
     int frustum;
-//    Vretex vertex;
-//    Facet facet;
-
 
 
     enum {

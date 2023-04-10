@@ -15,7 +15,7 @@ Facade::~Facade() {
 
 void Facade::OpenFile(std::string& input_file) {
   parser_.OpenFile(input_file);
-  //    this->notifyUpdate();
+  this->notifyUpdate();
 }
 
 void Facade::TransformObject(TypeTransform type_transform, double offset,
@@ -31,12 +31,12 @@ void Facade::TransformObject(TypeTransform type_transform, double offset,
       transformer_scale_->TransformObject(offset, axis);
       break;
   }
-  //    this->notifyUpdate();
+  this->notifyUpdate();
 }
 
 double Facade::GetOptimizeScale() {
   double optimize_scale = optimal_scale_calculator_.GetOptimizeScale();
-  //    this->notifyUpdate();
+  this->notifyUpdate();
   return optimize_scale;
 }
 

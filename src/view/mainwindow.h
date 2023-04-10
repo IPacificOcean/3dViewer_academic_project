@@ -7,21 +7,15 @@
 
 #include "glviewer.h"
 #include "../controller/controller.h"
-
-//_________SAVE_SETTINGS_________
 #include "save_settings.h"
-//_______________________________
-
-//_________GIF_PHOTO_SAVE________
 #include "media.h"
-//_______________________________
 
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow, public s21::Observer{
   Q_OBJECT
 
  public:
@@ -33,36 +27,15 @@ class MainWindow : public QMainWindow {
 
   void on_openFile_clicked();
 
-  void on_doubleSpinBox_Scale_valueChanged(double valueScale);
+
 
 //  void on_update_clicked();
 
-  void on_spinBox_line_width_valueChanged(int value);
-
-  void on_spinBox_point_size_valueChanged(int value);
-
-  void on_color_clicked();
-
-  //_________GIF_PHOTO_SAVE________
-  void on_Pthoto_clicked();
-
-  void on_stop_and_save_GIF_clicked();
-
-  //_______________________________
-
-  void on_optimization_clicked();
-
-  void on_comboBox_point_form_currentIndexChanged(int index);
-
-  void on_comboBox_line_form_currentIndexChanged(int index);
-
-  void on_radioButton_frustum_clicked(bool checked);
-
-  void on_radioButton_ortho_clicked();
 
 
-
-
+  //_______________OBSERVER_________________
+  void update() override;
+  //________________________________________
 
   //_________AFFINE_TRANSFORMATIONS_________
   void on_dx_textChanged();
@@ -74,18 +47,43 @@ class MainWindow : public QMainWindow {
   void on_modelScale_textChanged();
   //________________________________________
 
+  //_________OPTIMIZE_SCALE_________________
+  void on_optimization_clicked();
+  void on_doubleSpinBox_Scale_valueChanged(double valueScale);
+  //________________________________________
+
+
+  //_________PAINT__________________________
+  void on_color_clicked();
+  void on_comboBox_point_form_currentIndexChanged(int index);
+  void on_spinBox_point_size_valueChanged(int value);
+  void on_spinBox_line_width_valueChanged(int value);
+  void on_comboBox_line_form_currentIndexChanged(int index);
+  //________________________________________
+
+  //______________PROJECTION________________
+  void on_radioButton_frustum_clicked(bool checked);
+  void on_radioButton_ortho_clicked();
+  //________________________________________
+
   //_________SAVE_AND_LOAD_SETTINGS_________
   void on_save_settings_clicked();
   void on_load_setting_clicked();
   //________________________________________
 
-
+  //_________GIF_PHOTO_SAVE_________________
+  void on_Pthoto_clicked();
+  void on_stop_and_save_GIF_clicked();
+  //________________________________________
 
 
   private:
   Ui::MainWindow *ui;
-  void wheelEvent(QWheelEvent *event) override;
   s21::Controller controller_;
+
+  //_________OPTIMIZE_SCALE_________________
+  void wheelEvent(QWheelEvent *event) override;
+  //________________________________________
 
   //_________SAVE_AND_LOAD_SETTINGS_________
   SaveSettings save_settings_;
@@ -99,9 +97,9 @@ class MainWindow : public QMainWindow {
   };
   //________________________________________
 
-  //_________GIF_PHOTO_SAVE________
+  //_________GIF_PHOTO_SAVE_________________
   Media* picture_;
-  //_______________________________
+  //________________________________________
 
 };
 #endif // MAINWINDOW_H

@@ -1,10 +1,8 @@
 #include "test_view.h"
+
 namespace s21 {
 void TestView::update() {
-  std::cout << "\n____ОТРИСОВКА____\n" << std::endl;
-  std::cout << "_____Кол-фасетов = "
-            << DataModel::GetInstance()->GetFacetsSize() << std::endl;
-  std::cout << std::endl;
+  //____ОТРИСОВКА____
 }
 
 void TestView::OpenFile(std::string &input_file) {
