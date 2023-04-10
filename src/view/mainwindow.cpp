@@ -25,7 +25,9 @@ void MainWindow::on_openFile_clicked() {
     try {
       controller_.OpenFile(input_file);
     } catch (std::exception &e) {
-      ui->statusBar->showMessage(e.what());
+//      QMessageBox::information;
+      QMessageBox::critical(this, "Исключение",
+                            e.what());
     }
     ui->coun_vertexes->setText(QString::number(
         (s21::DataModel::GetInstance()->GetVertex().size() - 3) / 3));

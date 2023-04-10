@@ -5,6 +5,7 @@ constexpr std::pair<int, int> GetIndexSpinningAxes(Axis axis) {
   if (axis == X) return {1, 2};
   if (axis == Y) return {0, 2};
   if (axis == Z) return {0, 1};
+  return {};
 }
 
 constexpr double RotateFirstAxis(double &offset, const double &first_axis,

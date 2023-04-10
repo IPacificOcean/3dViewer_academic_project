@@ -1,5 +1,5 @@
 CC = gcc -std=c++17 -g
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes
 GCOV_LIBS=--coverage
 RM+=-r
@@ -87,6 +87,10 @@ ifeq ($(OS), Darwin)
 else
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --error-exitcode=1 --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./$(EXE)
 endif
+
+leaks_ui: build
+	cd ./build/ && make clean
+	leaks -atExit -- ./build/3DViewer_v1.app/Contents/MacOS/3DViewer_v1
 
 rebuild: clean uninstall all
 

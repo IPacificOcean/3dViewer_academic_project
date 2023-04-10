@@ -1,7 +1,7 @@
 #include "scale.h"
 
 namespace s21 {
-void Scale::transform(double scale, Axis axis) {
+void Scale::transform(double scale, [[maybe_unused]] Axis axis) {
   std::vector<double> &vertex = DataModel::GetInstance()->AccessVertex();
   if (scale <= 0) {
     scale = 1;

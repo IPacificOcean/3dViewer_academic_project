@@ -49,9 +49,9 @@ TEST_F(ModelTest, TestOpenFileExceptionNonExistent) {
   EXPECT_ANY_THROW(test_view_.OpenFile(input_file));
 }
 
-// TODO Написать какую нибудь проверку в парсере на такой случа
 TEST_F(ModelTest, TestOpenFileException) {
-  std::string input_file = "broken_obj_file.obj";
+  std::string current_path(std::filesystem::current_path().generic_string());
+  std::string input_file = current_path + "/tests/broken_obj_file.obj";
   EXPECT_ANY_THROW(test_view_.OpenFile(input_file));
 }
 
