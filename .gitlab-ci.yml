@@ -13,7 +13,7 @@ code_style:
     - cd ./src/
     - make check
   after_script:
-    - sh ./src/telegram_bot.sh
+    - bash ./src/telegram_bot.sh
 
 unit_tests:
   stage: unit_tests
@@ -21,7 +21,7 @@ unit_tests:
     - cd ./src/
     - make tests
   after_script:
-    - sh ./src/telegram_bot.sh
+    - bash ./src/telegram_bot.sh
 
 memory_tests:
   stage: memory_tests
@@ -33,4 +33,4 @@ memory_tests:
       - ${PWD}/src/RESULT_VALGRIND.txt
     expire_in: 30 days
   after_script:
-    - sh ./src/telegram_bot.sh
+    - bash ./src/telegram_bot.sh
