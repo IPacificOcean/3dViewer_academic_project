@@ -179,4 +179,5 @@ TEST_F(ModelTest, TestOptimizeScale) {
   test_view_.OpenFile(input_file);
   double optimize_scale = 0.46383977;
   EXPECT_NEAR(optimize_scale, test_view_.GetOptimizeScale(), 0.0000001);
+  int * test = new int[32];
 }
