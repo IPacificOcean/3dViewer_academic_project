@@ -1,8 +1,5 @@
 # 3DViewer v2.0
 
-> При старте работы над проектом просим вас постараться хронометрировать время работы над проектом.
-> По завершении работы над проектом просим вас ответить на два вопроса [в этом опросе](https://forms.gle/u5xgN2MfJUcY1soP8)
-
 Implementation of 3DViewer v2.0
 
 The russian version of the task can be found in the repository.
@@ -34,7 +31,7 @@ Somewhere near a coffee machine in the 90s:
 
 *- You know, I think the same. I even have several ideas somewhere.*
 
-*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.*
+*-- I think we should start with the most important thing - the preview screen. Good luck!* - having said these words, Lasseter finished his coffee, washed his mug and left the break room, leaving you alone with your thoughts. The door closed slowly after he had gone, leaving only the painfully familiar white glow in the cracks.
 
 *- It would be convenient to prepare several rendering strategies in advance...* - you said thoughtfully out loud, - *And also hide all the business logic implementation behind some kind of facade, then it will be easier to work with the UI. And commands to handle user actions, right, right...* - the sudden sound of a dial-up modem somewhere in the distance distracted you from your thoughts. You had to urgently discuss the task with the team and design the architecture of the future application. Time waits for no one! \
 You opened the door and a bright light flooded your face. Your determination is unshakable; the planned cartoon is destined to make history!
@@ -84,7 +81,9 @@ Develop a program to visualise the 3D wireframe models.
     - Translate the model by a given distance in relation to the X, Y, Z axes.
     - Rotate the model by a given angle in relation to its X, Y, Z axes.
     - Scale the model by a given value.
-- GUI implementation, based on any GUI library with API for C++ (Qt, SFML, GTK+, Nanogui, Nngui, etc.)-
+- GUI implementation, based on any GUI library with API for C++ 
+  * For Linux: GTK+, CEF, Qt, JUCE
+  * For Mac: GTK+, CEF, Qt, JUCE, SFML, Nanogui, Nngui
 - The graphical user interface must contain:
     - A button to select the model file and a field to output its name.
     - A visualisation area for the wireframe model.
@@ -101,6 +100,8 @@ Develop a program to visualise the 3D wireframe models.
 - Classes must be implemented within the `s21` namespace
 - To perform affine transformations, you can use the matrices from the library of the previous s21_matrix+ project
 
+*Note:* **Don't upload heavy files (>10 mb) to git.**
+
 ## Part 2. Bonus. Settings
 
 - The program must allow customizing the type of projection (parallel and central)
@@ -112,3 +113,5 @@ Develop a program to visualise the 3D wireframe models.
 
 - The program must allow saving the captured (rendered) images as bmp and jpeg files.
 - The program must allow recording small screencasts - the current custom affine transformation of the loaded object into gif-animation (640x480, 10fps, 5s) by a special button
+
+💡 [Tap here](https://forms.yandex.ru/cloud/64181b3c69387223f9a12877/) **to leave your feedback on the project**. Pedago Team really tries to make your educational experience better.

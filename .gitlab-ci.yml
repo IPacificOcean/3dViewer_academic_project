@@ -1,0 +1,36 @@
+default:
+  tags:
+    - runner
+
+stages:
+  - code_style
+  - unit_tests
+  - memory_tests
+
+code_style:
+  stage: code_style
+  script:
+    - cd ./src/
+    - make check
+  after_script:
+    - bash ./src/telegram_bot.sh code_style
+
+unit_tests:
+  stage: unit_tests
+  script:
+    - cd ./src/
+    - make tests
+  after_script:
+    - bash ./src/telegram_bot.sh unit_tests
+
+memory_tests:
+  stage: memory_tests
+  script:
+    - cd ./src/
+    - make leaks
+  artifacts:
+    paths:
+      - ${PWD}/src/RESULT_VALGRIND.txt
+    expire_in: 30 days
+  after_script:
+    - bash ./src/telegram_bot.sh memory_tests

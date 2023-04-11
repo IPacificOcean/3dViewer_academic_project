@@ -1,11 +1,7 @@
-//
-// Created by Tysane Norine on 3/29/23.
-//
-
 #ifndef INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 #define INC_3DVIEWER_V2_0_SRC_MODEL_KERNEL_transform_strategy_TRANSFORMER_H_
 
-#include "tranform_strategy.h"
+#include "transform_strategy.h"
 
 namespace s21 {
 class Transformer {
@@ -14,11 +10,9 @@ class Transformer {
       : transform_strategy_(strategy_transform) {}
   ~Transformer() { delete transform_strategy_; }
 
-  void SetStrategyTransform(TransformStrategy* strategy_transform) {
-    transform_strategy_ = strategy_transform;
+  void TransformObject(double offset, Axis axis) {
+    transform_strategy_->transform(offset, axis);
   }
-
-  void TransformObject() { transform_strategy_->transform(); }
 
  private:
   TransformStrategy* transform_strategy_{};
